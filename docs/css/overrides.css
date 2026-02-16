@@ -131,9 +131,7 @@ body {
   display: flex !important;
   flex-direction: column !important;
   gap: 48px !important;
-  max-width: 900px !important;
-  margin: 0 auto !important;
-  text-align: center !important;
+  width: 100% !important;
 }
 
 .section-title {
@@ -142,7 +140,8 @@ body {
   letter-spacing: 2px !important;
   color: #ACD0D8 !important;
   text-transform: uppercase !important;
-  margin-bottom: 0 !important;
+  margin-bottom: 24px !important;
+  text-align: left !important;
 }
 
 .layout {
@@ -150,6 +149,9 @@ body {
   flex-direction: column !important;
   gap: 48px !important;
   align-items: center !important;
+  max-width: 900px !important;
+  margin: 0 auto !important;
+  text-align: center !important;
 }
 
 .title {
