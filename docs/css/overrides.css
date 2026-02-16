@@ -7,8 +7,10 @@
 /* --- Navigation --- */
 .navigation-block {
   display: flex !important;
+  flex-direction: row !important;
   justify-content: space-between !important;
   align-items: center !important;
+  width: 100% !important;
   margin-top: 24px !important;
   height: 96px !important;
   padding: 24px 36px !important;
@@ -18,38 +20,44 @@
   position: sticky !important;
   top: 0 !important;
   z-index: 100 !important;
+  box-sizing: border-box !important;
+  flex-wrap: nowrap !important;
 }
 
 .nav-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  flex-shrink: 0 !important;
 }
 
 .nav-logo {
-  display: flex;
-  align-items: center;
+  display: flex !important;
+  align-items: center !important;
+  flex-shrink: 0 !important;
 }
 
 .nav-logo-icon {
-  width: 28px;
-  height: 28px;
-  flex-shrink: 0;
+  width: 28px !important;
+  height: 28px !important;
+  flex-shrink: 0 !important;
 }
 
 .nav-logo-text {
-  font-family: Montserrat, sans-serif;
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 1.4;
-  color: #F1FCFE;
-  white-space: nowrap;
+  font-family: Montserrat, sans-serif !important;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  color: #F1FCFE !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
 }
 
 .nav-right {
-  display: flex;
-  gap: 32px;
-  align-items: center;
+  display: flex !important;
+  gap: 32px !important;
+  align-items: center !important;
+  flex-shrink: 0 !important;
 }
 
 .navigation-link {
@@ -60,6 +68,8 @@
   color: #F1FCFE !important;
   text-decoration: none !important;
   transition: color 0.3s ease !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
 }
 
 .navigation-link:hover {
@@ -67,21 +77,21 @@
 }
 
 .nav-resume-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 40px;
-  background: #ACD0D8;
-  color: #001E24;
-  font-family: 'Roboto Mono', monospace;
-  font-size: 20px;
-  font-weight: 500;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: all 0.3s ease;
-  flex-shrink: 0;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  padding: 12px 20px !important;
+  border: none !important;
+  border-radius: 40px !important;
+  background: #ACD0D8 !important;
+  color: #001E24 !important;
+  font-family: 'Roboto Mono', monospace !important;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  text-transform: uppercase !important;
+  transition: all 0.3s ease !important;
+  flex-shrink: 0 !important;
 }
 
 .nav-resume-btn:hover {
