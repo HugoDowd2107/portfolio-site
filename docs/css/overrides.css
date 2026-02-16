@@ -80,6 +80,7 @@ body {
 
 .navigation-link:hover {
   color: var(--text-mid, #ACD0D8) !important;
+  text-decoration: underline !important;
 }
 
 .nav-resume-btn {
