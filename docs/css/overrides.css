@@ -46,9 +46,9 @@
   white-space: nowrap;
 }
 
-.nav-center {
+.nav-right {
   display: flex;
-  gap: 48px;
+  gap: 32px;
   align-items: center;
 }
 
@@ -266,8 +266,8 @@
     font-size: 18px;
   }
 
-  .nav-center {
-    gap: 32px;
+  .nav-right {
+    gap: 24px;
   }
 
   .navigation-link {
@@ -314,8 +314,8 @@
     font-size: 16px;
   }
 
-  .nav-center {
-    gap: 20px;
+  .nav-right {
+    gap: 16px;
     order: 3;
     width: 100%;
     justify-content: center;
@@ -326,7 +326,6 @@
   }
 
   .nav-resume-btn {
-    order: 2;
     padding: 8px 12px;
     font-size: 12px;
   }
@@ -374,7 +373,7 @@
     font-size: 14px;
   }
 
-  .nav-center {
+  .nav-right {
     gap: 12px;
     order: 3;
     width: 100%;
@@ -387,7 +386,6 @@
   }
 
   .nav-resume-btn {
-    order: 2;
     padding: 6px 10px;
     font-size: 10px;
   }
