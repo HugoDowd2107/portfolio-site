@@ -1,0 +1,339 @@
+/* ============================================
+   DESIGN UPDATE OVERRIDES
+   Implements the updated Figma design on top
+   of the existing Webflow export.
+   ============================================ */
+
+/* --- Navigation --- */
+.navigation-block {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 16px 40px !important;
+  border-bottom: 1px solid var(--divider) !important;
+  position: sticky !important;
+  top: 0 !important;
+  background-color: var(--bg) !important;
+  z-index: 100 !important;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+}
+
+.nav-logo-icon {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+}
+
+.nav-logo-icon span {
+  display: block;
+  width: 8px;
+  height: 8px;
+  background: var(--text);
+  border-radius: 1.5px;
+}
+
+.nav-logo-text {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.nav-links .navigation-link {
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1.5px !important;
+  color: var(--text) !important;
+  text-decoration: none !important;
+  transition: color 0.3s ease !important;
+}
+
+.nav-links .navigation-link:hover {
+  color: var(--text-mid) !important;
+}
+
+.nav-resume-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 20px;
+  border: 1px solid var(--divider);
+  border-radius: 20px;
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.nav-resume-btn:hover {
+  background: rgba(199, 234, 224, 0.1);
+  border-color: var(--text-mid);
+  color: var(--text);
+}
+
+.nav-resume-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* --- Hide old header row --- */
+.header {
+  display: none !important;
+}
+
+/* --- Intro Section --- */
+.section-1 {
+  padding: 80px 40px 120px !important;
+}
+
+.intro {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 24px !important;
+}
+
+.title.page-load {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* --- Hero Badges --- */
+.hero-badges {
+  display: flex;
+  gap: 12px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  background: rgba(30, 74, 82, 0.5);
+  border: 1px solid var(--divider);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.hero-badge svg {
+  color: var(--text-mid);
+  flex-shrink: 0;
+}
+
+/* --- Work Section --- */
+.section-2 {
+  padding: 40px 40px 80px !important;
+}
+
+/* --- Project Cards — image-first layout --- */
+.project-card {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  text-decoration: none !important;
+  color: var(--text) !important;
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+.project-cards-left {
+  padding: 16px 4px 0 !important;
+}
+
+.project-cards-left .tags,
+.project-cards-left .button {
+  display: none !important;
+}
+
+.card-heading {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
+  margin: 0 0 4px 0 !important;
+  color: var(--text) !important;
+}
+
+.card-sub-heading {
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  color: var(--text-dark) !important;
+  margin: 0 !important;
+}
+
+/* --- Image Container --- */
+.project-cards-right {
+  position: relative !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(0, 180, 216, 0.25) !important;
+  background: linear-gradient(145deg, #0c3039 0%, #091e24 100%) !important;
+}
+
+/* Subtle glow effect on the card border */
+.project-card:hover .project-cards-right {
+  border-color: rgba(0, 180, 216, 0.45) !important;
+  box-shadow: 0 0 30px rgba(0, 180, 216, 0.08) !important;
+}
+
+/* VIEW CASE STUDY overlay button */
+.project-cards-right::after {
+  content: 'VIEW CASE STUDY  \2197';
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  padding: 8px 16px;
+  background: rgba(5, 36, 42, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--divider);
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--text);
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.project-card:hover .project-cards-right::after {
+  background: rgba(0, 180, 216, 0.15);
+  border-color: rgba(0, 180, 216, 0.4);
+}
+
+.interface-image {
+  width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  transition: transform 0.4s ease !important;
+}
+
+.project-card:hover .interface-image {
+  transform: scale(1.02);
+}
+
+/* --- Bottom two cards — side by side grid --- */
+.work-grid-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+/* --- Experience Section --- */
+.section-3 {
+  padding: 60px 40px 80px !important;
+}
+
+/* --- Footer --- */
+.footer {
+  padding: 60px 40px !important;
+  border-top: 1px solid var(--divider) !important;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media screen and (max-width: 991px) {
+  .navigation-block {
+    padding: 14px 24px !important;
+  }
+
+  .nav-links {
+    gap: 20px;
+  }
+
+  .section-1 {
+    padding: 60px 24px 80px !important;
+  }
+
+  .section-2 {
+    padding: 24px 24px 60px !important;
+  }
+
+  .section-3 {
+    padding: 40px 24px 60px !important;
+  }
+
+  .footer {
+    padding: 40px 24px !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .nav-links {
+    gap: 16px;
+  }
+
+  .nav-links .navigation-link {
+    font-size: 10px !important;
+  }
+
+  .nav-resume-btn {
+    padding: 6px 14px;
+    font-size: 10px;
+  }
+
+  .work-grid-bottom {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-badges {
+    gap: 8px;
+  }
+
+  .card-heading {
+    font-size: 15px !important;
+  }
+
+  .card-sub-heading {
+    font-size: 12px !important;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .navigation-block {
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 12px 16px !important;
+  }
+
+  .nav-links {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: 14px;
+  }
+
+  .section-1 {
+    padding: 40px 16px 60px !important;
+  }
+
+  .section-2 {
+    padding: 16px 16px 40px !important;
+  }
+
+  .section-3 {
+    padding: 32px 16px 40px !important;
+  }
+
+  .footer {
+    padding: 32px 16px !important;
+  }
+}
