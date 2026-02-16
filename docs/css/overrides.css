@@ -119,13 +119,45 @@ body {
 
 /* --- Intro Section --- */
 .section-1 {
-  padding: 80px 40px 120px !important;
+  padding: 120px 60px !important;
+  background: linear-gradient(135deg, #0a1f24 0%, #0d2d35 50%, #1a3f48 100%) !important;
+  min-height: 600px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .intro {
   display: flex !important;
   flex-direction: column !important;
-  gap: 24px !important;
+  gap: 48px !important;
+  max-width: 900px !important;
+  margin: 0 auto !important;
+  text-align: center !important;
+}
+
+.section-title {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 2px !important;
+  color: #ACD0D8 !important;
+  text-transform: uppercase !important;
+  margin-bottom: 0 !important;
+}
+
+.layout {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 48px !important;
+  align-items: center !important;
+}
+
+.title {
+  font-size: 56px !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  color: #00D4FF !important;
+  margin: 0 !important;
 }
 
 .title.page-load {
@@ -136,27 +168,31 @@ body {
 /* --- Hero Badges --- */
 .hero-badges {
   display: flex;
-  gap: 12px;
-  margin-top: 28px;
+  gap: 24px;
+  margin-top: 0 !important;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .hero-badge {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 7px 16px;
-  background: rgba(30, 74, 82, 0.5);
-  border: 1px solid var(--divider);
-  border-radius: 20px;
-  font-size: 12px;
+  gap: 10px;
+  padding: 12px 24px;
+  background: rgba(13, 45, 53, 0.8);
+  border: 1px solid rgba(0, 180, 216, 0.3);
+  border-radius: 32px;
+  font-size: 14px;
   font-weight: 500;
-  color: var(--text);
+  color: #F1FCFE;
+  backdrop-filter: blur(8px);
 }
 
 .hero-badge svg {
-  color: var(--text-mid);
+  color: #00D4FF;
   flex-shrink: 0;
+  width: 16px;
+  height: 16px;
 }
 
 /* --- Work Section --- */
@@ -297,7 +333,20 @@ body {
   }
 
   .section-1 {
-    padding: 60px 24px 80px !important;
+    padding: 80px 40px !important;
+    min-height: auto !important;
+  }
+
+  .title {
+    font-size: 42px !important;
+  }
+
+  .intro {
+    gap: 36px !important;
+  }
+
+  .layout {
+    gap: 36px !important;
   }
 
   .section-2 {
@@ -366,6 +415,23 @@ body {
   .card-sub-heading {
     font-size: 12px !important;
   }
+
+  .section-1 {
+    padding: 60px 24px !important;
+  }
+
+  .title {
+    font-size: 32px !important;
+  }
+
+  .hero-badges {
+    gap: 16px;
+  }
+
+  .hero-badge {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
 }
 
 @media screen and (max-width: 479px) {
@@ -408,7 +474,29 @@ body {
   }
 
   .section-1 {
-    padding: 40px 16px 60px !important;
+    padding: 40px 16px !important;
+    min-height: auto !important;
+  }
+
+  .title {
+    font-size: 24px !important;
+  }
+
+  .intro {
+    gap: 28px !important;
+  }
+
+  .layout {
+    gap: 28px !important;
+  }
+
+  .hero-badges {
+    gap: 12px;
+  }
+
+  .hero-badge {
+    padding: 8px 16px;
+    font-size: 12px;
   }
 
   .section-2 {
