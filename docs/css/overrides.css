@@ -5,10 +5,14 @@
    ============================================ */
 
 /* --- Body & General --- */
+html, body {
+  background: #00151A !important;
+}
+
 body {
   padding-left: 60px !important;
   padding-right: 60px !important;
-  background: var(--bg, #00151A) !important;
+  background: #00151A !important;
 }
 
 /* --- Navigation --- */
