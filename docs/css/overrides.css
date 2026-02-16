@@ -124,7 +124,7 @@ body {
 
 /* --- Intro Section --- */
 .section-1 {
-  padding: 120px 60px !important;
+  padding: 0 !important;
   background: transparent !important;
   min-height: 600px !important;
   display: flex !important;
