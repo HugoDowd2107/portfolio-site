@@ -66,7 +66,7 @@ body {
   padding: 1.5rem 2.25rem !important;
   border: 1px solid var(--border, #254046) !important;
   border-radius: 100px !important;
-  background: linear-gradient(0deg, #001E24 0%, #002B33 100%), var(--bg-light, #002229) !important;
+  background: linear-gradient(0deg, #001E24 0%, #002B33 100%), #002229 !important;
   z-index: 100 !important;
   box-sizing: border-box !important;
   flex-wrap: nowrap !important;
@@ -169,8 +169,8 @@ body {
   padding: 0 !important;
   background:
     radial-gradient(ellipse at center, rgba(5, 36, 42, 0.4) 0%, #00151A 100%),
-    radial-gradient(circle, var(--text-mid, #ACD0D8) 1px, transparent 1px) !important;
-  background-size: 100% 100%, 1.25rem 1.25rem !important;
+    radial-gradient(circle, var(--text-mid, #ACD0D8) 0.5px, transparent 0.5px) !important;
+  background-size: 100% 100%, 0.5rem 0.5rem !important;
   background-position: 0 0, 0 0 !important;
   height: 80svh !important;
   min-height: 80svh !important;
@@ -654,132 +654,148 @@ body {
   }
 }
 
+/* --- Hamburger Button (hidden on desktop) --- */
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 101;
+}
+
+.hamburger-line {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #F1FCFE;
+  border-radius: 2px;
+}
+
+/* --- Mobile Menu Overlay (hidden by default) --- */
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 21, 26, 0.97);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.mobile-menu-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-menu-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.mobile-menu-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.mobile-menu-link {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #F1FCFE;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+}
+
+.mobile-menu-resume {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 2.5rem;
+  background: #ACD0D8;
+  color: #001E24;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1.25rem;
+  font-weight: 400;
+  text-decoration: none;
+  text-transform: uppercase;
+  margin-top: 1rem;
+}
+
 @media screen and (max-width: 767px) {
+  /* --- Body grid: remove side margins --- */
+  body {
+    margin: 0 1rem !important;
+  }
+
+  /* --- Navigation: hamburger mode --- */
   .navigation-block {
-    padding: 1rem 1.5rem !important;
+    padding: 1rem 1.25rem !important;
     height: auto !important;
-    flex-wrap: wrap;
-    gap: 0.75rem;
+    flex-wrap: nowrap !important;
+    gap: 0 !important;
+    margin-top: 1rem !important;
+    border-radius: 3.75rem !important;
+  }
+
+  .nav-right .navigation-link,
+  .nav-right .nav-resume-btn {
+    display: none !important;
+  }
+
+  .hamburger-btn {
+    display: flex !important;
   }
 
   .nav-left {
     gap: 0.5rem;
-    order: 1;
-    flex: 1;
   }
 
   .nav-logo-text {
     font-size: 1rem;
   }
 
-  .nav-right {
-    gap: 1.5rem !important;
-    order: 3;
-    width: 100%;
-    justify-content: center;
-  }
-
-  .navigation-link {
-    font-size: 0.875rem !important;
-  }
-
-  .nav-resume-btn {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.75rem;
-  }
-
-  .nav-resume-icon {
-    display: none;
-  }
-
-  .work-grid-bottom {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-badges {
-    gap: 0.5rem;
-  }
-
-  .card-heading {
-    font-size: 0.9375rem !important;
-  }
-
-  .card-sub-heading {
-    font-size: 0.75rem !important;
-  }
-
+  /* --- Intro Section: single column --- */
   .section-1 {
-    padding: 3.75rem 1.5rem !important;
+    grid-template-columns: 1fr !important;
+    padding: 6rem 1.5rem 3rem 1.5rem !important;
+    margin: 0 -1rem !important;
+    min-height: auto !important;
+    height: auto !important;
+    gap: 1.5rem !important;
   }
 
-  .title {
+  .section-1 .section-title {
+    grid-column: 1 / -1 !important;
+  }
+
+  .section-1 .layout {
+    grid-column: 1 / -1 !important;
+  }
+
+  .title,
+  .title.page-load {
     font-size: 2rem !important;
   }
 
-  .hero-badges {
-    gap: 1rem;
-  }
-
-  .hero-badge {
-    padding: 0.625rem 1.25rem;
-    font-size: 0.8125rem;
-  }
-}
-
-@media screen and (max-width: 479px) {
-  .navigation-block {
-    padding: 0.75rem 1rem !important;
-    height: auto !important;
-    margin-top: 1rem !important;
-    border-radius: 3.75rem !important;
-  }
-
-  .nav-left {
-    gap: 0.375rem;
-    order: 1;
-  }
-
-  .nav-logo-icon {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
-
-  .nav-logo-text {
-    font-size: 0.875rem;
-  }
-
-  .nav-right {
-    gap: 0.75rem !important;
-    order: 3;
-    width: 100%;
-    justify-content: center;
-    margin-top: 0.75rem;
-  }
-
-  .navigation-link {
-    font-size: 0.75rem !important;
-  }
-
-  .nav-resume-btn {
-    padding: 0.375rem 0.625rem;
-    font-size: 0.625rem;
-  }
-
-  .section-1 {
-    padding: 2.5rem 1rem !important;
-    min-height: auto !important;
-  }
-
-  .title {
-    font-size: 1.5rem !important;
-  }
-
-  .intro {
-    gap: 1.75rem !important;
-  }
-
   .layout {
-    gap: 1.75rem !important;
+    gap: 2rem !important;
   }
 
   .hero-badges {
@@ -787,20 +803,130 @@ body {
   }
 
   .hero-badge {
-    padding: 0.5rem 1rem;
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  /* --- Work Section: single column --- */
+  .section-2 {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+
+  .section-2 .section-title {
+    grid-column: 1 / -1 !important;
+  }
+
+  .section-2 > .project-card-featured {
+    grid-column: 1 / -1 !important;
+  }
+
+  .project-cards-grid {
+    grid-column: 1 / -1 !important;
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+
+  .project-card-title {
+    font-size: 1.25rem !important;
+  }
+
+  .project-card-description {
+    font-size: 1rem !important;
+  }
+
+  .case-study-btn {
+    font-size: 1rem !important;
+    padding: 0.625rem 1rem !important;
+  }
+
+  .project-image-placeholder {
+    top: 3rem !important;
+    left: 3rem !important;
+  }
+
+  .work-grid-bottom {
+    grid-template-columns: 1fr;
+  }
+
+  /* --- Experience Section: single column --- */
+  .section-3 {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+    margin-top: 4rem !important;
+  }
+
+  .section-3 .section-title {
+    grid-column: 1 / -1 !important;
+  }
+
+  .work-experience {
+    grid-column: 1 / -1 !important;
+  }
+
+  .experience-row {
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem !important;
+    padding: 1.5rem 0 !important;
+  }
+
+  /* --- Footer: stacked --- */
+  .footer {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2rem !important;
+    padding: 2.5rem 1rem !important;
+  }
+
+  .footer-group {
+    width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  body {
+    margin: 0 0.75rem !important;
+  }
+
+  .navigation-block {
+    padding: 0.75rem 1rem !important;
+    margin-top: 0.75rem !important;
+  }
+
+  .nav-logo-text {
+    font-size: 0.875rem;
+  }
+
+  .section-1 {
+    padding: 5rem 1rem 2.5rem 1rem !important;
+    margin: 0 -0.75rem !important;
+    gap: 1rem !important;
+  }
+
+  .title,
+  .title.page-load {
+    font-size: 1.75rem !important;
+  }
+
+  .layout {
+    gap: 1.75rem !important;
+  }
+
+  .hero-badge {
+    padding: 0.5rem 0.875rem;
     font-size: 0.75rem;
   }
 
   .section-2 {
-    padding: 1rem 1rem 2.5rem !important;
+    gap: 1rem !important;
   }
 
   .section-3 {
-    padding: 2rem 1rem 2.5rem !important;
+    margin-top: 3rem !important;
   }
 
   .footer {
-    padding: 2rem 1rem !important;
+    padding: 2rem 0.75rem !important;
   }
 }
 
