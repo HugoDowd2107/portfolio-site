@@ -164,11 +164,24 @@ body {
 /* --- Dot Glow Animation --- */
 @keyframes dotGlow {
   0%, 100% {
-    opacity: 0.6;
+    filter: brightness(1);
   }
   50% {
-    opacity: 1;
+    filter: brightness(1.4);
   }
+}
+
+.section-1::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle, var(--text-mid, #ACD0D8) 1px, transparent 1px);
+  background-size: 1.25rem 1.25rem;
+  pointer-events: none;
+  animation: dotGlow 4s ease-in-out infinite !important;
 }
 
 /* --- Hide old header row --- */
@@ -184,7 +197,7 @@ body {
     radial-gradient(circle, var(--text-mid, #ACD0D8) 1px, transparent 1px) !important;
   background-size: 100% 100%, 1.25rem 1.25rem !important;
   background-position: 0 0, 0 0 !important;
-  animation: dotGlow 4s ease-in-out infinite !important;
+  background-attachment: fixed !important;
   height: 80svh !important;
   min-height: 80svh !important;
   display: grid !important;
