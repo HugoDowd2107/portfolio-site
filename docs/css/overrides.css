@@ -161,55 +161,6 @@ body {
   flex-shrink: 0 !important;
 }
 
-/* --- Subtle Load Animations --- */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.navigation-block {
-  animation: fadeInUp 0.8s ease-out !important;
-}
-
-.section-title {
-  animation: fadeInUp 0.8s ease-out !important;
-}
-
-.title {
-  animation: fadeInUp 0.8s ease-out !important;
-}
-
-.hero-badges {
-  animation: fadeInUp 0.8s ease-out !important;
-}
-
-.project-card-featured {
-  animation: fadeInUp 0.8s ease-out !important;
-}
-
-.work-experience {
-  animation: fadeIn 0.8s ease-out !important;
-}
-
-.footer-group {
-  animation: fadeInUp 0.8s ease-out !important;
-}
-
 /* --- Hide old header row --- */
 .header {
   display: none !important;
