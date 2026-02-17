@@ -128,7 +128,6 @@ body {
 }
 
 .navigation-link:hover {
-  color: var(--text-mid, #ACD0D8) !important;
   text-decoration: underline !important;
 }
 
@@ -151,7 +150,6 @@ body {
 }
 
 .nav-resume-btn:hover {
-  background: #C7EADF;
   transform: translateY(-0.125rem);
 }
 
