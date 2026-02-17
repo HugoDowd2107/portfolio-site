@@ -317,8 +317,7 @@ body {
   position: relative !important;
 }
 
-.project-card-featured::after,
-.project-card::after {
+.project-card-image::after {
   content: '' !important;
   position: absolute !important;
   top: 0 !important;
@@ -331,11 +330,25 @@ body {
   transition: background 0.3s ease !important;
 }
 
-.section-2:has(.project-card-featured:hover) .project-card-featured:not(:hover)::after,
-.section-2:has(.project-card-featured:hover) .project-card:not(:hover)::after,
-.project-cards-grid:has(.project-card:hover) .project-card:not(:hover)::after,
-.work-grid-bottom:has(.project-card:hover) .project-card:not(:hover)::after {
+.section-2:has(.project-card-featured:hover) .project-card-featured:not(:hover) .project-card-image::after,
+.section-2:has(.project-card-featured:hover) .project-card:not(:hover) .project-card-image::after,
+.project-cards-grid:has(.project-card:hover) .project-card:not(:hover) .project-card-image::after,
+.work-grid-bottom:has(.project-card:hover) .project-card:not(:hover) .project-card-image::after {
   background: rgba(0, 0, 0, 0.5) !important;
+}
+
+.section-2:has(.project-card-featured:hover) .project-card-featured:not(:hover) .project-card-title,
+.section-2:has(.project-card-featured:hover) .project-card:not(:hover) .project-card-title,
+.project-cards-grid:has(.project-card:hover) .project-card:not(:hover) .project-card-title,
+.work-grid-bottom:has(.project-card:hover) .project-card:not(:hover) .project-card-title {
+  color: rgba(241, 252, 254, 0.5) !important;
+}
+
+.section-2:has(.project-card-featured:hover) .project-card-featured:not(:hover) .project-card-description,
+.section-2:has(.project-card-featured:hover) .project-card:not(:hover) .project-card-description,
+.project-cards-grid:has(.project-card:hover) .project-card:not(:hover) .project-card-description,
+.work-grid-bottom:has(.project-card:hover) .project-card:not(:hover) .project-card-description {
+  color: rgba(172, 208, 216, 0.5) !important;
 }
 
 .project-card-text {
