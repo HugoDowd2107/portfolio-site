@@ -1,11 +1,11 @@
 :root {
   --text: #f5fffc;
   --main-text-colour\<deleted\|variable-43b566f1-8278-194c-e35a-3a30e3598709\>: #05242a;
-  --bg: #08252b;
+  --bg: #00151A;
   --white-text: #fff;
-  --text-dark: #8baca2;
+  --text-dark: #00151A;
   --bg-light: #0f363d;
-  --text-mid: #c7eae0;
+  --text-mid: #ACD0D8;
   --flash-colour: #fe3448;
   --dark-background: #05242a;
   --divider: #1e4a52;
@@ -3221,10 +3221,9 @@ a {
   align-items: center;
   padding: 20px 40px;
   border-bottom: 1px solid rgba(107, 179, 185, 0.2);
-  position: sticky;
-  top: 0;
   background-color: var(--bg);
   z-index: 100;
+  position: relative;
 }
 
 .nav-logo {
