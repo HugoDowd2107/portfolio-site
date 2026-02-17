@@ -183,31 +183,31 @@ body {
 }
 
 .navigation-block {
-  animation: fadeInUp 0.6s ease-out !important;
+  animation: fadeInUp 0.8s ease-out !important;
 }
 
 .section-title {
-  animation: fadeInUp 0.8s ease-out 0.1s both !important;
+  animation: fadeInUp 0.8s ease-out !important;
 }
 
 .title {
-  animation: fadeInUp 0.8s ease-out 0.2s both !important;
+  animation: fadeInUp 0.8s ease-out !important;
 }
 
 .hero-badges {
-  animation: fadeInUp 0.8s ease-out 0.3s both !important;
+  animation: fadeInUp 0.8s ease-out !important;
 }
 
 .project-card-featured {
-  animation: fadeInUp 0.8s ease-out 0.2s both !important;
+  animation: fadeInUp 0.8s ease-out !important;
 }
 
 .work-experience {
-  animation: fadeIn 0.8s ease-out 0.2s both !important;
+  animation: fadeIn 0.8s ease-out !important;
 }
 
 .footer-group {
-  animation: fadeInUp 0.8s ease-out 0.1s both !important;
+  animation: fadeInUp 0.8s ease-out !important;
 }
 
 /* --- Hide old header row --- */
