@@ -1005,8 +1005,8 @@ a {
 }
 
 .pills-group {
-  grid-column-gap: 24px;
-  grid-row-gap: 24px;
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
   object-fit: fill;
   flex-flow: wrap;
   flex: 1;
@@ -1982,8 +1982,8 @@ a {
   }
 
   .pills-group {
-    grid-column-gap: 24px;
-    grid-row-gap: 24px;
+    grid-column-gap: 1rem;
+    grid-row-gap: 1rem;
     flex: 1;
     justify-content: flex-start;
     align-items: flex-start;
@@ -3274,7 +3274,7 @@ a {
 /* Hero Badges */
 .hero-badges {
   display: flex;
-  gap: 16px;
+  gap: 1rem;
   margin-top: 32px;
   flex-wrap: wrap;
 }
@@ -3352,7 +3352,7 @@ a {
   }
 
   .hero-badges {
-    gap: 12px;
+    gap: 1rem;
     margin-top: 24px;
   }
 }
