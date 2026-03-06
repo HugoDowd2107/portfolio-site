@@ -62,8 +62,7 @@ body {
   justify-content: space-between !important;
   align-items: center !important;
   width: 100% !important;
-  height: 6rem !important;
-  padding: 1.5rem 2.25rem !important;
+  padding: 1rem 1rem !important;
   border: 1px solid var(--border, #254046) !important;
   border-radius: 100px !important;
   background: linear-gradient(0deg, #001E24 0%, #002B33 100%), #002229 !important;
