@@ -392,8 +392,12 @@ body {
   transition: all 0.3s ease !important;
 }
 
-.section-2 > .project-card-featured .project-card-image {
-  background: linear-gradient(180deg, #C3F4FE 0%, #58D7F1 100%) !important;
+.section-2 > .project-card-featured:first-of-type .project-card-image {
+  background: linear-gradient(180deg, #DCF4FA 0%, #A8D8E4 100%) !important;
+}
+
+.section-2 > .project-card-featured:nth-of-type(2) .project-card-image {
+  background: linear-gradient(180deg, #72E8FA 0%, #0BBDD6 100%) !important;
 }
 
 .project-cards-grid .project-card-featured .project-card-image {
