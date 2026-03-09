@@ -13,12 +13,12 @@
   --card-background-dark: #ffffff0d;
   --text-colour\<deleted\|variable-2af43440-f28f-7c0a-591c-806364ad49d5\>: #d6faef;
   --border: #25463b;
-  --font-family: Montserrat, sans-serif;
+  --font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 body {
   color: var(--text);
-  font-family: Montserrat, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.2;
 }
@@ -1144,7 +1144,7 @@ a {
   letter-spacing: 0;
   margin-top: 0;
   margin-bottom: 0;
-  font-family: Montserrat, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 30px;
   font-weight: 600;
   line-height: 120%;
@@ -1251,7 +1251,7 @@ a {
   flex: 1;
   width: auto;
   margin-bottom: 16px;
-  font-family: Montserrat, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 44px;
   font-weight: 600;
   line-height: 44px;
