@@ -1,0 +1,30 @@
+/* ============================================
+   CASE STUDY PAGE STYLES
+   ============================================ */
+
+body.body-2 {
+  background-color: rgb(13, 13, 13);
+  font-size: 16px;
+}
+
+/* Primary text — white */
+.main.case-study h1,
+.main.case-study h2,
+.main.case-study h3,
+.main.case-study h4,
+.main.case-study h5,
+.main.case-study h6,
+.main.case-study .summary-title,
+.main.case-study .footer-header {
+  color: #FFF;
+}
+
+/* Secondary text — white 0.75 opacity */
+.main.case-study p,
+.main.case-study .case-study.p,
+.main.case-study .footer-link,
+.main.case-study .button-text,
+.main.case-study .return-home {
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 400;
+}

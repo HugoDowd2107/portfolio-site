@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Automating patient communications — Hugo Dowd</title>
+  <meta content="Automating patient communications — Hugo Dowd" property="og:title">
+  <meta content="How a redesign led to 90%+ of practices increasing their usage of the messaging system" name="description">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <link href="css/normalize.css" rel="stylesheet" type="text/css">
+  <link href="css/webflow.css" rel="stylesheet" type="text/css">
+  <link href="css/hugodowd.webflow.css" rel="stylesheet" type="text/css">
+  <link href="css/overrides.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+  <script type="text/javascript">WebFont.load({  google: {    families: ["Young Serif:300,400,500,600,700","Roboto Mono:400,500,600,700"]  }});</script>
+  <link href="images/favicon.png" rel="shortcut icon" type="image/x-icon">
+  <link href="images/webclip.png" rel="apple-touch-icon">
+  <script src="js/bot-guard.js"></script>
+  <style>
+    /* ==========================================
+       CS2 — CASE STUDY: DARK TEAL SYSTEM
+       Matches homepage design language exactly
+       ========================================== */
+
+    /* --- Reset body grid from homepage overrides --- */
+    body.cs2-body {
+      display: flex !important;
+      flex-direction: column !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      grid-template-columns: none !important;
+      grid-template-rows: none !important;
+      background: var(--bg, #00151A) !important;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* --- Floating Pill Nav (matches homepage exactly) --- */
+    .cs2-nav {
+      position: fixed;
+      top: 1.5rem;
+      left: 3.75rem;
+      right: 3.75rem;
+      z-index: 1000;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      height: 4.5rem;
+      padding: 1rem 2.25rem;
+      border: 1px solid var(--border, #254046);
+      border-radius: 100px;
+      background: linear-gradient(0deg, #001E24 0%, #002B33 100%), #002229;
+      box-sizing: border-box;
+    }
+
+    .cs2-nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text, #F1FCFE);
+      transition: opacity 0.2s ease;
+    }
+
+    .cs2-nav-left:hover { opacity: 0.75; }
+
+    .cs2-nav-left svg {
+      width: 1.25rem;
+      height: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .cs2-nav-left span {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--text, #F1FCFE);
+      white-space: nowrap;
+    }
+
+    .cs2-nav-right {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .cs2-nav-link {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 1.125rem;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: var(--text, #F1FCFE);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      white-space: nowrap;
+      position: relative;
+    }
+
+    .cs2-nav-link:hover { text-decoration: underline; }
+
+    .cs2-nav-link.cs2-active {
+      text-decoration: underline;
+    }
+
+    /* --- Hero Section --- */
+    .cs2-hero {
+      position: relative;
+      padding: 12rem 3.75rem 6rem;
+      background:
+        radial-gradient(ellipse at center, rgba(5, 36, 42, 0.4) 0%, #00151A 100%),
+        radial-gradient(circle, var(--text-mid, #ACD0D8) 0.5px, transparent 0.5px);
+      background-size: 100% 100%, 0.5rem 0.5rem;
+      overflow: hidden;
+    }
+
+    .cs2-hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 7fr 5fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .cs2-hero-content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cs2-hero-label {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.125rem;
+      text-transform: uppercase;
+      color: var(--text-mid, #ACD0D8);
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: cs2FadeUp 0.6s ease forwards 0.2s;
+    }
+
+    .cs2-hero h1 {
+      font-family: 'Young Serif', serif;
+      font-size: clamp(2.5rem, 4.5vw, 4.5rem);
+      font-weight: 400;
+      line-height: 110%;
+      letter-spacing: -0.02em;
+      margin: 0 0 1.5rem 0;
+      -webkit-text-fill-color: transparent;
+      background: linear-gradient(135deg, #81e5f9, #1ef2ac);
+      -webkit-background-clip: text;
+      background-clip: text;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: cs2FadeUp 0.6s ease forwards 0.4s;
+    }
+
+    .cs2-hero-subtitle {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 1.375rem;
+      font-weight: 400;
+      line-height: 160%;
+      color: var(--text-mid, #ACD0D8);
+      margin-bottom: 2.5rem;
+      max-width: 560px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: cs2FadeUp 0.6s ease forwards 0.6s;
+    }
+
+    .cs2-hero-meta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: cs2FadeUp 0.6s ease forwards 0.8s;
+    }
+
+    .cs2-pill {
+      display: flex;
+      padding: 0.75rem 1.25rem;
+      align-items: center;
+      gap: 0.75rem;
+      border-radius: 100px;
+      border: 1px solid var(--border, #254046);
+      background: linear-gradient(0deg, #001E24 0%, #002B33 100%);
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text-mid, #ACD0D8);
+    }
+
+    .cs2-pill strong {
+      color: var(--text, #F1FCFE);
+      font-weight: 500;
+    }
+
+    .cs2-hero-image {
+      border-radius: 1.5rem;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: cs2FadeUp 0.8s ease forwards 0.5s;
+    }
+
+    .cs2-hero-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    @keyframes cs2FadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- Page Container --- */
+    .cs2-page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 3.75rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* --- Section --- */
+    .cs2-section {
+      padding: 5rem 0;
+    }
+
+    /* --- Section Header (matches homepage: label left, title right) --- */
+    .cs2-section-header {
+      display: grid;
+      grid-template-columns: 10rem 1fr;
+      gap: 2rem;
+      margin-bottom: 3rem;
+      align-items: start;
+    }
+
+    .cs2-section-label {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.125rem;
+      text-transform: uppercase;
+      color: var(--text-mid, #ACD0D8);
+      padding-top: 0.5rem;
+    }
+
+    .cs2-section-title {
+      font-family: 'Young Serif', serif;
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 400;
+      line-height: 125%;
+      letter-spacing: -0.01em;
+      color: var(--text, #F1FCFE);
+      margin: 0;
+    }
+
+    /* --- Divider --- */
+    .cs2-divider {
+      border: none;
+      border-top: 1px solid var(--divider, #1e4a52);
+      margin: 0;
+    }
+
+    /* --- Stats Row --- */
+    .cs2-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .cs2-stat {
+      background: var(--bg-light, #002229);
+      border-radius: 1.25rem;
+      padding: 2.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .cs2-stat-number {
+      font-family: 'Young Serif', serif;
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      font-weight: 400;
+      line-height: 1;
+      -webkit-text-fill-color: transparent;
+      background: linear-gradient(135deg, #81e5f9, #1ef2ac);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .cs2-stat h3 {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 1.125rem;
+      font-weight: 600;
+      line-height: 140%;
+      color: var(--text, #F1FCFE);
+      margin: 0;
+    }
+
+    .cs2-stat p {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 400;
+      line-height: 160%;
+      color: var(--text-mid, #ACD0D8);
+      margin: 0;
+    }
+
+    /* --- Content Box --- */
+    .cs2-box {
+      background: var(--bg-light, #002229);
+      border-radius: 1.25rem;
+      padding: 2.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .cs2-box.cs2-box--outline {
+      border: 1px solid var(--divider, #1e4a52);
+      background: transparent;
+    }
+
+    .cs2-box-label {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15rem;
+      text-transform: uppercase;
+      color: var(--text-mid, #ACD0D8);
+    }
+
+    .cs2-box h3 {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 1.125rem;
+      font-weight: 600;
+      line-height: 140%;
+      color: var(--text, #F1FCFE);
+      margin: 0;
+    }
+
+    .cs2-box p {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 400;
+      line-height: 165%;
+      color: var(--text-mid, #ACD0D8);
+      margin: 0.375rem 0 0 0;
+    }
+
+    .cs2-box ul {
+      margin: 0.375rem 0 0 0;
+      padding-left: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .cs2-box li {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 400;
+      line-height: 165%;
+      color: var(--text-mid, #ACD0D8);
+    }
+
+    .cs2-box-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .cs2-box .cs2-icon {
+      width: 2.25rem;
+      height: 2.25rem;
+      margin-bottom: 0.25rem;
+      filter: brightness(0) saturate(100%) invert(82%) sepia(11%) saturate(529%) hue-rotate(155deg) brightness(95%) contrast(89%);
+    }
+
+    /* --- Grid Layouts --- */
+    .cs2-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .cs2-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .cs2-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .cs2-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .cs2-side-by-side {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+      margin-bottom: 2rem;
+    }
+
+    /* --- Image Treatments --- */
+    .cs2-image-wrap {
+      border-radius: 1.25rem;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .cs2-image-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Gradient background (matches homepage project cards) */
+    .cs2-image-wrap.cs2-image--gradient {
+      background: linear-gradient(180deg, #C3F4FE 0%, #58D7F1 100%);
+      padding: 2.5rem 2.5rem 0 2.5rem;
+    }
+
+    .cs2-image-wrap.cs2-image--gradient img {
+      border-radius: 0.75rem 0.75rem 0 0;
+    }
+
+    /* Darker gradient variant */
+    .cs2-image-wrap.cs2-image--gradient-dark {
+      background: linear-gradient(180deg, #1CC0E0 0%, #027F98 100%);
+      padding: 2.5rem 2.5rem 0 2.5rem;
+    }
+
+    .cs2-image-wrap.cs2-image--gradient-dark img {
+      border-radius: 0.75rem 0.75rem 0 0;
+    }
+
+    /* "BEFORE" label overlay */
+    .cs2-image-wrap.cs2-image--before::after {
+      content: 'BEFORE';
+      position: absolute;
+      top: 1.25rem;
+      left: 1.25rem;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text, #F1FCFE);
+      background: rgba(0, 21, 26, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 0.5rem 0.875rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--divider, #1e4a52);
+      z-index: 2;
+    }
+
+    .cs2-image-caption {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.8125rem;
+      font-weight: 400;
+      color: rgba(172, 208, 216, 0.6);
+      text-align: center;
+      padding: 0.75rem 0 0;
+    }
+
+    /* --- Special case pairs (zigzag) --- */
+    .cs2-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--divider, #1e4a52);
+    }
+
+    .cs2-pair:last-child { border-bottom: none; }
+
+    .cs2-pair--reverse { direction: rtl; }
+    .cs2-pair--reverse > * { direction: ltr; }
+
+    .cs2-pair-image {
+      border-radius: 0.75rem;
+      overflow: hidden;
+    }
+
+    .cs2-pair-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 0.75rem;
+      border: 1px solid rgba(30, 74, 82, 0.5);
+    }
+
+    .cs2-pair-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .cs2-pair-text h3 {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 1.375rem;
+      font-weight: 600;
+      line-height: 140%;
+      color: var(--text, #F1FCFE);
+      margin: 0;
+    }
+
+    .cs2-pair-text ul {
+      margin: 0;
+      padding-left: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .cs2-pair-text li {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 400;
+      line-height: 165%;
+      color: var(--text-mid, #ACD0D8);
+    }
+
+    /* --- Footer Override --- */
+    body.cs2-body .footer {
+      grid-column: unset !important;
+      grid-row: unset !important;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 3.75rem !important;
+      box-sizing: border-box;
+    }
+
+    /* --- Scroll Animations --- */
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-animate].cs2-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    [data-animate-stagger] > * {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-animate-stagger].cs2-visible > *:nth-child(1) { transition-delay: 0ms; }
+    [data-animate-stagger].cs2-visible > *:nth-child(2) { transition-delay: 100ms; }
+    [data-animate-stagger].cs2-visible > *:nth-child(3) { transition-delay: 200ms; }
+    [data-animate-stagger].cs2-visible > *:nth-child(4) { transition-delay: 300ms; }
+
+    [data-animate-stagger].cs2-visible > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* --- Reduced Motion --- */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+      [data-animate],
+      [data-animate-stagger] > * {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .cs2-hero-label, .cs2-hero h1, .cs2-hero-subtitle,
+      .cs2-hero-meta, .cs2-hero-image {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+      }
+    }
+
+    /* ==========================================
+       RESPONSIVE
+       ========================================== */
+    @media screen and (max-width: 991px) {
+      .cs2-nav {
+        left: 2.5rem;
+        right: 2.5rem;
+        top: 1.25rem;
+        padding: 1rem 1.75rem;
+        height: auto;
+      }
+
+      .cs2-nav-left span { font-size: 1.125rem; }
+      .cs2-nav-right { gap: 2rem; }
+      .cs2-nav-link { font-size: 1rem; }
+
+      .cs2-hero {
+        padding: 10rem 2.5rem 4rem;
+      }
+
+      .cs2-hero-inner {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .cs2-hero-image {
+        max-width: 500px;
+      }
+
+      .cs2-page { padding: 0 2.5rem; }
+
+      .cs2-section-header {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+
+      .cs2-stats { grid-template-columns: repeat(3, 1fr); }
+      .cs2-grid-4 { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media screen and (max-width: 767px) {
+      .cs2-nav {
+        left: 1rem;
+        right: 1rem;
+        top: 1rem;
+        padding: 0.875rem 1.25rem;
+        border-radius: 3.75rem;
+      }
+
+      .cs2-nav-left span { font-size: 1rem; }
+      .cs2-nav-right { display: none; }
+
+      .cs2-hero {
+        padding: 7rem 1.5rem 3rem;
+      }
+
+      .cs2-hero h1 { font-size: 2.25rem; }
+      .cs2-hero-subtitle { font-size: 1.125rem; }
+
+      .cs2-pill {
+        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
+      }
+
+      .cs2-page { padding: 0 1.5rem; }
+
+      .cs2-section { padding: 3rem 0; }
+      .cs2-section-title { font-size: 1.625rem; }
+
+      .cs2-stats,
+      .cs2-grid-2,
+      .cs2-grid-3,
+      .cs2-grid-4,
+      .cs2-side-by-side {
+        grid-template-columns: 1fr;
+      }
+
+      .cs2-pair {
+        grid-template-columns: 1fr;
+      }
+
+      .cs2-pair--reverse { direction: ltr; }
+
+      .cs2-stat-number { font-size: 2.25rem; }
+
+      .cs2-image-wrap.cs2-image--gradient,
+      .cs2-image-wrap.cs2-image--gradient-dark {
+        padding: 1.5rem 1.5rem 0 1.5rem;
+      }
+
+      body.cs2-body .footer {
+        padding: 2.5rem 1.5rem !important;
+      }
+    }
+
+    @media screen and (max-width: 479px) {
+      .cs2-nav {
+        left: 0.75rem;
+        right: 0.75rem;
+        top: 0.75rem;
+        padding: 0.75rem 1rem;
+      }
+
+      .cs2-nav-left span { font-size: 0.875rem; }
+
+      .cs2-hero {
+        padding: 6rem 1rem 2.5rem;
+      }
+
+      .cs2-hero h1 { font-size: 1.875rem; }
+      .cs2-hero-subtitle { font-size: 1rem; }
+
+      .cs2-pill {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.875rem;
+      }
+
+      .cs2-page { padding: 0 1rem; }
+
+      .cs2-section { padding: 2.5rem 0; }
+      .cs2-section-title { font-size: 1.375rem; }
+
+      body.cs2-body .footer {
+        padding: 2rem 1rem !important;
+      }
+    }
+  </style>
+</head>
+<body class="cs2-body">
+
+  <!-- ==================== NAVIGATION (floating pill, matches homepage) ==================== -->
+  <nav class="cs2-nav" id="cs2-nav">
+    <a href="index.html" class="cs2-nav-left">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9.549 12L16.899 19.35C17.149 19.6 17.27 19.892 17.262 20.225C17.254 20.558 17.125 20.85 16.874 21.1C16.624 21.35 16.332 21.475 15.999 21.475C15.667 21.475 15.375 21.35 15.124 21.1L7.424 13.425C7.224 13.225 7.074 13 6.974 12.75C6.874 12.5 6.824 12.25 6.824 12C6.824 11.75 6.874 11.5 6.974 11.25C7.074 11 7.224 10.775 7.424 10.575L15.124 2.875C15.374 2.625 15.67 2.504 16.012 2.512C16.354 2.52 16.65 2.649 16.899 2.9C17.149 3.151 17.274 3.442 17.274 3.775C17.275 4.108 17.15 4.399 16.899 4.65L9.549 12Z" fill="currentColor"/>
+      </svg>
+      <span>Home</span>
+    </a>
+    <div class="cs2-nav-right">
+      <a href="#challenge" class="cs2-nav-link">Challenge</a>
+      <a href="#research" class="cs2-nav-link">Research</a>
+      <a href="#design" class="cs2-nav-link">Design</a>
+      <a href="#outcomes" class="cs2-nav-link">Outcomes</a>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO ==================== -->
+  <header class="cs2-hero" id="top">
+    <div class="cs2-hero-inner">
+      <div class="cs2-hero-content">
+        <div class="cs2-hero-label">Case Study</div>
+        <h1>Automating patient communications</h1>
+        <p class="cs2-hero-subtitle">How a redesign led to 90%+ of practices increasing their usage of the messaging system</p>
+        <div class="cs2-hero-meta">
+          <span class="cs2-pill"><strong>Telstra Health</strong></span>
+          <span class="cs2-pill">Product Designer</span>
+          <span class="cs2-pill">PM, Tech Lead, Solution Architect, Developers</span>
+        </div>
+      </div>
+      <div class="cs2-hero-image">
+        <img src="images/doctor-holding-phone.png" loading="eager" alt="Doctor using mobile phone for patient communications" srcset="images/doctor-holding-phone-p-500.png 500w, images/doctor-holding-phone-p-800.png 800w, images/doctor-holding-phone-p-1080.png 1080w, images/doctor-holding-phone.png 1200w" sizes="(max-width: 991px) 90vw, 45vw">
+      </div>
+    </div>
+  </header>
+
+  <div class="cs2-page">
+
+    <!-- ==================== IMPACT ==================== -->
+    <section class="cs2-section" data-animate>
+      <div class="cs2-section-header">
+        <span class="cs2-section-label">Impact</span>
+        <h2 class="cs2-section-title">Impact of the redesign</h2>
+      </div>
+      <div class="cs2-stats" data-animate-stagger>
+        <div class="cs2-stat">
+          <span class="cs2-stat-number" data-count-target="90" data-count-suffix="%+">90%+</span>
+          <h3>of practices increased usage</h3>
+          <p>The updated messaging system allowed messages to be sent in more situations with more customisation</p>
+        </div>
+        <div class="cs2-stat">
+          <span class="cs2-stat-number" data-count-range="15-20">15–20</span>
+          <h3>hours of admin work saved per week</h3>
+          <p>Automation of patient communications left more time for practice staff to focus on patient care</p>
+        </div>
+        <div class="cs2-stat">
+          <span class="cs2-stat-number" data-count-target="150" data-count-suffix="+">150+</span>
+          <h3>practices retained</h3>
+          <p>The client extended their contract after successful delivery of this project</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs2-divider">
+
+    <!-- ==================== THE CHALLENGE ==================== -->
+    <section class="cs2-section" id="challenge">
+      <div class="cs2-section-header" data-animate>
+        <span class="cs2-section-label">Challenge</span>
+        <h2 class="cs2-section-title">Client with 150+ practices was at risk of churning</h2>
+      </div>
+      <div class="cs2-stack">
+        <div class="cs2-box cs2-box--outline" data-animate>
+          <div class="cs2-box-group">
+            <span class="cs2-box-label">Summary</span>
+            <p>This project aimed to address a major corporate client at risk of churning by modernising the messaging system and delivering a flexible, automated communications experience.</p>
+          </div>
+        </div>
+        <div class="cs2-grid-3" data-animate-stagger>
+          <div class="cs2-box">
+            <div class="cs2-box-group">
+              <h3>Major client at risk</h3>
+              <p>They were having trouble ensuring patients attended their appointments. As their practices dealt with at-risk youth patients, this was essential.</p>
+            </div>
+          </div>
+          <div class="cs2-box">
+            <div class="cs2-box-group">
+              <h3>Users finding other solutions</h3>
+              <p>Users were not using the native messaging system — they were either using other systems or managing it manually. Increasing usage drove revenue.</p>
+            </div>
+          </div>
+          <div class="cs2-box">
+            <div class="cs2-box-group">
+              <h3>Aligned with product vision</h3>
+              <p>A key market differentiator of Helix is its cloud infrastructure and automation capability in a market still primarily dominated by on-premises software.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs2-divider">
+
+    <!-- ==================== IMPORTANCE ==================== -->
+    <section class="cs2-section">
+      <div class="cs2-section-header" data-animate>
+        <span class="cs2-section-label">Context</span>
+        <h2 class="cs2-section-title">Why patient communications is so important for practices</h2>
+      </div>
+      <div class="cs2-grid-4" data-animate-stagger>
+        <div class="cs2-box">
+          <div class="cs2-box-group">
+            <img src="images/material-symbols_book-2-outline-rounded.svg" loading="lazy" alt="" class="cs2-icon">
+            <h3>Medico-legal compliance</h3>
+          </div>
+        </div>
+        <div class="cs2-box">
+          <div class="cs2-box-group">
+            <img src="images/material-symbols_heart-smile-outline-rounded.svg" loading="lazy" alt="" class="cs2-icon">
+            <h3>Deliver effective care</h3>
+          </div>
+        </div>
+        <div class="cs2-box">
+          <div class="cs2-box-group">
+            <img src="images/material-symbols_finance-mode-rounded.svg" loading="lazy" alt="" class="cs2-icon">
+            <h3>Maximise revenue</h3>
+          </div>
+        </div>
+        <div class="cs2-box">
+          <div class="cs2-box-group">
+            <img src="images/material-symbols_trending-up-rounded.svg" loading="lazy" alt="" class="cs2-icon">
+            <h3>Running a profitable practice</h3>
+          </div>
+        </div>
+      </div>
+      <div class="cs2-box" data-animate>
+        <div class="cs2-box-group">
+          <h3>Communication channels</h3>
+          <p>Patients rely on communications to schedule, confirm and attend appointments as well as to receive information and results</p>
+        </div>
+        <div class="cs2-box-group">
+          <h3>Burden of care</h3>
+          <p>Practices have a burden of care to ensure that at risk patients attend their consults and can be liable if they don't</p>
+        </div>
+        <div class="cs2-box-group">
+          <h3>Attending appointments</h3>
+          <p>Ensuring patients attend and avoiding no-shows maximises revenue and makes the most use of the scarce availability of doctors</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs2-divider">
+
+    <!-- ==================== USER RESEARCH ==================== -->
+    <section class="cs2-section" id="research">
+      <div class="cs2-section-header" data-animate>
+        <span class="cs2-section-label">Research</span>
+        <h2 class="cs2-section-title">User research</h2>
+      </div>
+      <div class="cs2-grid-3" data-animate-stagger>
+        <div class="cs2-stat">
+          <span class="cs2-stat-number" data-count-target="9">9</span>
+          <h3>Participants</h3>
+        </div>
+        <div class="cs2-stat">
+          <span class="cs2-stat-number" data-count-target="60">60</span>
+          <h3>Minute interviews</h3>
+        </div>
+        <div class="cs2-stat">
+          <span class="cs2-stat-number" data-count-target="3">3</span>
+          <h3>Practice types</h3>
+        </div>
+      </div>
+      <div class="cs2-grid-3" style="margin-bottom:2rem;" data-animate-stagger>
+        <div class="cs2-box">
+          <div class="cs2-box-group">
+            <img src="images/material-symbols_cognition-outline-rounded.svg" loading="lazy" alt="" class="cs2-icon">
+            <h3>Youth Mental Health</h3>
+          </div>
+        </div>
+        <div class="cs2-box">
+          <div class="cs2-box-group">
+            <img src="images/material-symbols_health-cross-outline-rounded.svg" loading="lazy" alt="" class="cs2-icon">
+            <h3>General Practitioners</h3>
+          </div>
+        </div>
+        <div class="cs2-box">
+          <div class="cs2-box-group">
+            <img src="images/material-symbols_stethoscope-outline-rounded.svg" loading="lazy" alt="" class="cs2-icon">
+            <h3>Specialists</h3>
+          </div>
+        </div>
+      </div>
+      <div class="cs2-box" style="margin-bottom:2rem;" data-animate>
+        <div class="cs2-box-group">
+          <h3>What we wanted to understand</h3>
+          <ul>
+            <li>The reasons practices were contacting patients, at what point in the consult and what they were sending</li>
+            <li>Different requirements for general practitioners, specialists and youth mental health</li>
+            <li>When are practices sending messages to individual patients or groups</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cs2-image-wrap" data-animate>
+        <img src="images/affinity-map.png" loading="lazy" alt="Affinity mapping of user research insights" srcset="images/affinity-map-p-500.png 500w, images/affinity-map-p-800.png 800w, images/affinity-map-p-1080.png 1080w, images/affinity-map-p-1600.png 1600w, images/affinity-map-p-2000.png 2000w, images/affinity-map-p-2600.png 2600w, images/affinity-map-p-3200.png 3200w, images/affinity-map.png 5264w" sizes="100vw">
+        <p class="cs2-image-caption">Affinity mapping of user research insights</p>
+      </div>
+    </section>
+
+    <hr class="cs2-divider">
+
+    <!-- ==================== FINDINGS ==================== -->
+    <section class="cs2-section">
+      <div class="cs2-section-header" data-animate>
+        <span class="cs2-section-label">Findings</span>
+        <h2 class="cs2-section-title">Understanding the communications process showed areas to target for improvement</h2>
+      </div>
+      <div class="cs2-box cs2-box--outline" style="margin-bottom:2rem;" data-animate>
+        <div class="cs2-box-group">
+          <span class="cs2-box-label">Summary</span>
+          <p>Through user research, workshops and consulting with subject-matter experts, the process could be mapped out and key insights about the area could be established</p>
+        </div>
+      </div>
+      <div class="cs2-image-wrap" style="margin-bottom:2rem;" data-animate>
+        <img src="images/custom-SMS-discovery-1.png" loading="lazy" alt="User journey for patient communications" srcset="images/custom-SMS-discovery-1-p-500.png 500w, images/custom-SMS-discovery-1-p-800.png 800w, images/custom-SMS-discovery-1-p-1080.png 1080w, images/custom-SMS-discovery-1-p-1600.png 1600w, images/custom-SMS-discovery-1-p-2000.png 2000w, images/custom-SMS-discovery-1-p-2600.png 2600w, images/custom-SMS-discovery-1-p-3200.png 3200w, images/custom-SMS-discovery-1.png 4800w" sizes="100vw">
+        <p class="cs2-image-caption">User journey for patient communications</p>
+      </div>
+      <div class="cs2-grid-2" data-animate-stagger>
+        <div class="cs2-box">
+          <div class="cs2-box-group">
+            <h3>Messages tied to appointments</h3>
+            <p>Booking, reminding patients of appointments and billing follow-ups are important communication occasions</p>
+          </div>
+          <div class="cs2-box-group">
+            <h3>Patient no-shows hurt revenue</h3>
+            <p>Ensuring patients attend their appointments maintains practice revenue and avoids wasting doctor's time</p>
+          </div>
+        </div>
+        <div class="cs2-box">
+          <div class="cs2-box-group">
+            <h3>Communications is time consuming</h3>
+            <p>Although tedious, ensuring it is done effectively has consequences for patient care and medico-legal obligations</p>
+          </div>
+          <div class="cs2-box-group">
+            <h3>Different patient groups require different levels</h3>
+            <p>Vulnerable patient groups such as those with chronic conditions or young patients require ongoing and detailed communications</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs2-divider">
+
+    <!-- ==================== WHERE HELIX FELL SHORT ==================== -->
+    <section class="cs2-section">
+      <div class="cs2-section-header" data-animate>
+        <span class="cs2-section-label">Problem</span>
+        <h2 class="cs2-section-title">Where Helix was falling short</h2>
+      </div>
+      <div class="cs2-box cs2-box--outline" style="margin-bottom:2rem;" data-animate>
+        <div class="cs2-box-group">
+          <span class="cs2-box-label">Summary</span>
+          <p>Areas were identified where Helix was not adequate for practice needs. In the current state practices were resorting to calling patients manually, a huge administrative burden that's difficult to document.</p>
+        </div>
+      </div>
+      <div class="cs2-grid-3" style="margin-bottom:2rem;" data-animate-stagger>
+        <div class="cs2-box">
+          <div class="cs2-box-group">
+            <img src="images/material-symbols_warning-outline-rounded.svg" loading="lazy" alt="" class="cs2-icon">
+            <h3>High risk patients</h3>
+            <p>Youth mental health practices with high risk patients needed to ensure patients were prepared for and attended consults</p>
+          </div>
+        </div>
+        <div class="cs2-box">
+          <div class="cs2-box-group">
+            <img src="images/material-symbols_timeline.svg" loading="lazy" alt="" class="cs2-icon">
+            <h3>Far-advance appointments</h3>
+            <p>Specialist appointments made months in advance needed longer-timeframe reminders and record keeping</p>
+          </div>
+        </div>
+        <div class="cs2-box">
+          <div class="cs2-box-group">
+            <img src="images/material-symbols_block.svg" loading="lazy" alt="" class="cs2-icon">
+            <h3>Too inflexible</h3>
+            <p>Only one text for all appointments — the system didn't have flexibility to address our diverse user base's situations</p>
+          </div>
+        </div>
+      </div>
+      <div class="cs2-image-wrap cs2-image--before" data-animate>
+        <img src="images/old-design.png" loading="lazy" alt="Original design for appointment reminders" srcset="images/old-design-p-500.png 500w, images/old-design-p-800.png 800w, images/old-design-p-1080.png 1080w, images/old-design-p-1600.png 1600w, images/old-design-p-2000.png 2000w, images/old-design-p-2600.png 2600w, images/old-design-p-3200.png 3200w, images/old-design.png 7680w" sizes="100vw">
+        <p class="cs2-image-caption">Original design for appointment reminders</p>
+      </div>
+    </section>
+
+    <hr class="cs2-divider">
+
+    <!-- ==================== DESIGN DIRECTION ==================== -->
+    <section class="cs2-section" id="design">
+      <div class="cs2-section-header" data-animate>
+        <span class="cs2-section-label">Design</span>
+        <h2 class="cs2-section-title">Design direction</h2>
+      </div>
+      <div class="cs2-box cs2-box--outline" style="margin-bottom:2rem;" data-animate>
+        <div class="cs2-box-group">
+          <span class="cs2-box-label">Summary</span>
+          <p>Speaking to our users there were three key flows when practices needed to communicate with patients that guided the design direction</p>
+        </div>
+      </div>
+      <div class="cs2-grid-3" style="margin-bottom:2rem;" data-animate-stagger>
+        <div class="cs2-box">
+          <div class="cs2-box-group">
+            <img src="images/material-symbols_groups-outline-rounded.svg" loading="lazy" alt="" class="cs2-icon">
+            <h3>Messaging groups</h3>
+          </div>
+        </div>
+        <div class="cs2-box">
+          <div class="cs2-box-group">
+            <img src="images/material-symbols_calendar-clock-outline-rounded.svg" loading="lazy" alt="" class="cs2-icon">
+            <h3>Appointment reminders</h3>
+          </div>
+        </div>
+        <div class="cs2-box">
+          <div class="cs2-box-group">
+            <img src="images/material-symbols_person-outline-rounded.svg" loading="lazy" alt="" class="cs2-icon">
+            <h3>Messaging individuals</h3>
+          </div>
+        </div>
+      </div>
+      <div class="cs2-box" style="margin-bottom:2rem;" data-animate>
+        <div class="cs2-box-group">
+          <h3>Three goals for design phase</h3>
+          <ul>
+            <li>Reduce time spent by automating and streamlining where possible</li>
+            <li>Messaging must accommodate when and how often practices could contact patients</li>
+            <li>Accommodate for flexibility</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cs2-image-wrap" data-animate>
+        <img src="images/flow-diagram.png" loading="lazy" alt="Mapping out message flow" srcset="images/flow-diagram-p-500.png 500w, images/flow-diagram-p-800.png 800w, images/flow-diagram-p-1080.png 1080w, images/flow-diagram-p-1600.png 1600w, images/flow-diagram-p-2000.png 2000w, images/flow-diagram-p-2600.png 2600w, images/flow-diagram-p-3200.png 3200w, images/flow-diagram.png 5264w" sizes="100vw">
+        <p class="cs2-image-caption">Mapping out message flow</p>
+      </div>
+    </section>
+
+    <hr class="cs2-divider">
+
+    <!-- ==================== APPOINTMENT REMINDERS ==================== -->
+    <section class="cs2-section">
+      <div class="cs2-section-header" data-animate>
+        <span class="cs2-section-label">Feature</span>
+        <h2 class="cs2-section-title">Appointment reminders</h2>
+      </div>
+      <div class="cs2-box" style="margin-bottom:2rem;" data-animate>
+        <div class="cs2-box-group">
+          <h3>Why appointment reminders</h3>
+          <ul>
+            <li>Tying messaging to patient appointments allows practices to "set and forget"</li>
+            <li>Customisation allows practices to send different messages based on appointment types and practitioners</li>
+            <li>Is a key way to ensure that patients attend consults</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cs2-image-wrap cs2-image--gradient" data-animate>
+        <img src="images/new-appointment-reminder.png" loading="lazy" alt="Setting up a new appointment reminder" srcset="images/new-appointment-reminder-p-500.png 500w, images/new-appointment-reminder-p-800.png 800w, images/new-appointment-reminder-p-1080.png 1080w, images/new-appointment-reminder-p-1600.png 1600w, images/new-appointment-reminder-p-2000.png 2000w, images/new-appointment-reminder-p-2600.png 2600w, images/new-appointment-reminder-p-3200.png 3200w, images/new-appointment-reminder.png 5264w" sizes="100vw">
+      </div>
+      <p class="cs2-image-caption">Setting up a new appointment reminder</p>
+    </section>
+
+    <hr class="cs2-divider">
+
+    <!-- ==================== DASHBOARD ==================== -->
+    <section class="cs2-section">
+      <div class="cs2-section-header" data-animate>
+        <span class="cs2-section-label">Dashboard</span>
+        <h2 class="cs2-section-title">Appointment reminders dashboard</h2>
+      </div>
+      <div class="cs2-side-by-side" style="margin-bottom:2rem;" data-animate-stagger>
+        <div class="cs2-box">
+          <div class="cs2-box-group">
+            <h3>Provides overview of all reminders</h3>
+            <ul>
+              <li>When they are sent</li>
+              <li>Appointment types</li>
+              <li>Practitioners</li>
+              <li>If patient can reply</li>
+              <li>If it's enabled or disabled</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cs2-box">
+          <div class="cs2-box-group">
+            <h3>Four categories of reminders</h3>
+            <ul>
+              <li>Appointment status</li>
+              <li>Before appointment</li>
+              <li>At time of booking</li>
+              <li>After appointment</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="cs2-image-wrap cs2-image--gradient" data-animate>
+        <img src="images/image15.png" loading="lazy" alt="Appointment reminders dashboard" srcset="images/image15-p-500.png 500w, images/image15-p-800.png 800w, images/image15-p-1080.png 1080w, images/image15-p-1600.png 1600w, images/image15-p-2000.png 2000w, images/image15-p-2600.png 2600w, images/image15-p-3200.png 3200w, images/image15.png 3520w" sizes="100vw">
+      </div>
+      <p class="cs2-image-caption">Appointment reminders dashboard</p>
+    </section>
+
+    <hr class="cs2-divider">
+
+    <!-- ==================== NEW REMINDER ==================== -->
+    <section class="cs2-section">
+      <div class="cs2-section-header" data-animate>
+        <span class="cs2-section-label">Feature</span>
+        <h2 class="cs2-section-title">Adding a new appointment reminder</h2>
+      </div>
+      <div class="cs2-side-by-side" data-animate>
+        <div class="cs2-image-wrap" style="margin-bottom:0;">
+          <img src="images/new-appointment-reminder2.png" loading="lazy" alt="New appointment reminder modal" srcset="images/new-appointment-reminder2-p-500.png 500w, images/new-appointment-reminder2-p-800.png 800w, images/new-appointment-reminder2-p-1080.png 1080w, images/new-appointment-reminder2-p-1600.png 1600w, images/new-appointment-reminder2.png 1716w" sizes="50vw">
+        </div>
+        <div class="cs2-box">
+          <div class="cs2-box-group">
+            <h3>When to send reminders</h3>
+            <p>User research indicated three important situations:</p>
+            <ul>
+              <li>Before appointment</li>
+              <li>At time of booking</li>
+              <li>After appointment</li>
+            </ul>
+          </div>
+          <div class="cs2-box-group">
+            <h3>Different practitioners and appointment types</h3>
+            <p>This allows practices to set up messages for specific scenarios and situations, enabling greater automation</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs2-divider">
+
+    <!-- ==================== SPECIAL CASES ==================== -->
+    <section class="cs2-section">
+      <div class="cs2-section-header" data-animate>
+        <span class="cs2-section-label">Feature</span>
+        <h2 class="cs2-section-title">Special case appointment reminders</h2>
+      </div>
+
+      <div class="cs2-pair" data-animate>
+        <div class="cs2-pair-image">
+          <img src="images/rescheduled-appointment.png" loading="lazy" alt="Rescheduled appointment" srcset="images/rescheduled-appointment-p-500.png 500w, images/rescheduled-appointment-p-800.png 800w, images/rescheduled-appointment-p-1080.png 1080w, images/rescheduled-appointment-p-1600.png 1600w, images/rescheduled-appointment.png 1716w" sizes="50vw">
+        </div>
+        <div class="cs2-pair-text">
+          <h3>Rescheduled appointment</h3>
+          <ul>
+            <li>Sent when an appointment is rescheduled by the practice</li>
+            <li>Informs patients of the updated details</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cs2-pair cs2-pair--reverse" data-animate>
+        <div class="cs2-pair-image">
+          <img src="images/declined-appointment.png" loading="lazy" alt="Declined appointment" srcset="images/declined-appointment-p-500.png 500w, images/declined-appointment-p-800.png 800w, images/declined-appointment-p-1080.png 1080w, images/declined-appointment-p-1600.png 1600w, images/declined-appointment.png 1716w" sizes="50vw">
+        </div>
+        <div class="cs2-pair-text">
+          <h3>Declined appointment</h3>
+          <ul>
+            <li>Sent when the patient declines the appointment</li>
+            <li>Confirms that the patient will not attend</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cs2-pair" data-animate>
+        <div class="cs2-pair-image">
+          <img src="images/no-patient-reply.png" loading="lazy" alt="No patient reply" srcset="images/no-patient-reply-p-500.png 500w, images/no-patient-reply-p-800.png 800w, images/no-patient-reply-p-1080.png 1080w, images/no-patient-reply-p-1600.png 1600w, images/no-patient-reply.png 1716w" sizes="50vw">
+        </div>
+        <div class="cs2-pair-text">
+          <h3>No patient reply</h3>
+          <ul>
+            <li>Sent if a patient hasn't responded to a previously sent reminder</li>
+            <li>Feedback from users noted this as particularly important for the practice</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cs2-pair cs2-pair--reverse" data-animate>
+        <div class="cs2-pair-image">
+          <img src="images/did-not-attend.png" loading="lazy" alt="Did not attend" srcset="images/did-not-attend-p-500.png 500w, images/did-not-attend-p-800.png 800w, images/did-not-attend-p-1080.png 1080w, images/did-not-attend-p-1600.png 1600w, images/did-not-attend.png 1716w" sizes="50vw">
+        </div>
+        <div class="cs2-pair-text">
+          <h3>Did not attend</h3>
+          <ul>
+            <li>Triggered if a patient does not attend an appointment</li>
+            <li>Allows practices to follow up for a cancellation fee or re-book</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs2-divider">
+
+    <!-- ==================== DESIGN CHALLENGES ==================== -->
+    <section class="cs2-section">
+      <div class="cs2-section-header" data-animate>
+        <span class="cs2-section-label">Process</span>
+        <h2 class="cs2-section-title">Design challenges</h2>
+      </div>
+      <div class="cs2-side-by-side" data-animate-stagger>
+        <div class="cs2-box">
+          <div class="cs2-box-group">
+            <h3>Adding 'enabled' checkbox</h3>
+            <ul>
+              <li>Practices wanted the ability to turn off reminders without deleting them — e.g. vaccine reminders during flu season</li>
+              <li>The 'enabled' checkbox was added to accommodate this</li>
+            </ul>
+          </div>
+          <div class="cs2-box-group">
+            <h3>Simplifying information architecture</h3>
+            <ul>
+              <li>Multiple iterations of fields and their relationships were tested with users</li>
+              <li>More interconnected fields were confusing — for the final design only 'Practitioner' and 'Appointment type' remained</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cs2-box">
+          <div class="cs2-box-group">
+            <h3>Cards or table layout</h3>
+            <ul>
+              <li>Tables were more information dense and better for comparing values</li>
+              <li>Cards let users see info for a single reminder more easily — chosen for this use case</li>
+            </ul>
+          </div>
+          <div class="cs2-box-group">
+            <h3>Determining card design</h3>
+            <ul>
+              <li>The design system card component had limited options</li>
+              <li>Many iterations were made to determine how best to display the information</li>
+              <li>Listing numbers with icons meant cards were easily scannable</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="cs2-image-wrap cs2-image--gradient" data-animate>
+        <img src="images/image15.png" loading="lazy" alt="Final dashboard design" srcset="images/image15-p-500.png 500w, images/image15-p-800.png 800w, images/image15-p-1080.png 1080w, images/image15-p-1600.png 1600w, images/image15-p-2000.png 2000w, images/image15-p-2600.png 2600w, images/image15-p-3200.png 3200w, images/image15.png 3520w" sizes="100vw">
+      </div>
+      <p class="cs2-image-caption">Final dashboard design</p>
+    </section>
+
+    <hr class="cs2-divider">
+
+    <!-- ==================== OUTCOMES ==================== -->
+    <section class="cs2-section" id="outcomes">
+      <div class="cs2-section-header" data-animate>
+        <span class="cs2-section-label">Outcomes</span>
+        <h2 class="cs2-section-title">The design achieved key outcomes</h2>
+      </div>
+      <div class="cs2-box cs2-box--outline" style="margin-bottom:2rem;" data-animate>
+        <div class="cs2-box-group">
+          <span class="cs2-box-label">Summary</span>
+          <p>Key objectives were achieved including increased usage of the messaging system, preventing client churning and positioning Helix as a leader in automated messaging</p>
+        </div>
+      </div>
+      <div class="cs2-grid-3" data-animate-stagger>
+        <div class="cs2-box">
+          <div class="cs2-box-group">
+            <img src="images/material-symbols_check-circle-outline-rounded.svg" loading="lazy" alt="" class="cs2-icon">
+            <h3>Prevented client churning</h3>
+            <p>A large client received early access to beta and renewed their contract due to the new functionality</p>
+          </div>
+        </div>
+        <div class="cs2-box">
+          <div class="cs2-box-group">
+            <img src="images/material-symbols_social-leaderboard-outline-rounded.svg" loading="lazy" alt="" class="cs2-icon">
+            <h3>Market-leader in automated messaging</h3>
+            <p>The messaging system allowed messages to be sent in more situations with more customisation than competitors</p>
+          </div>
+        </div>
+        <div class="cs2-box">
+          <div class="cs2-box-group">
+            <img src="images/material-symbols_trending-up-rounded.svg" loading="lazy" alt="" class="cs2-icon">
+            <h3>Higher usage of messaging</h3>
+            <p>Beta customers reported utilising Helix messaging more with the new system</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs2-divider">
+
+    <!-- ==================== LEARNINGS ==================== -->
+    <section class="cs2-section">
+      <div class="cs2-section-header" data-animate>
+        <span class="cs2-section-label">Learnings</span>
+        <h2 class="cs2-section-title">Reflections from this project</h2>
+      </div>
+      <div class="cs2-box cs2-box--outline" style="margin-bottom:2rem;" data-animate>
+        <div class="cs2-box-group">
+          <span class="cs2-box-label">Summary</span>
+          <p>This project was undertaken on short notice and was high priority. Adapting to these circumstances resulted in important learnings.</p>
+        </div>
+      </div>
+      <div class="cs2-grid-3" data-animate-stagger>
+        <div class="cs2-box">
+          <div class="cs2-box-group">
+            <img src="images/material-symbols_handshake-outline-rounded.svg" loading="lazy" alt="" class="cs2-icon">
+            <h3>Importance of co-design</h3>
+            <p>Consistent contact with users through all stages was essential for the project's success</p>
+          </div>
+        </div>
+        <div class="cs2-box">
+          <div class="cs2-box-group">
+            <img src="images/material-symbols_dashboard-2-outline-rounded.svg" loading="lazy" alt="" class="cs2-icon">
+            <h3>Pushing to address design debt</h3>
+            <p>Working around legacy design systems made design significantly more difficult — dedicating time for this would've improved the outcome</p>
+          </div>
+        </div>
+        <div class="cs2-box">
+          <div class="cs2-box-group">
+            <img src="images/material-symbols_stacked-bar-chart-rounded.svg" loading="lazy" alt="" class="cs2-icon">
+            <h3>Staggering design into stages</h3>
+            <p>Time constraints necessitated staged design phases, however this resulted in a less cohesive product</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Footer (uses shared webflow styles) -->
+  <div id="contact" class="footer">
+    <div class="footer-group">
+      <div class="footer-header">navigation</div>
+      <a href="index.html#intro" class="footer-link">Intro</a>
+      <a href="index.html#work" class="footer-link">Work</a>
+      <a href="index.html#experience" class="footer-link">Experience</a>
+      <a href="index.html#contact" class="footer-link">Contact</a>
+    </div>
+    <div class="footer-group">
+      <div class="footer-header">case studies</div>
+      <a href="patient-communications.html" class="footer-link">Telstra Health</a>
+      <div class="external-link">
+        <a href="documents/myconnect-case-study.pdf" target="_blank" class="footer-link">MyConnect</a>
+      </div>
+      <div class="external-link">
+        <a href="documents/searten-case-study.pdf" target="_blank" class="footer-link">Searten</a>
+      </div>
+    </div>
+    <div class="footer-group">
+      <div class="footer-header">links</div>
+      <div class="external-link">
+        <a href="documents/resume-hugodowd-pd-uk.pdf" target="_blank" class="footer-link">Resume <svg class="footer-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.6 8H8C7.71667 8 7.479 7.904 7.287 7.712C7.095 7.52 6.99933 7.28267 7 7C7.00067 6.71733 7.09667 6.48 7.288 6.288C7.47933 6.096 7.71667 6 8 6H18C18.2833 6 18.5207 6.096 18.712 6.288C18.9033 6.48 18.9993 6.71733 19 7V17C19 17.2833 18.904 17.521 18.712 17.713C18.52 17.905 18.2827 18.0007 18 18C17.7173 17.9993 17.4797 17.9033 17.287 17.712C17.0943 17.5207 16.9987 17.2833 17 17V9.4L8.1 18.3C7.91667 18.4833 7.68333 18.575 7.4 18.575C7.11666 18.575 6.88333 18.4833 6.7 18.3C6.51667 18.1167 6.425 17.8833 6.425 17.6C6.425 17.3167 6.51667 17.0833 6.7 16.9L15.6 8Z" fill="currentColor"/></svg></a>
+      </div>
+      <div class="external-link">
+        <a href="https://www.linkedin.com/in/hugo-dowd-b25436190/" target="_blank" class="footer-link">Linkedin <svg class="footer-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.6 8H8C7.71667 8 7.479 7.904 7.287 7.712C7.095 7.52 6.99933 7.28267 7 7C7.00067 6.71733 7.09667 6.48 7.288 6.288C7.47933 6.096 7.71667 6 8 6H18C18.2833 6 18.5207 6.096 18.712 6.288C18.9033 6.48 18.9993 6.71733 19 7V17C19 17.2833 18.904 17.521 18.712 17.713C18.52 17.905 18.2827 18.0007 18 18C17.7173 17.9993 17.4797 17.9033 17.287 17.712C17.0943 17.5207 16.9987 17.2833 17 17V9.4L8.1 18.3C7.91667 18.4833 7.68333 18.575 7.4 18.575C7.11666 18.575 6.88333 18.4833 6.7 18.3C6.51667 18.1167 6.425 17.8833 6.425 17.6C6.425 17.3167 6.51667 17.0833 6.7 16.9L15.6 8Z" fill="currentColor"/></svg></a>
+      </div>
+      <div class="external-link">
+        <a href="mailto:hugo.dowd10@gmail.com" class="footer-link">Email <svg class="footer-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.6 8H8C7.71667 8 7.479 7.904 7.287 7.712C7.095 7.52 6.99933 7.28267 7 7C7.00067 6.71733 7.09667 6.48 7.288 6.288C7.47933 6.096 7.71667 6 8 6H18C18.2833 6 18.5207 6.096 18.712 6.288C18.9033 6.48 18.9993 6.71733 19 7V17C19 17.2833 18.904 17.521 18.712 17.713C18.52 17.905 18.2827 18.0007 18 18C17.7173 17.9993 17.4797 17.9033 17.287 17.712C17.0943 17.5207 16.9987 17.2833 17 17V9.4L8.1 18.3C7.91667 18.4833 7.68333 18.575 7.4 18.575C7.11666 18.575 6.88333 18.4833 6.7 18.3C6.51667 18.1167 6.425 17.8833 6.425 17.6C6.425 17.3167 6.51667 17.0833 6.7 16.9L15.6 8Z" fill="currentColor"/></svg></a>
+      </div>
+    </div>
+  </div>
+
+  <a id="bot-trap" href="/bot-trap" aria-hidden="true" tabindex="-1" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none;">Contact us</a>
+
+  <script>
+  (function() {
+    'use strict';
+
+    var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // --- Scroll Animations ---
+    function initScrollAnimations() {
+      if (prefersReducedMotion) {
+        document.querySelectorAll('[data-animate], [data-animate-stagger]').forEach(function(el) {
+          el.classList.add('cs2-visible');
+        });
+        return;
+      }
+
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('cs2-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { root: null, rootMargin: '0px 0px -50px 0px', threshold: 0.1 });
+
+      document.querySelectorAll('[data-animate], [data-animate-stagger]').forEach(function(el) {
+        observer.observe(el);
+      });
+    }
+
+    // --- Stat Counter Animation ---
+    function animateCounter(el, target, suffix, duration) {
+      if (prefersReducedMotion) return;
+      var startTime = null;
+      function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+      function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        var progress = Math.min((timestamp - startTime) / duration, 1);
+        var current = Math.floor(easeOutCubic(progress) * target);
+        el.textContent = current + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = target + suffix;
+      }
+      requestAnimationFrame(step);
+    }
+
+    function initStatCounters() {
+      if (prefersReducedMotion) return;
+      var counterObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting && !entry.target.getAttribute('data-animated')) {
+            entry.target.setAttribute('data-animated', 'true');
+            var el = entry.target;
+            if (el.hasAttribute('data-count-target')) {
+              animateCounter(el, parseInt(el.getAttribute('data-count-target'), 10), el.getAttribute('data-count-suffix') || '', 1500);
+            } else if (el.hasAttribute('data-count-range')) {
+              var parts = el.getAttribute('data-count-range').split('-');
+              var low = parseInt(parts[0], 10), high = parseInt(parts[1], 10);
+              var startTime = null;
+              function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+              function stepRange(timestamp) {
+                if (!startTime) startTime = timestamp;
+                var progress = Math.min((timestamp - startTime) / 1500, 1);
+                var ep = easeOutCubic(progress);
+                el.textContent = Math.floor(ep * low) + '\u2013' + Math.floor(ep * high);
+                if (progress < 1) requestAnimationFrame(stepRange);
+                else el.textContent = low + '\u2013' + high;
+              }
+              requestAnimationFrame(stepRange);
+            }
+            counterObserver.unobserve(el);
+          }
+        });
+      }, { threshold: 0.3 });
+
+      document.querySelectorAll('[data-count-target], [data-count-range]').forEach(function(el) {
+        if (el.hasAttribute('data-count-target')) {
+          el.textContent = '0' + (el.getAttribute('data-count-suffix') || '');
+        } else if (el.hasAttribute('data-count-range')) {
+          el.textContent = '0\u20130';
+        }
+        counterObserver.observe(el);
+      });
+    }
+
+    // --- Active Nav Link ---
+    function initActiveNavLink() {
+      var navLinks = document.querySelectorAll('.cs2-nav-link');
+      var sectionIds = [];
+      navLinks.forEach(function(link) {
+        var href = link.getAttribute('href');
+        if (href && href.startsWith('#')) sectionIds.push(href.replace('#', ''));
+      });
+
+      function updateActive() {
+        var scrollPos = window.scrollY + 200;
+        var current = '';
+        sectionIds.forEach(function(id) {
+          var section = document.getElementById(id);
+          if (section && section.offsetTop <= scrollPos) current = id;
+        });
+        navLinks.forEach(function(link) {
+          if (link.getAttribute('href') === '#' + current) link.classList.add('cs2-active');
+          else link.classList.remove('cs2-active');
+        });
+      }
+
+      window.addEventListener('scroll', updateActive, { passive: true });
+      updateActive();
+    }
+
+    // --- Smooth Scroll ---
+    function initSmoothScroll() {
+      document.querySelectorAll('.cs2-nav-link').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          var href = this.getAttribute('href');
+          if (href && href.startsWith('#')) {
+            e.preventDefault();
+            var target = document.querySelector(href);
+            if (target) target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+          }
+        });
+      });
+    }
+
+    // --- Init ---
+    document.addEventListener('DOMContentLoaded', function() {
+      initScrollAnimations();
+      initStatCounters();
+      initActiveNavLink();
+      initSmoothScroll();
+    });
+  })();
+  </script>
+</body>
+</html>

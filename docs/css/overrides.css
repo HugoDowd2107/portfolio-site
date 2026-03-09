@@ -6,13 +6,16 @@
 
 /* --- Body & General --- */
 html {
-  background: #00151A !important;
+  background:
+    linear-gradient(180deg, #6C96FF 0%, #021D67 46.95%, #0D0D0D 77.98%) no-repeat top,
+    #0D0D0D !important;
+  background-size: 100% 120vh !important;
   margin: 0 !important;
   scroll-behavior: auto !important;
 }
 
 body {
-  background: var(--bg, #00151A) !important;
+  background: transparent !important;
   margin: 0 !important;
 }
 
@@ -26,14 +29,14 @@ body {
 }
 
 .navigation-block {
-  grid-column: 1 / -1 !important;
+  grid-column: 2 / 12 !important;
   grid-row: 1 !important;
   margin: 0 !important;
 }
 
 .section-1 {
   grid-column: 1 / -1 !important;
-  grid-row: 2 !important;
+  grid-row: 1 / 3 !important;
   margin: 0 !important;
 }
 
@@ -61,21 +64,29 @@ body {
   flex-direction: row !important;
   justify-content: space-between !important;
   align-items: center !important;
-  width: 100% !important;
-  padding: 1rem 1rem !important;
-  border: 1px solid var(--border, #254046) !important;
+  width: auto !important;
+  max-width: none !important;
+  padding: 0.6rem 0.6rem 0.6rem 1rem !important;
+  gap: 2.5rem !important;
   border-radius: 100px !important;
-  background: linear-gradient(0deg, #001E24 0%, #002B33 100%), #002229 !important;
+  border: none !important;
+  background: rgba(0, 0, 0, 0.25) !important;
+  backdrop-filter: blur(50px) !important;
+  -webkit-backdrop-filter: blur(50px) !important;
   z-index: 100 !important;
   box-sizing: border-box !important;
   flex-wrap: nowrap !important;
-  grid-column: 1 / -1 !important;
+  grid-column: 2 / 12 !important;
   grid-row: 1 !important;
-  margin: 0 !important;
-  margin-top: 1.5rem !important;
+  margin: 1.5rem 0 0 !important;
   align-self: start !important;
-  position: relative !important;
-  inset: unset !important;
+  position: fixed !important;
+  top: 1.5rem !important;
+  transition: top 0.3s ease !important;
+  left: calc(3.75rem + (100vw - 7.5rem) / 12) !important;
+  right: calc(3.75rem + (100vw - 7.5rem) / 12) !important;
+  inset-block: unset !important;
+  z-index: 1000 !important;
 }
 
 .nav-left {
@@ -92,17 +103,15 @@ body {
 }
 
 .nav-logo-icon {
-  width: 1.75rem !important;
-  height: 1.75rem !important;
-  flex-shrink: 0 !important;
+  display: none !important;
 }
 
 .nav-logo-text {
-  font-family: Montserrat, sans-serif !important;
-  font-size: 1.25rem !important;
-  font-weight: 600 !important;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
   line-height: 1.4 !important;
-  color: #F1FCFE !important;
+  color: #FFF !important;
   white-space: nowrap !important;
   flex-shrink: 0 !important;
 }
@@ -116,10 +125,10 @@ body {
 
 .navigation-link {
   font-family: 'Roboto Mono', monospace !important;
-  font-size: 1.25rem !important;
+  font-size: 1rem !important;
   font-weight: 400 !important;
   text-transform: uppercase !important;
-  color: #F1FCFE !important;
+  color: #FFF !important;
   text-decoration: none !important;
   transition: color 0.3s ease !important;
   white-space: nowrap !important;
@@ -134,13 +143,13 @@ body {
   display: inline-flex !important;
   align-items: center !important;
   gap: 0.25rem !important;
-  padding: 0.75rem 1.25rem !important;
-  border: none !important;
+  padding: 0.6rem 1rem !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
   border-radius: 2.5rem !important;
-  background: #ACD0D8 !important;
-  color: #001E24 !important;
+  background: transparent !important;
+  color: #FFF !important;
   font-family: 'Roboto Mono', monospace !important;
-  font-size: 1.25rem !important;
+  font-size: 1rem !important;
   font-weight: 400 !important;
   text-decoration: none !important;
   text-transform: uppercase !important;
@@ -153,9 +162,13 @@ body {
 }
 
 .nav-resume-icon {
-  width: 1.5rem !important;
-  height: 1.5rem !important;
+  width: 1.2rem !important;
+  height: 1.2rem !important;
   flex-shrink: 0 !important;
+}
+
+.navigation-block.nav-scrolled {
+  top: 0.5rem !important;
 }
 
 /* --- Hide old header row --- */
@@ -166,21 +179,46 @@ body {
 /* --- Intro Section --- */
 .section-1 {
   padding: 0 !important;
-  background:
-    radial-gradient(ellipse at center, rgba(5, 36, 42, 0.4) 0%, #00151A 100%),
-    radial-gradient(circle, var(--text-mid, #ACD0D8) 0.5px, transparent 0.5px) !important;
-  background-size: 100% 100%, 0.5rem 0.5rem !important;
-  background-position: 0 0, 0 0 !important;
-  height: 80svh !important;
-  min-height: 80svh !important;
+  background: transparent !important;
+  height: 85svh !important;
+  min-height: 85svh !important;
   display: grid !important;
   grid-column: 1 / -1 !important;
   grid-template-columns: repeat(12, 1fr) !important;
-  align-items: start !important;
+  align-items: center !important;
   gap: 3rem !important;
   margin: 0 -3.75rem 0 -3.75rem !important;
-  padding: 12.5rem 3.75rem 0 3.75rem !important;
+  padding: 0 3.75rem !important;
   position: relative !important;
+  z-index: 0 !important;
+}
+
+/* --- Hero dot grid --- */
+.section-1::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='3' cy='3' r='0.75' fill='%23000000'/%3E%3C/svg%3E") !important;
+  background-repeat: repeat !important;
+  background-size: 6px 6px !important;
+  -webkit-mask-image: radial-gradient(ellipse 60% 100% at 50% 40%, black 0%, black 20%, transparent 100%) !important;
+  mask-image: radial-gradient(ellipse 60% 100% at 50% 40%, black 0%, black 20%, transparent 100%) !important;
+  opacity: 0.25 !important;
+  pointer-events: none !important;
+  z-index: -1 !important;
+}
+
+body::before {
+  content: '' !important;
+  position: fixed !important;
+  inset: 0 !important;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") !important;
+  background-repeat: repeat !important;
+  background-size: 200px 200px !important;
+  opacity: 0.4 !important;
+  pointer-events: none !important;
+  z-index: -1 !important;
+  mix-blend-mode: overlay !important;
 }
 
 .intro {
@@ -199,62 +237,93 @@ body {
   font-size: 1rem !important;
   font-weight: 600 !important;
   letter-spacing: 0.125rem !important;
-  color: #ACD0D8 !important;
+  color: rgba(255, 255, 255, 0.75) !important;
   text-transform: uppercase !important;
   margin-bottom: 1.5rem !important;
   text-align: left !important;
   grid-column: 1 / 3 !important;
 }
 
+/* Hide the "intro" label — hero is full-bleed centered */
+.section-1 .section-title {
+  display: none !important;
+}
+
 .layout {
   display: flex !important;
   flex-direction: column !important;
-  gap: 3rem !important;
-  align-items: flex-start !important;
-  text-align: left !important;
-  grid-column: 3 / 9 !important;
+  gap: 1.5rem !important;
+  align-items: center !important;
+  text-align: center !important;
+  grid-column: 2 / 12 !important;
 }
 
 .title {
-  font-family: Montserrat !important;
-  font-size: 4.5rem !important;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-size: 3.5rem !important;
   font-style: normal !important;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
   line-height: 110% !important;
-  letter-spacing: -0.09rem !important;
+  letter-spacing: -0.045rem !important;
   margin: 0 !important;
+  color: #FFF !important;
+  text-align: center !important;
 }
 
 .title.page-load {
   opacity: 1 !important;
   transform: none !important;
   font-size: 3.5rem !important;
+  background-image: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+}
+
+.title-italic {
+  font-style: italic !important;
+  color: #74E3FF !important;
+  font-weight: 700 !important;
+}
+
+.hero-subtitle {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-size: 1.2rem !important;
+  font-weight: 400 !important;
+  line-height: 1.6 !important;
+  color: rgba(255, 255, 255, 0.75) !important;
+  margin: 0 !important;
+  text-align: center !important;
 }
 
 /* --- Hero Badges --- */
 .hero-badges {
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
   margin-top: 0 !important;
+  margin-bottom: -0.75rem !important;
   flex-wrap: wrap;
   justify-content: flex-start;
 }
 
 .hero-badge {
   display: flex !important;
-  padding: 0.75rem 1.25rem !important;
+  padding: 0.25rem 0.75rem !important;
   align-items: center !important;
-  gap: 0.75rem !important;
+  gap: 0.5rem !important;
   border-radius: 100px !important;
-  border: 1px solid var(--border, #254046) !important;
-  background: linear-gradient(0deg, #001E24 0%, #002B33 100%) !important;
-  font-size: 1.25rem !important;
+  border: none !important;
+  background: rgba(0, 0, 0, 0.25) !important;
+  color: #FFF !important;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-size: 1rem !important;
+  font-style: normal !important;
   font-weight: 400 !important;
-  color: var(--text-mid, #ACD0D8) !important;
+  line-height: 110% !important;
 }
 
 .hero-badge svg {
-  color: var(--text-mid, #ACD0D8) !important;
+  color: rgba(255, 255, 255, 0.75) !important;
   flex-shrink: 0 !important;
   width: 1rem !important;
   height: 1rem !important;
@@ -264,6 +333,7 @@ body {
 .section-2 {
   padding: 0 !important;
   margin: 0 !important;
+  margin-top: 3rem !important;
   display: grid !important;
   grid-column: 1 / -1 !important;
   grid-template-columns: repeat(12, 1fr) !important;
@@ -298,6 +368,7 @@ body {
 
 .section-2 > .project-card-featured {
   grid-column: 2 / 12 !important;
+  padding-bottom: 2.5rem !important;
 }
 
 .project-cards-grid {
@@ -358,9 +429,9 @@ body {
 }
 
 .project-card-title {
-  color: var(--text, #F1FCFE) !important;
-  font-family: Montserrat !important;
-  font-size: 1.5rem !important;
+  color: #FFF !important;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-size: 1.2rem !important;
   font-style: normal !important;
   font-weight: 500 !important;
   line-height: normal !important;
@@ -368,12 +439,12 @@ body {
 }
 
 .project-card-description {
-  color: var(--text-mid, #ACD0D8) !important;
-  font-family: Montserrat !important;
-  font-size: 1.5rem !important;
+  color: rgba(255, 255, 255, 0.75) !important;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-size: 1.2rem !important;
   font-style: normal !important;
-  font-weight: 500 !important;
-  line-height: normal !important;
+  font-weight: 400 !important;
+  line-height: 1.2 !important;
   margin: 0 !important;
 }
 
@@ -393,15 +464,19 @@ body {
 }
 
 .section-2 > .project-card-featured:first-of-type .project-card-image {
-  background: linear-gradient(180deg, #C3F4FE 0%, #58D7F1 100%) !important;
+  background: linear-gradient(180deg, #C3D4FE 0%, #5883F1 100%) !important;
 }
 
 .section-2 > .project-card-featured:nth-of-type(2) .project-card-image {
-  background: linear-gradient(180deg, #53DAF5 0%, #06A6C6 100%) !important;
+  background: linear-gradient(180deg, #5381F5 0%, #063CC6 100%) !important;
 }
 
-.project-cards-grid .project-card-featured .project-card-image {
-  background: linear-gradient(180deg, #06A6C6 0%, #006A80 100%) !important;
+.project-cards-grid .project-card-featured:first-child .project-card-image {
+  background: linear-gradient(180deg, #063CC6 0%, #002480 100%) !important;
+}
+
+.project-cards-grid .project-card-featured:last-child .project-card-image {
+  background: linear-gradient(180deg, #063CC6 0%, #002480 100%) !important;
 }
 
 .section-2 > .project-card-featured .project-card-image {
@@ -436,26 +511,22 @@ body {
 }
 
 .case-study-btn {
-  display: flex !important;
-  padding: 0.75rem 1.25rem !important;
+  display: inline-flex !important;
   align-items: center !important;
   gap: 0.25rem !important;
+  padding: 0.6rem 1rem !important;
+  border: none !important;
   border-radius: 2.5rem !important;
-  border: 2px solid var(--text-mid, #ACD0D8) !important;
-  background: var(--text, #F1FCFE) !important;
-  color: var(--text-dark, #00151A) !important;
-  font-family: 'Roboto Mono' !important;
-  font-size: 1.25rem !important;
-  font-style: normal !important;
+  background: #4878F2 !important;
+  color: #FFF !important;
+  font-family: 'Roboto Mono', monospace !important;
+  font-size: 1rem !important;
   font-weight: 400 !important;
-  line-height: normal !important;
-  text-transform: uppercase !important;
   text-decoration: none !important;
+  text-transform: uppercase !important;
   transition: all 0.3s ease !important;
   flex-shrink: 0 !important;
   cursor: pointer !important;
-  leading-trim: both !important;
-  text-edge: cap !important;
   position: relative !important;
   z-index: 1 !important;
 }
@@ -465,11 +536,10 @@ body {
   transform: translateY(-0.5rem) !important;
 }
 
-
 .case-study-btn svg {
-  width: 1.5rem !important;
-  height: 1.5rem !important;
-  color: var(--text-dark, #00151A) !important;
+  width: 1.2rem !important;
+  height: 1.2rem !important;
+  color: #FFF !important;
 }
 
 /* --- Project Cards — image-first layout --- */
@@ -601,17 +671,48 @@ body {
   width: 100% !important;
 }
 
+.work-experience {
+  border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
 .experience-row {
   display: grid !important;
   grid-template-columns: 1fr 1fr !important;
   gap: 2.5rem !important;
   padding: 2.5rem 0 !important;
-  border-bottom: 1px solid var(--divider) !important;
+  border-top: none !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.job-title {
+  color: #FFF !important;
+  font-weight: 500 !important;
+}
+
+.dates {
+  color: #FFF !important;
+}
+
+.company,
+.location {
+  color: rgba(255, 255, 255, 0.75) !important;
 }
 
 /* --- Footer --- */
 .footer {
   padding: 3.75rem 2.5rem !important;
+}
+
+.footer-header {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.footer-link {
+  color: #FFF !important;
+}
+
+.footer-icon {
+  color: #FFF !important;
 }
 
 /* ============================================
@@ -636,13 +737,15 @@ body {
   }
 
   .nav-resume-btn {
-    padding: 0.625rem 1rem;
-    font-size: 1rem;
+    padding: 0.625rem 1rem !important;
+    font-size: 1rem !important;
   }
 
   .section-1 {
     padding: 5rem 2.5rem !important;
     min-height: auto !important;
+    height: auto !important;
+    align-items: center !important;
   }
 
   .title {
@@ -695,7 +798,7 @@ body {
 .mobile-menu-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 21, 26, 0.97);
+  background: rgba(4, 10, 30, 0.97);
   z-index: 1000;
   display: flex;
   flex-direction: column;
@@ -744,8 +847,8 @@ body {
   gap: 0.25rem;
   padding: 0.75rem 1.5rem;
   border-radius: 2.5rem;
-  background: #ACD0D8;
-  color: #001E24;
+  background: linear-gradient(180deg, #2840A8 0%, #1A2D80 100%);
+  color: #E8EEFF;
   font-family: 'Roboto Mono', monospace;
   font-size: 1.25rem;
   font-weight: 400;
@@ -790,11 +893,12 @@ body {
   /* --- Intro Section: single column --- */
   .section-1 {
     grid-template-columns: 1fr !important;
-    padding: 6rem 1.5rem 3rem 1.5rem !important;
+    padding: 5rem 1.5rem 3rem 1.5rem !important;
     margin: 0 -1rem !important;
     min-height: auto !important;
     height: auto !important;
     gap: 1.5rem !important;
+    align-items: center !important;
   }
 
   .section-1 .section-title {
@@ -844,7 +948,7 @@ body {
   }
 
   .project-card-title {
-    font-size: 1.25rem !important;
+    font-size: 1rem !important;
   }
 
   .project-card-description {
@@ -946,19 +1050,27 @@ body {
   }
 }
 
-/* Base font-size scaling */
+/* Typography scaling — html stays at 16px (floor).
+   Title and subtitle step down at smaller viewports. */
 html {
   font-size: 16px;
 }
 
-@media screen and (max-width: 1800px) {
-  html {
-    font-size: 15px !important;
-  }
+/* Large screens — scale up */
+@media screen and (min-width: 1750px) {
+  html { font-size: 20px !important; }
+}
+
+/* Smaller viewports — step down title/subtitle */
+@media screen and (max-width: 1440px) {
+  .title, .title.page-load { font-size: 3.5rem !important; }
+}
+
+@media screen and (max-width: 1280px) {
+  .title, .title.page-load { font-size: 3rem !important; }
+  .hero-subtitle { font-size: 1rem !important; }
 }
 
 @media screen and (max-width: 1024px) {
-  html {
-    font-size: 14px !important;
-  }
+  .title, .title.page-load { font-size: 2.5rem !important; }
 }

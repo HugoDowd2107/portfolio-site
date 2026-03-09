@@ -4,7 +4,7 @@
   --bg: #00151A;
   --white-text: #fff;
   --text-dark: #00151A;
-  --bg-light: #002229;
+  --bg-light: #121321;
   --text-mid: #ACD0D8;
   --flash-colour: #fe3448;
   --dark-background: #05242a;
@@ -13,12 +13,12 @@
   --card-background-dark: #ffffff0d;
   --text-colour\<deleted\|variable-2af43440-f28f-7c0a-591c-806364ad49d5\>: #d6faef;
   --border: #25463b;
-  --font-family: Montserrat, sans-serif;
+  --font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 body {
   color: var(--text);
-  font-family: Montserrat, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.2;
 }
@@ -1144,7 +1144,7 @@ a {
   letter-spacing: 0;
   margin-top: 0;
   margin-bottom: 0;
-  font-family: Montserrat, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 30px;
   font-weight: 600;
   line-height: 120%;
@@ -1251,7 +1251,7 @@ a {
   flex: 1;
   width: auto;
   margin-bottom: 16px;
-  font-family: Montserrat, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 44px;
   font-weight: 600;
   line-height: 44px;
@@ -3338,7 +3338,7 @@ a {
 .case-study .navigation-block {
   grid-column-gap: 0;
   grid-row-gap: 0;
-  background-color: rgba(0, 21, 26, 0.5);
+  background-color: rgba(13, 13, 13, 0.5);
   border-radius: 8px;
   flex-flow: column;
   justify-content: flex-start;
@@ -3356,7 +3356,7 @@ a {
   color: var(--text);
   opacity: 0.5;
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 24px;
   border-left: 2px solid rgba(255, 255, 255, 0.5);
   padding: 8px 0 8px 12px;

@@ -14,6 +14,16 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// Shrink nav top margin on scroll
+const navBlock = document.querySelector('.navigation-block');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 10) {
+        navBlock.classList.add('nav-scrolled');
+    } else {
+        navBlock.classList.remove('nav-scrolled');
+    }
+}, { passive: true });
+
 // Update active navigation link based on scroll position
 const navLinks = document.querySelectorAll('.navigation-link');
 const sections = document.querySelectorAll('section[id]');
