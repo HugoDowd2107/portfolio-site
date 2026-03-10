@@ -262,7 +262,7 @@ body::before {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
   font-size: 3.5rem !important;
   font-style: normal !important;
-  font-weight: 700 !important;
+  font-weight: 400 !important;
   line-height: 110% !important;
   letter-spacing: -0.045rem !important;
   margin: 0 !important;
@@ -283,7 +283,7 @@ body::before {
 .title-italic {
   font-style: italic !important;
   color: #74E3FF !important;
-  font-weight: 700 !important;
+  font-weight: 400 !important;
 }
 
 .hero-subtitle {
