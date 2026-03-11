@@ -38,12 +38,12 @@ body.body-2::before {
   font-weight: 500;
 }
 
-/* Secondary text — white 0.75 opacity */
+/* Secondary text — white 0.65 opacity */
 .main.case-study p,
 .main.case-study .case-study.p,
 .main.case-study .footer-link,
 .main.case-study .button-text,
 .main.case-study .return-home {
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.65);
   font-weight: 400;
 }
