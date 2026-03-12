@@ -200,6 +200,10 @@ body.body-2::before {
   border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
 }
 
+.cs-hero .cs-container::after {
+  margin-top: 2.5rem;
+}
+
 .cs-section .cs-container {
   row-gap: 2.5rem;
 }
