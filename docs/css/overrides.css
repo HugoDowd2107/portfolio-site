@@ -7,8 +7,8 @@
 /* --- Body & General --- */
 html {
   background:
-    linear-gradient(180deg, #6C96FF 0%, #021D67 46.95%, #0D0D0D 77.98%) no-repeat top,
-    #0D0D0D !important;
+    linear-gradient(180deg, #6C96FF 0%, #021D67 46.95%, #1A1A1A 77.98%) no-repeat top,
+    #1A1A1A !important;
   background-size: 100% 120vh !important;
   margin: 0 !important;
   scroll-behavior: auto !important;
@@ -451,7 +451,7 @@ body::before {
 .project-card-image {
   width: 100% !important;
   height: 37.5rem !important;
-  background: linear-gradient(0deg, #A7EFFD 0%, #09B7D9 100%) !important;
+  background: #333769 !important;
   border-radius: 1.5rem !important;
   padding: 1.5rem !important;
   box-sizing: border-box !important;
@@ -464,19 +464,19 @@ body::before {
 }
 
 .section-2 > .project-card-featured:first-of-type .project-card-image {
-  background: linear-gradient(180deg, #C3D4FE 0%, #5883F1 100%) !important;
+  background: #333769 !important;
 }
 
 .section-2 > .project-card-featured:nth-of-type(2) .project-card-image {
-  background: linear-gradient(180deg, #5381F5 0%, #063CC6 100%) !important;
+  background: #333769 !important;
 }
 
 .project-cards-grid .project-card-featured:first-child .project-card-image {
-  background: linear-gradient(180deg, #063CC6 0%, #002480 100%) !important;
+  background: #333769 !important;
 }
 
 .project-cards-grid .project-card-featured:last-child .project-card-image {
-  background: linear-gradient(180deg, #063CC6 0%, #002480 100%) !important;
+  background: #333769 !important;
 }
 
 .section-2 > .project-card-featured .project-card-image {
@@ -517,7 +517,7 @@ body::before {
   padding: 0.6rem 1rem !important;
   border: none !important;
   border-radius: 2.5rem !important;
-  background: #4878F2 !important;
+  background: rgba(0, 0, 0, 0.50) !important;
   color: #FFF !important;
   font-family: 'Roboto Mono', monospace !important;
   font-size: 1rem !important;
@@ -615,7 +615,7 @@ body::before {
   bottom: 1rem;
   right: 1rem;
   padding: 0.5rem 1rem;
-  background: rgba(5, 36, 42, 0.8);
+  background: rgba(0, 0, 0, 0.50);
   backdrop-filter: blur(0.5rem);
   -webkit-backdrop-filter: blur(0.5rem);
   border: 1px solid var(--divider);
