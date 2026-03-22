@@ -497,7 +497,7 @@ body::before {
   height: auto !important;
   object-fit: contain !important;
   z-index: 0 !important;
-  border-radius: 1.5rem !important;
+  border-radius: 0 !important;
   transition: transform 0.3s ease !important;
 }
 
