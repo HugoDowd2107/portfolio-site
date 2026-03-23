@@ -4,6 +4,32 @@
    of the existing Webflow export.
    ============================================ */
 
+/* --- Scroll fade-in --- */
+.section-title,
+.project-card-featured,
+.project-cards-grid,
+.experience-row,
+.footer-group {
+  opacity: 0 !important;
+  transform: translateY(20px) !important;
+  transition: opacity 0.6s ease, transform 0.6s ease !important;
+}
+
+.section-2 > .section-title,
+.section-2 > .project-card-featured:first-of-type {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.section-title.visible,
+.project-card-featured.visible,
+.project-cards-grid.visible,
+.experience-row.visible,
+.footer-group.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
 /* --- Body & General --- */
 html {
   background: #1A1A1A !important;
@@ -223,7 +249,6 @@ body {
   position: absolute !important;
   inset: 0 !important;
   background: url('../images/radial-background.webp') no-repeat center top / cover !important;
-  opacity: 1 !important;
   pointer-events: none !important;
   z-index: -1 !important;
 }

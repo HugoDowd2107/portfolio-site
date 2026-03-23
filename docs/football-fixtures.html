@@ -265,5 +265,29 @@
     updateActiveLink();
   });
   </script>
+  <script>
+    (function() {
+      var selectors = [
+        '.cs-section-label',
+        '.cs-section h2',
+        '.cs-section p',
+        '.cs-section .cs-image',
+        '.cs-section .cs-metric',
+        '.cs-section .cs-metrics-grid'
+      ];
+      var els = document.querySelectorAll(selectors.join(','));
+
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      els.forEach(function(el) { observer.observe(el); });
+    })();
+  </script>
 </body>
 </html>

@@ -2,6 +2,28 @@
    CASE STUDY PAGE STYLES
    ============================================ */
 
+/* ---- Scroll fade-in ---- */
+.cs-section-label,
+.cs-section h2,
+.cs-section p,
+.cs-section .cs-image,
+.cs-section .cs-metric,
+.cs-section .cs-metrics-grid {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.cs-section-label.visible,
+.cs-section h2.visible,
+.cs-section p.visible,
+.cs-section .cs-image.visible,
+.cs-section .cs-metric.visible,
+.cs-section .cs-metrics-grid.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ---- Base ---- */
 body.body-2 {
   background-color: rgb(26, 26, 26);
