@@ -222,7 +222,7 @@ body {
   content: '' !important;
   position: absolute !important;
   inset: 0 !important;
-  background: url('../images/radial-background.png') no-repeat center top / cover !important;
+  background: url('../images/radial-background.webp') no-repeat center top / cover !important;
   opacity: 1 !important;
   pointer-events: none !important;
   z-index: -1 !important;
