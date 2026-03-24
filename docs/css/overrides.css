@@ -387,25 +387,26 @@ body {
   flex-direction: column !important;
   gap: 1rem !important;
   position: relative !important;
+  margin-bottom: 0 !important;
 }
 
 .project-card-image::before {
   content: '' !important;
   position: absolute !important;
-  top: 0 !important;
+  bottom: 0 !important;
   left: 0 !important;
   width: 100% !important;
-  height: 100% !important;
-  background: rgba(0, 0, 0, 0) !important;
-  border-radius: 1.5rem !important;
+  height: 40% !important;
+  background: linear-gradient(to bottom, transparent 0%, #1A1A1A 100%) !important;
+  border-radius: 0 0 1.5rem 1.5rem !important;
   z-index: 1 !important;
-  transition: background 0.4s ease !important;
+  pointer-events: none !important;
 }
 
 
 .section-2 > .project-card-featured {
   grid-column: 2 / 12 !important;
-  padding-bottom: 2.5rem !important;
+  padding-bottom: 1rem !important;
 }
 
 .project-cards-grid {
@@ -488,7 +489,7 @@ body {
 .project-card-image {
   width: 100% !important;
   height: 37.5rem !important;
-  background: #333769 !important;
+  background: #1E1F2B !important;
   border-radius: 1.5rem !important;
   padding: 1.5rem !important;
   box-sizing: border-box !important;
@@ -501,19 +502,19 @@ body {
 }
 
 .section-2 > .project-card-featured:first-of-type .project-card-image {
-  background: #333769 !important;
+  background: #1E1F2B !important;
 }
 
 .section-2 > .project-card-featured:nth-of-type(2) .project-card-image {
-  background: #333769 !important;
+  background: #1E1F2B !important;
 }
 
 .project-cards-grid .project-card-featured:first-child .project-card-image {
-  background: #333769 !important;
+  background: #1E1F2B !important;
 }
 
 .project-cards-grid .project-card-featured:last-child .project-card-image {
-  background: #333769 !important;
+  background: #1E1F2B !important;
 }
 
 .section-2 > .project-card-featured .project-card-image {
@@ -590,10 +591,6 @@ body {
   padding: 0 !important;
   border-radius: 0 !important;
   width: 100% !important;
-  margin-bottom: 1rem !important;
-}
-
-.project-card-featured {
   margin-bottom: 1rem !important;
 }
 
