@@ -46,10 +46,10 @@ body::before {
   content: '' !important;
   position: fixed !important;
   inset: 0 !important;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") !important;
+  background-image: url("../images/static.webp") !important;
   background-repeat: repeat !important;
-  background-size: 200px 200px !important;
-  opacity: 0.03 !important;
+  background-size: 300px 300px !important;
+  opacity: 0.015 !important;
   pointer-events: none !important;
   z-index: 9999 !important;
 }
@@ -232,9 +232,9 @@ body {
 .hero-noise {
   position: absolute !important;
   inset: 0 !important;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") !important;
+  background-image: url("../images/static.webp") !important;
   background-repeat: repeat !important;
-  background-size: 200px 200px !important;
+  background-size: 300px 300px !important;
   -webkit-mask-image: radial-gradient(ellipse 70% 50% at 50% 50%, black 0%, black 30%, transparent 100%) !important;
   mask-image: radial-gradient(ellipse 70% 50% at 50% 50%, black 0%, black 30%, transparent 100%) !important;
   opacity: 0.25 !important;
@@ -294,7 +294,7 @@ body {
 
 .title {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
-  font-size: 3.5rem !important;
+  font-size: 3rem !important;
   font-style: normal !important;
   font-weight: 400 !important;
   line-height: 110% !important;
@@ -307,7 +307,7 @@ body {
 .title.page-load {
   opacity: 1 !important;
   transform: none !important;
-  font-size: 3.5rem !important;
+  font-size: 3rem !important;
   background-image: none !important;
   -webkit-background-clip: unset !important;
   background-clip: unset !important;
@@ -1087,7 +1087,7 @@ body {
 /* Typography scaling — html stays at 16px (floor).
    Title and subtitle step down at smaller viewports. */
 html {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 /* Large screens — scale up */
@@ -1095,16 +1095,6 @@ html {
   html { font-size: 20px !important; }
 }
 
-/* Smaller viewports — step down title/subtitle */
-@media screen and (max-width: 1440px) {
-  .title, .title.page-load { font-size: 3.5rem !important; }
-}
-
 @media screen and (max-width: 1280px) {
-  .title, .title.page-load { font-size: 3rem !important; }
   .hero-subtitle { font-size: 1rem !important; }
-}
-
-@media screen and (max-width: 1024px) {
-  .title, .title.page-load { font-size: 2.5rem !important; }
 }
