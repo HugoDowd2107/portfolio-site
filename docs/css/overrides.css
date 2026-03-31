@@ -79,6 +79,7 @@ body {
   grid-column: 1 / -1 !important;
   grid-row: 3 !important;
   margin: 0 !important;
+  padding-top: 40px;
 }
 
 .section-3 {
@@ -215,8 +216,8 @@ body {
 .section-1 {
   padding: 0 !important;
   background: transparent !important;
-  height: 85svh !important;
-  min-height: 85svh !important;
+  height: 90svh !important;
+  min-height: 90svh !important;
   display: grid !important;
   grid-column: 1 / -1 !important;
   grid-template-columns: repeat(12, 1fr) !important;
