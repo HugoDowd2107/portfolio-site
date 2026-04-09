@@ -9,14 +9,14 @@
   <link href="css/hugodowd.webflow.css" rel="stylesheet" type="text/css">
   <link href="css/overrides.css" rel="stylesheet" type="text/css">
   <link rel="preload" href="images/radial-background.webp" as="image" type="image/webp" fetchpriority="high">
+  <link rel="preload" href="images/static.webp" as="image" type="image/webp" fetchpriority="high">
   <style>.bg-waiting { visibility: hidden; }</style>
   <script>
     document.documentElement.classList.add('bg-waiting');
-    var _bgImg = new Image();
-    _bgImg.src = 'images/radial-background.webp';
-    _bgImg.onload = _bgImg.onerror = function () {
-      document.documentElement.classList.remove('bg-waiting');
-    };
+    var _loaded = 0;
+    function _bgCheck() { if (++_loaded >= 2) document.documentElement.classList.remove('bg-waiting'); }
+    var _bg1 = new Image(); _bg1.src = 'images/radial-background.webp'; _bg1.onload = _bg1.onerror = _bgCheck;
+    var _bg2 = new Image(); _bg2.src = 'images/static.webp'; _bg2.onload = _bg2.onerror = _bgCheck;
   </script>
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
