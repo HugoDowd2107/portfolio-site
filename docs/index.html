@@ -8,7 +8,16 @@
   <link href="css/webflow.css" rel="stylesheet" type="text/css">
   <link href="css/hugodowd.webflow.css" rel="stylesheet" type="text/css">
   <link href="css/overrides.css" rel="stylesheet" type="text/css">
-  <link rel="preload" href="images/radial-background.webp" as="image" type="image/webp">
+  <link rel="preload" href="images/radial-background.webp" as="image" type="image/webp" fetchpriority="high">
+  <style>.bg-waiting { visibility: hidden; }</style>
+  <script>
+    document.documentElement.classList.add('bg-waiting');
+    var _bgImg = new Image();
+    _bgImg.src = 'images/radial-background.webp';
+    _bgImg.onload = _bgImg.onerror = function () {
+      document.documentElement.classList.remove('bg-waiting');
+    };
+  </script>
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css2?family=Young+Serif:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
