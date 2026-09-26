@@ -2,14 +2,8 @@
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if (!window.IntersectionObserver) return;
 
-  var observer = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
+  var STAGGER_MS = 90;
+  var MAX_DELAY_MS = 360;
 
   var selectors = [
     // Portfolio — hero
@@ -37,13 +31,85 @@
     '.cs-section .cs-container > p',
   ];
 
-  function init() {
+  // Elements entering together are revealed in reading order with a short
+  // cascade, rather than all at once or in whatever order the observer fires.
+  var pending = [];
+  var flushScheduled = false;
+
+  function flush() {
+    flushScheduled = false;
+    pending.sort(function (a, b) {
+      var ra = a.getBoundingClientRect();
+      var rb = b.getBoundingClientRect();
+      return (ra.top - rb.top) || (ra.left - rb.left);
+    });
+    pending.forEach(function (el, i) {
+      el.style.setProperty('--reveal-delay', Math.min(i * STAGGER_MS, MAX_DELAY_MS) + 'ms');
+      el.classList.add('is-visible');
+    });
+    pending = [];
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      observer.unobserve(entry.target);
+      pending.push(entry.target);
+    });
+    if (pending.length && !flushScheduled) {
+      flushScheduled = true;
+      requestAnimationFrame(flush);
+    }
+  }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
+
+  // Once revealed, drop the animation styles so they don't hold a compositor
+  // layer or interfere with hover transforms.
+  function cleanup(e) {
+    var el = e.target;
+    if (e.target !== e.currentTarget || e.propertyName !== 'transform' || !el.classList.contains('is-visible')) return;
+    el.classList.remove('scroll-reveal', 'is-visible');
+    el.style.removeProperty('--reveal-delay');
+    el.removeEventListener('transitionend', cleanup);
+  }
+
+  function collect() {
+    var els = [];
     selectors.forEach(function (selector) {
       document.querySelectorAll(selector).forEach(function (el) {
-        el.classList.add('scroll-reveal');
-        observer.observe(el);
+        if (els.indexOf(el) === -1) els.push(el);
       });
     });
+    // Skip elements nested inside another animated element so offsets don't compound
+    return els.filter(function (el) {
+      return !els.some(function (other) { return other !== el && other.contains(el); });
+    });
+  }
+
+  function start() {
+    collect().forEach(function (el) {
+      // Already scrolled past (e.g. restored scroll position) — leave as-is
+      if (el.getBoundingClientRect().bottom < 0) return;
+      el.classList.add('scroll-reveal');
+      el.addEventListener('transitionend', cleanup);
+      observer.observe(el);
+    });
+  }
+
+  // The homepage stays hidden until its background images load; hold off so
+  // the hero animation plays when it can actually be seen.
+  function whenPageVisible(cb) {
+    var root = document.documentElement;
+    if (!root.classList.contains('bg-waiting')) return cb();
+    var mo = new MutationObserver(function () {
+      if (root.classList.contains('bg-waiting')) return;
+      mo.disconnect();
+      cb();
+    });
+    mo.observe(root, { attributes: true, attributeFilter: ['class'] });
+  }
+
+  function init() {
+    whenPageVisible(start);
   }
 
   if (document.readyState === 'loading') {
