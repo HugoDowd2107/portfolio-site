@@ -633,9 +633,14 @@ body.body-2 {
 }
 
 @media (max-width: 768px) {
-  /* Add horizontal padding so content doesn't touch screen edges */
+  /* Sections fill the width; .body-2 already provides the side padding */
+  .main.case-study {
+    align-items: stretch;
+  }
+
   .cs-container {
-    padding: 0 1.25rem;
+    padding: 0;
+    column-gap: 0;
   }
 
   /* Full-width grid columns — override general and high-specificity selectors */
@@ -643,37 +648,123 @@ body.body-2 {
   .cs-hero h1,
   .cs-section .cs-container > h2,
   .cs-section h2 ~ h2,
+  .cs-section .cs-container > p,
+  .cs-section .cs-container > .cs-learning-cards,
   .cs-hero .cs-container::after,
   .cs-section .cs-container::after {
     grid-column: 1 / -1;
   }
 
+  /* Clear the fixed Home button */
   .cs-hero {
-    padding: 3.5rem 0 1.5rem;
+    padding: 5rem 0 1.5rem;
   }
 
   .cs-hero h1 {
     font-size: 1.75rem;
   }
 
+  .cs-label,
+  .cs-section-label {
+    font-size: 0.875rem;
+  }
+
+  .cs-hero-header .cs-live-btn {
+    margin-top: 0;
+    font-size: 0.875rem;
+  }
+
   .cs-metrics {
     padding: 2rem 0;
   }
 
-  /* 3-col → 2-col at mobile */
+  /* Three metrics stack rather than leaving an orphan in a 2-col grid */
   .cs-metrics-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
   }
 
   /* Allow height to grow with content */
   .cs-metric {
     height: auto;
-    min-height: 120px;
-    padding: 1.5rem;
+    padding: 1.25rem 1.5rem;
+    gap: 0.5rem;
   }
 
   .cs-metric-number {
-    font-size: 2.25rem;
+    font-size: 2rem;
+  }
+
+  .cs-metric-desc {
+    font-size: 1rem;
+  }
+
+  .cs-icon-card,
+  .cs-stat,
+  .cs-learning-card {
+    padding: 1.25rem;
+    gap: 0.75rem;
+  }
+
+  .cs-icon-card img,
+  .cs-icon-card svg,
+  .cs-stat-icon,
+  .cs-learning-card img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .cs-icon-card h4,
+  .cs-learning-card h4,
+  .cs-stat-label {
+    font-size: 1.25rem;
+  }
+
+  .cs-stat-number {
+    font-size: 2rem;
+  }
+
+  .cs-image-caption,
+  .cs-section p.cs-image-caption,
+  .main.case-study p.cs-image-caption {
+    font-size: 0.8125rem;
+    margin-top: 0.5rem;
+  }
+
+  .cs-video-card {
+    height: 420px;
+    padding: 1.5rem;
+  }
+
+  .cs-tech-stack-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 13px;
+  }
+
+  .cs-tech-stack-label {
+    font-size: 14px;
+  }
+
+  .cs-tech-stack-name {
+    font-size: 13px;
+  }
+
+  /* Fixed Home button gets a backing so content doesn't show through it */
+  .main.case-study .return-home {
+    top: 12px;
+    left: 12px;
+    padding: 0.5rem 1rem 0.5rem 0.75rem;
+    border-radius: 100px;
+    background: rgba(26, 26, 26, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: #FFF;
+  }
+
+  .main.case-study .return-home .button-text,
+  .main.case-study .return-home .back-icon {
+    color: #FFF;
   }
 
   .cs-section {
@@ -689,8 +780,14 @@ body.body-2 {
     line-height: 1.3;
   }
 
+  /* Keep a small gap between label and heading at the smaller row-gap */
+  .cs-section .cs-section-label + h2 {
+    margin-top: calc(0.75rem - 1.5rem);
+  }
+
   /* Reduce large top spacing between sibling headings */
-  .cs-section h2 ~ h2 {
+  .cs-section h2 ~ h2,
+  .cs-section .cs-container > h2 ~ .cs-detail-row {
     margin-top: 1.5rem;
     padding-top: 2.5rem;
   }
@@ -723,6 +820,7 @@ body.body-2 {
 
   .cs-detail-row {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
   /* Override inline grid-template-columns on detail rows */
@@ -750,19 +848,9 @@ body.body-2 {
   }
 }
 
-@media (max-width: 500px) {
-  .cs-section .cs-container > p {
-    grid-column: 1 / -1;
-  }
-}
-
 @media (max-width: 480px) {
-  .cs-container {
-    padding: 0 1rem;
-  }
-
   .cs-hero {
-    padding: 3rem 0 1.25rem;
+    padding: 4.5rem 0 1.25rem;
   }
 
   .cs-hero h1 {
@@ -773,16 +861,6 @@ body.body-2 {
     font-size: 1.75rem;
   }
 
-  .cs-metric {
-    padding: 1.25rem;
-  }
-
-  /* Stack metrics to single column on small phones */
-  .cs-metrics-grid {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-  }
-
   .cs-section {
     padding: 2rem 0 0;
   }
@@ -791,11 +869,9 @@ body.body-2 {
     font-size: 1.25rem;
   }
 
-  .cs-stat-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .cs-stat-number {
-    font-size: 2rem;
+  .cs-icon-card h4,
+  .cs-learning-card h4,
+  .cs-stat-label {
+    font-size: 1.125rem;
   }
 }

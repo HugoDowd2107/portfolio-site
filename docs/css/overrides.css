@@ -802,7 +802,7 @@ body {
   }
 
   .nav-right {
-    gap: 2.5rem !important;
+    gap: 1.5rem !important;
   }
 
   .navigation-link {
@@ -871,7 +871,9 @@ body {
 .mobile-menu-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(4, 10, 30, 0.97);
+  background: rgba(26, 26, 26, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   z-index: 1000;
   display: flex;
   flex-direction: column;
@@ -919,9 +921,10 @@ body {
   align-items: center;
   gap: 0.25rem;
   padding: 0.75rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 2.5rem;
-  background: linear-gradient(180deg, #2840A8 0%, #1A2D80 100%);
-  color: #E8EEFF;
+  background: transparent;
+  color: #FFF;
   font-family: 'Roboto Mono', monospace;
   font-size: 1.25rem;
   font-weight: 400;
@@ -931,19 +934,37 @@ body {
 }
 
 @media screen and (max-width: 767px) {
-  /* --- Body grid: remove side margins --- */
-  body {
-    margin: 0 1rem !important;
+  /* --- Body grid: narrow side margins --- */
+  :root {
+    --page-gutter: 1rem;
   }
 
-  /* --- Navigation: hamburger mode --- */
+  /* --- Navigation: hamburger mode, aligned to the page gutter --- */
   .navigation-block {
-    padding: 1rem 1.25rem !important;
+    padding: 0.375rem 0.375rem 0.375rem 1.25rem !important;
     height: auto !important;
     flex-wrap: nowrap !important;
     gap: 0 !important;
-    margin-top: 1rem !important;
+    margin-top: 0 !important;
+    top: 1rem !important;
+    left: var(--page-gutter) !important;
+    right: var(--page-gutter) !important;
     border-radius: 3.75rem !important;
+  }
+
+  .navigation-block.nav-scrolled {
+    top: 0.5rem !important;
+  }
+
+  /* 44px tap target */
+  .hamburger-btn {
+    padding: 10px;
+  }
+
+  .mobile-menu-close {
+    top: 1rem;
+    right: 1rem;
+    padding: 0.625rem;
   }
 
   .nav-right .navigation-link,
@@ -966,12 +987,17 @@ body {
   /* --- Intro Section: single column --- */
   .section-1 {
     grid-template-columns: 1fr !important;
-    padding: 5rem 1.5rem 3rem 1.5rem !important;
-    margin: 0 -1rem !important;
+    padding: 7rem 1.5rem 3rem 1.5rem !important;
+    margin: 0 calc(-1 * var(--page-gutter)) !important;
     min-height: auto !important;
     height: auto !important;
     gap: 1.5rem !important;
     align-items: center !important;
+  }
+
+  /* Let the subtitle wrap naturally instead of at desktop line breaks */
+  .hero-subtitle br {
+    display: none;
   }
 
   .section-1 .section-title {
@@ -1003,7 +1029,8 @@ body {
   /* --- Work Section: single column --- */
   .section-2 {
     grid-template-columns: 1fr !important;
-    gap: 1.5rem !important;
+    gap: 2rem !important;
+    padding: 1.5rem 0 3rem !important;
   }
 
   .section-2 .section-title {
@@ -1017,25 +1044,56 @@ body {
   .project-cards-grid {
     grid-column: 1 / -1 !important;
     grid-template-columns: 1fr !important;
-    gap: 1.5rem !important;
+    gap: 2rem !important;
+  }
+
+  /* 2:1 cards are too short on phones — the button hides the image */
+  .section-2 > .project-card-featured .project-card-image,
+  .project-cards-grid .project-card-featured .project-card-image {
+    aspect-ratio: 4 / 3 !important;
+    padding: 1rem !important;
+    border-radius: 1rem !important;
+  }
+
+  .project-card-image::before {
+    border-radius: 0 0 1rem 1rem !important;
+  }
+
+  .section-2 > .project-card-featured {
+    padding-bottom: 0 !important;
+  }
+
+  .project-card-featured {
+    gap: 0.75rem !important;
+  }
+
+  .project-card-text {
+    gap: 0.25rem !important;
   }
 
   .project-card-title {
-    font-size: 1rem !important;
+    font-size: 1.0625rem !important;
   }
 
   .project-card-description {
-    font-size: 1rem !important;
+    font-size: 0.9375rem !important;
+    line-height: 1.4 !important;
   }
 
   .case-study-btn {
-    font-size: 1rem !important;
-    padding: 0.625rem 1rem !important;
+    font-size: 0.8125rem !important;
+    padding: 0.5rem 0.875rem !important;
+  }
+
+  .case-study-btn svg {
+    width: 1rem !important;
+    height: 1rem !important;
   }
 
   .project-image-placeholder {
-    top: 3rem !important;
-    left: 3rem !important;
+    top: 2.5rem !important;
+    left: 2.5rem !important;
+    width: calc(100% + 14rem) !important;
   }
 
   .work-grid-bottom {
@@ -1046,7 +1104,8 @@ body {
   .section-3 {
     grid-template-columns: 1fr !important;
     gap: 1.5rem !important;
-    margin-top: 4rem !important;
+    margin-top: 2rem !important;
+    padding: 0 0 2rem !important;
   }
 
   .section-3 .section-title {
@@ -1059,40 +1118,68 @@ body {
 
   .experience-row {
     grid-template-columns: 1fr !important;
-    gap: 0.5rem !important;
+    gap: 0.75rem !important;
     padding: 1.5rem 0 !important;
+  }
+
+  .job-title {
+    font-size: 1.125rem !important;
+  }
+
+  .company {
+    font-size: 1rem !important;
+  }
+
+  /* Stacked rows read top-to-bottom, so drop the desktop right-alignment */
+  .dates,
+  .location {
+    text-align: left !important;
+  }
+
+  .dates {
+    font-size: 0.9375rem !important;
+  }
+
+  .location {
+    font-size: 0.875rem !important;
   }
 
   /* --- Footer: stacked --- */
   .footer {
     display: flex !important;
     flex-direction: column !important;
-    gap: 2rem !important;
-    padding: 2.5rem 1rem !important;
+    gap: 2.5rem !important;
+    padding: 2.5rem 0 3rem !important;
   }
 
   .footer-group {
     width: 100% !important;
+    gap: 1rem !important;
+  }
+
+  .footer-header {
+    font-size: 0.8125rem !important;
+  }
+
+  .footer-link {
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+  }
+}
+
+/* Touch screens: hover transforms stick after a tap, so disable them */
+@media (hover: none) {
+  .project-card-featured:hover .project-image-placeholder,
+  .project-card:hover .project-image-placeholder,
+  .project-card-featured:hover .case-study-btn,
+  .project-card:hover .case-study-btn {
+    transform: none !important;
   }
 }
 
 @media screen and (max-width: 479px) {
-  body {
-    margin: 0 0.75rem !important;
-  }
-
-  .navigation-block {
-    padding: 0.75rem 1rem !important;
-    margin-top: 0.75rem !important;
-  }
-
-  .nav-logo-text {
-    font-size: 0.875rem;
-  }
-
   .section-1 {
-    padding: 5rem 1rem 2.5rem 1rem !important;
-    margin: 0 -0.75rem !important;
+    padding: 6.5rem 1rem 2.5rem 1rem !important;
     gap: 1rem !important;
   }
 
@@ -1111,15 +1198,7 @@ body {
   }
 
   .section-2 {
-    gap: 1rem !important;
-  }
-
-  .section-3 {
-    margin-top: 3rem !important;
-  }
-
-  .footer {
-    padding: 2rem 0.75rem !important;
+    gap: 1.75rem !important;
   }
 }
 
@@ -1132,6 +1211,11 @@ html {
 /* Large screens — scale up */
 @media screen and (min-width: 1750px) {
   html { font-size: 16px !important; }
+}
+
+/* Phones — larger base size so body copy isn't 14px */
+@media screen and (max-width: 767px) {
+  html { font-size: 16px; }
 }
 
 /* Large screens — cap content (grid columns 2–11) at 1200px and centre it.
