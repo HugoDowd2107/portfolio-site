@@ -285,6 +285,8 @@ body {
   padding: 0 var(--page-gutter) !important;
   position: relative !important;
   z-index: 0 !important;
+  /* The glow scales in from 1.06 on load; stop it widening the page */
+  overflow-x: clip !important;
 }
 
 /* --- Hero noise --- */
