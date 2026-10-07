@@ -2,27 +2,15 @@
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if (!window.IntersectionObserver) return;
 
-  var STAGGER_MS = 90;
-  var MAX_DELAY_MS = 360;
+  var STAGGER_MS = 50;
+  var MAX_DELAY_MS = 150;
 
   var selectors = [
-    // Portfolio — hero
-    '.hero-badges',
-    '.title',
-    '.hero-subtitle',
-    // Portfolio — experience
-    '.section-3 .section-title',
-    '.experience-row',
-    '.footer-group',
-    // Case study — hero
-    '.cs-hero .cs-label',
-    '.cs-hero h1',
-    '.cs-hero .cs-image',
-    '.cs-hero .cs-metrics-grid',
-    // Case study — sections
+    // Case study — sections (the hero and navigation animate on load in CSS)
     '.cs-section-label',
     '.cs-section h2',
     '.cs-section .cs-image',
+    '.cs-section .cs-image-grid',
     '.cs-section .cs-metrics-grid',
     '.cs-section .cs-stat-grid',
     '.cs-section .cs-icon-cards',
@@ -66,7 +54,7 @@
   // layer or interfere with hover transforms.
   function cleanup(e) {
     var el = e.target;
-    if (e.target !== e.currentTarget || e.propertyName !== 'transform' || !el.classList.contains('is-visible')) return;
+    if (e.target !== e.currentTarget || e.propertyName !== 'opacity' || !el.classList.contains('is-visible')) return;
     el.classList.remove('scroll-reveal', 'is-visible');
     el.style.removeProperty('--reveal-delay');
     el.removeEventListener('transitionend', cleanup);
