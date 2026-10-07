@@ -1,11 +1,10 @@
 // Pill that floats beside the cursor over [data-cursor] elements: "View" on project
-// cards, "Copy" on the email link (clicking copies the address instead of opening mail).
-// Mouse/trackpad only; touch devices keep the plain link behaviour.
+// cards, "Copy" on the email link. Clicking a [data-copy] link copies its value instead
+// of following it — confirmed in the cursor pill with a mouse, or as a toast on touch.
 (function () {
-  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-
   var pill = document.querySelector('.cursor-pill');
-  if (!pill) return;
+  var toast = document.querySelector('.copy-toast');
+  var canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
   var OFFSET_X = 16;
   var OFFSET_Y = 16;
@@ -16,6 +15,10 @@
   var current = { x: 0, y: 0 };
   var visible = false;
   var raf = null;
+  var last = null;
+  var copiedTimer = null;
+  var copiedTarget = null;
+  var toastTimer = null;
 
   function place() {
     pill.style.transform = 'translate3d(' + current.x + 'px,' + current.y + 'px,0)';
@@ -57,11 +60,6 @@
     visible = false;
   }
 
-  var last = null;
-
-  var copiedTimer = null;
-  var copiedTarget = null;
-
   function clearCopied() {
     clearTimeout(copiedTimer);
     copiedTarget = null;
@@ -82,36 +80,55 @@
     show(x, y);
   }
 
-  document.addEventListener('pointermove', function (e) {
-    if (e.pointerType !== 'mouse') return;
-    last = { x: e.clientX, y: e.clientY };
-    update(e.clientX, e.clientY, e.target);
-  }, { passive: true });
+  function showCopiedInPill(link) {
+    clearCopied();
+    copiedTarget = link;
+    pill.dataset.variant = 'copied';
+    copiedTimer = setTimeout(function () {
+      copiedTarget = null;
+      pill.dataset.variant = link.dataset.cursor;
+    }, 1500);
+  }
 
-  // Scrolling moves cards under a still cursor without firing pointermove
-  window.addEventListener('scroll', function () {
-    if (last) update(last.x, last.y, document.elementFromPoint(last.x, last.y));
-  }, { passive: true });
+  function showCopiedToast() {
+    // Setting the text (rather than just revealing it) is what screen readers announce
+    toast.querySelector('.copy-toast-text').textContent = 'Copied';
+    toast.classList.add('is-visible');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () {
+      toast.classList.remove('is-visible');
+    }, 1600);
+  }
 
-  // Mouse clicks on a copy target copy instead of following the link. Keyboard
-  // activation (detail 0) has no pill for feedback, so it keeps the mailto link.
+  if (pill && canHover) {
+    document.addEventListener('pointermove', function (e) {
+      if (e.pointerType !== 'mouse') return;
+      last = { x: e.clientX, y: e.clientY };
+      update(e.clientX, e.clientY, e.target);
+    }, { passive: true });
+
+    // Scrolling moves cards under a still cursor without firing pointermove
+    window.addEventListener('scroll', function () {
+      if (last) update(last.x, last.y, document.elementFromPoint(last.x, last.y));
+    }, { passive: true });
+
+    document.documentElement.addEventListener('pointerleave', hide);
+    window.addEventListener('blur', hide);
+  }
+
+  // Keyboard activation (detail 0) keeps the mailto link: there's no pointer
+  // to show feedback beside, and it's what keyboard users expect.
   document.addEventListener('click', function (e) {
     var link = e.target.closest('[data-copy]');
     if (!link || e.detail === 0 || !navigator.clipboard) return;
     e.preventDefault();
+    // A touch tap on a hover-capable device (e.g. a touchscreen laptop) has no pill to show
+    var useToast = !canHover || e.pointerType === 'touch' || e.pointerType === 'pen';
     navigator.clipboard.writeText(link.dataset.copy).then(function () {
-      clearCopied();
-      copiedTarget = link;
-      pill.dataset.variant = 'copied';
-      copiedTimer = setTimeout(function () {
-        copiedTarget = null;
-        pill.dataset.variant = link.dataset.cursor;
-      }, 1500);
+      if (useToast && toast) showCopiedToast();
+      else if (pill) showCopiedInPill(link);
     }, function () {
       window.location.href = link.href;
     });
   });
-
-  document.documentElement.addEventListener('pointerleave', hide);
-  window.addEventListener('blur', hide);
 })();

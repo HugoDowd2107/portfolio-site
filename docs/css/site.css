@@ -328,8 +328,6 @@ button:focus-visible {
   max-width: none;
   object-fit: cover;
   pointer-events: none;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
   transition: transform 0.6s var(--ease-out);
 }
 
@@ -338,12 +336,6 @@ button:focus-visible {
   top: 14.706cqw;
   width: 156.25cqw;
   height: 87.868cqw;
-  -webkit-mask-image: url("../images/card-telstra-mask.svg");
-  mask-image: url("../images/card-telstra-mask.svg");
-  -webkit-mask-size: 105.147cqw 68.015cqw;
-  mask-size: 105.147cqw 68.015cqw;
-  -webkit-mask-position: -0.368cqw 0;
-  mask-position: -0.368cqw 0;
 }
 
 .project-card-shot--football {
@@ -351,12 +343,6 @@ button:focus-visible {
   top: 14.706cqw;
   width: 126.838cqw;
   height: 71.324cqw;
-  -webkit-mask-image: url("../images/card-football-mask.svg");
-  mask-image: url("../images/card-football-mask.svg");
-  -webkit-mask-size: 91.912cqw 56.985cqw;
-  mask-size: 91.912cqw 56.985cqw;
-  -webkit-mask-position: 0 0;
-  mask-position: 0 0;
 }
 
 .project-card-shade {
@@ -413,8 +399,10 @@ button:focus-visible {
   letter-spacing: -0.12px;
 }
 
-/* ---- "View" pill that follows the cursor over project cards (js/cursor-pill.js) ---- */
-.cursor-pill {
+/* ---- Pill that follows the cursor (View / Copy / Copied), and the same pill as a
+   "Copied" toast for touch devices (js/cursor-pill.js) ---- */
+.cursor-pill,
+.copy-toast {
   position: fixed;
   top: 0;
   left: 0;
@@ -444,9 +432,19 @@ button:focus-visible {
   will-change: transform, opacity, filter;
 }
 
-.cursor-pill.is-visible {
+.cursor-pill.is-visible,
+.copy-toast.is-visible {
   opacity: 1;
   filter: blur(0);
+}
+
+/* Centred above the bottom edge (and clear of the iOS home indicator) */
+.copy-toast {
+  top: auto;
+  left: 50%;
+  bottom: calc(24px + env(safe-area-inset-bottom));
+  translate: -50% 0;
+  padding: 8px 16px 8px 12px;
 }
 
 .cursor-pill-content {
@@ -476,7 +474,8 @@ button:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cursor-pill {
+  .cursor-pill,
+  .copy-toast {
     filter: none;
   }
 }
