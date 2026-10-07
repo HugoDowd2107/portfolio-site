@@ -433,16 +433,16 @@ button:focus-visible {
   letter-spacing: -0.14px;
   white-space: nowrap;
   pointer-events: none;
+  /* Fades in and out of a blur in place — no scale or slide */
   opacity: 0;
-  scale: 0.9;
-  transform-origin: 0 0;
-  transition: opacity 0.2s ease, scale 0.2s ease;
-  will-change: transform, opacity;
+  filter: blur(4px);
+  transition: opacity 0.3s ease, filter 0.3s ease;
+  will-change: transform, opacity, filter;
 }
 
 .cursor-pill.is-visible {
   opacity: 1;
-  scale: 1;
+  filter: blur(0);
 }
 
 .cursor-pill-content {
@@ -473,7 +473,7 @@ button:focus-visible {
 
 @media (prefers-reduced-motion: reduce) {
   .cursor-pill {
-    scale: 1;
+    filter: none;
   }
 }
 

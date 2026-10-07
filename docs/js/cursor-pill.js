@@ -48,6 +48,11 @@
 
   function hide() {
     if (!visible) return;
+    // Freeze in place so the fade-out isn't accompanied by the trailing glide
+    if (raf !== null) {
+      cancelAnimationFrame(raf);
+      raf = null;
+    }
     pill.classList.remove('is-visible');
     visible = false;
   }
