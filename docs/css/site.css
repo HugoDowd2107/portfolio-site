@@ -128,6 +128,8 @@ button:focus-visible {
 .nav-pill--outlined {
   padding: 8px 12px 8px 14px;
   border-color: var(--border);
+  /* Solid page-colour fill so content scrolling under the sticky nav doesn't show through */
+  background-color: var(--bg);
 }
 
 .nav-pill--back {
@@ -148,7 +150,9 @@ button:focus-visible {
 /* A lighter touch than the text pills: the border already gives it presence */
 .nav-pill--outlined:hover {
   color: rgba(0, 0, 0, 0.75);
-  background-color: rgba(0, 0, 0, 0.025);
+  /* Tint layered over the fill so the pill stays opaque */
+  background-color: var(--bg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.025), rgba(0, 0, 0, 0.025));
   border-color: rgba(0, 0, 0, 0.2);
 }
 
