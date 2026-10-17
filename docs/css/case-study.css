@@ -1,17 +1,18 @@
 /* ============================================
    CASE STUDY PAGES
-   Builds on site.css tokens. Everything hangs off the left edge of the
-   homepage's 1100px column: media and cards run the full width, headings
-   stop at 763px and running text at a 541px reading measure.
+   Builds on site.css tokens. Everything hangs off the left edge of an 876px
+   column, centred on the page: media and cards run the full width, headings
+   stop at 650px and running text at a 538px reading measure.
    ============================================ */
 
 :root {
-  --cs-heading-width: 763px;
-  --cs-text-width: 541px;
+  --cs-content-width: 876px;
+  --cs-heading-width: 650px;
+  --cs-text-width: 538px;
   --cs-card-bg: rgba(0, 0, 0, 0.05);
-  /* Left edge of the section nav: 110px out from the content column, never
-     closer than 24px to the window */
-  --cs-rail: max(24px, calc(50% - 660px));
+  /* Left edge of the section nav's text: 658px left of centre, never closer than
+     40px to the window (Home sits 16px further out) */
+  --cs-rail: max(40px, calc(50% - 658px));
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -20,16 +21,17 @@
   }
 }
 
-/* ---- Page column: the homepage container, inset further on wide screens so the
-   section nav has room in the left margin ---- */
+/* ---- Page column: the homepage container narrowed to 876px, inset further on
+   wide screens so the section nav has room in the left margin ---- */
 .case-study-main {
+  max-width: calc(var(--cs-content-width) + var(--gutter) * 2);
   padding-bottom: 120px;
 }
 
 @media (min-width: 1024px) {
   .case-study-main {
-    max-width: calc(var(--content-width) + 300px);
-    padding-inline: 150px;
+    max-width: calc(var(--cs-content-width) + 360px);
+    padding-inline: 180px;
   }
 }
 
@@ -69,12 +71,12 @@
 }
 
 .cs-hero h1 {
-  max-width: 872px;
+  max-width: var(--cs-heading-width);
   color: var(--text-primary);
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 600;
-  line-height: 36px;
-  letter-spacing: -0.64px;
+  line-height: 32px;
+  letter-spacing: -0.56px;
   text-wrap: pretty;
 }
 
@@ -114,15 +116,20 @@
   padding-top: 60px;
 }
 
-/* The hero's title, image and cards get more room than the flow default */
+/* The hero's title, image and cards get more room than the flow default, with
+   the most between the title and the image */
 .cs-hero > * + * {
-  margin-top: 48px;
+  margin-top: 36px;
+}
+
+.cs-hero > .cs-title + * {
+  margin-top: 56px;
 }
 
 .cs-title {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: flex-start;
   gap: 24px;
 }
 
@@ -132,14 +139,29 @@
   gap: 4px;
 }
 
+/* Live site link: white on 90% black like the homepage cursor pill, its top level
+   with the heading's (below the label's 16px line and the 4px gap) */
 .cs-title .nav-pill {
   flex-shrink: 0;
+  margin-top: 20px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.cs-title .nav-pill:hover {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.8);
+  background-image: none;
+}
+
+.cs-title .nav-pill .icon-arrow {
+  opacity: 1;
 }
 
 /* The homepage card, opened up: shader colour and grain behind the full screenshot */
 .cs-media-card {
   position: relative;
-  padding: 32px 36px;
+  padding: 24px;
   overflow: hidden;
   border-radius: var(--radius);
   isolation: isolate;
@@ -150,7 +172,12 @@
   width: 100%;
   height: auto;
   border-radius: var(--radius);
-  box-shadow: var(--shadow-mockup);
+}
+
+/* Stronger colour than the homepage cards, so it reads behind a screen with no shadow */
+:is(.cs-media-card, .cs-video-card) .project-card-shader,
+:is(.cs-media-card, .cs-video-card) .project-card-bg::before {
+  opacity: 0.35;
 }
 
 /* ---- Sections: each heading starts a block, 80px from the one before ---- */
@@ -167,7 +194,7 @@
 .cs-cards {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  gap: 12px;
 }
 
 .cs-cards--5 {
@@ -257,7 +284,7 @@ img.cs-card-icon {
 .cs-image-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px 16px;
+  gap: 24px 12px;
 }
 
 .cs-video-card {
@@ -266,7 +293,7 @@ img.cs-card-icon {
   align-items: center;
   justify-content: center;
   height: 500px;
-  padding: 40px;
+  padding: 24px;
   overflow: hidden;
   border-radius: var(--radius);
   isolation: isolate;
@@ -291,22 +318,22 @@ img.cs-card-icon {
   margin-top: 24px;
 }
 
-/* ---- Return home (fixed, top left, level with the page title's label). Padding
-   widens the hit area without moving the text ---- */
+/* ---- Return home (fixed, top left, level with the page title's label). The
+   chevron's 16px box puts its stroke just left of the nav's text. Padding widens
+   the hit area without moving the text ---- */
 .return-home {
   position: fixed;
   top: 52px;
-  left: var(--cs-rail);
+  left: calc(var(--cs-rail) - 16px);
   z-index: 101;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
   padding: 8px 12px 8px 0;
   color: var(--text-secondary);
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 16px;
-  letter-spacing: -0.12px;
+  letter-spacing: -0.16px;
   text-decoration: none;
   transition: color 0.2s ease;
 }
@@ -315,10 +342,10 @@ img.cs-card-icon {
   color: var(--text-primary);
 }
 
-/* ---- Section nav (fixed, in the left margin, its first link 176px down) ---- */
+/* ---- Section nav (fixed, in the left margin, its first link 196px down) ---- */
 .cs-nav {
   position: fixed;
-  top: 170px;
+  top: 190px;
   left: var(--cs-rail);
   z-index: 100;
   display: flex;
@@ -331,9 +358,9 @@ img.cs-card-icon {
   position: relative;
   padding: 6px 0;
   color: rgba(0, 0, 0, 0.4);
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 400;
-  line-height: 16px;
+  line-height: 21px;
   letter-spacing: 0;
   text-decoration: none;
   transition: color 0.2s ease;
@@ -343,8 +370,8 @@ img.cs-card-icon {
 .cs-nav-link::before {
   content: "";
   position: absolute;
-  top: 12px;
-  left: -8px;
+  top: 14px;
+  left: -12px;
   width: 4px;
   height: 4px;
   border-radius: 50%;
@@ -422,8 +449,9 @@ img.cs-card-icon {
 
 /* ---- Responsive ---- */
 
-/* Five across leaves too little room for labels like "Version control" */
-@media (max-width: 1199px) {
+/* Five across leaves too little room for labels like "Version control" once the
+   column narrows below 876px */
+@media (max-width: 1235px) {
   .cs-cards--5 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -439,8 +467,7 @@ img.cs-card-icon {
   .return-home {
     top: 12px;
     left: 12px;
-    gap: 4px;
-    padding: 8px 16px 8px 12px;
+    padding: 8px 16px 8px 6px;
     border-radius: 100px;
     font-size: 14px;
     background: rgba(250, 251, 252, 0.8);
@@ -464,6 +491,10 @@ img.cs-card-icon {
     gap: 16px;
   }
 
+  .cs-title .nav-pill {
+    margin-top: 0;
+  }
+
   .cs-hero h1 {
     font-size: 24px;
     line-height: 30px;
@@ -476,12 +507,13 @@ img.cs-card-icon {
     letter-spacing: -0.4px;
   }
 
-  .cs-hero > * + * {
+  .cs-hero > * + *,
+  .cs-hero > .cs-title + * {
     margin-top: 32px;
   }
 
   .cs-media-card {
-    padding: 16px 18px;
+    padding: 16px;
   }
 
   .cs-section,
@@ -519,7 +551,7 @@ img.cs-card-icon {
 
   .cs-video-card {
     height: 420px;
-    padding: 24px;
+    padding: 16px;
   }
 
   .case-study-main {

@@ -233,7 +233,9 @@ button:focus-visible {
   flex-direction: column;
   gap: 16px;
   max-width: 542px;
-  margin-top: 107px;
+  /* Pulled up into the header row, 53px from the top of the page; the Resume pill
+     sits clear of it on the right */
+  margin-top: -13px;
   scroll-margin-top: 80px;
 }
 
@@ -387,7 +389,7 @@ button:focus-visible {
   left: 7.169cqw;
   top: 7.169cqw;
   width: 107.493cqw;
-  height: 65.257cqw;
+  height: 59.688cqw;
   -webkit-mask-size: 100% 58.088cqw;
   mask-size: 100% 58.088cqw;
 }
