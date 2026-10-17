@@ -12,17 +12,12 @@
   --border-subtle: rgba(0, 0, 0, 0.08);
   --hover: rgba(0, 0, 0, 0.05);
 
-  /* Layered shadow behind product mockups; the filter version follows rounded or faded edges */
+  /* Layered shadow behind product mockups */
   --shadow-mockup:
     0 1px 2px rgba(0, 0, 0, 0.04),
     0 2px 6px rgba(0, 0, 0, 0.04),
     0 6px 16px rgba(0, 0, 0, 0.04),
     0 12px 32px rgba(0, 0, 0, 0.04);
-  --shadow-mockup-filter:
-    drop-shadow(0 1px 2px rgba(0, 0, 0, 0.04))
-    drop-shadow(0 2px 6px rgba(0, 0, 0, 0.04))
-    drop-shadow(0 6px 16px rgba(0, 0, 0, 0.04))
-    drop-shadow(0 12px 32px rgba(0, 0, 0, 0.04));
 
   --font: "Geist", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
 
@@ -349,30 +344,30 @@ button:focus-visible {
   pointer-events: none;
 }
 
-/* Casts the mockup shadow from the masked screenshot, so it follows the fade. On the
-   screenshot itself the mask would clip the shadow away */
+/* Fades the screenshot and its shadow out over the bottom 80px of the card (at design
+   size). Masked here rather than on the screenshot, where the mask would clip the
+   box-shadow. A drop-shadow filter on this wrapper used to do that job, but it was redrawn
+   on every frame the cursor pill or the hover moved, most of the homepage's GPU time.
+   A CSS gradient rather than an SVG file, which browsers block (hiding the screenshot)
+   when the page is opened from disk */
 .project-card-shot-wrap {
   position: absolute;
   inset: 0;
-  filter: var(--shadow-mockup-filter);
+  -webkit-mask-image: linear-gradient(to top, transparent, #000 14.706cqw);
+  mask-image: linear-gradient(to top, transparent, #000 14.706cqw);
   pointer-events: none;
 }
 
-/* The screenshot fades out over the bottom quarter of its mask, which starts 1px
-   below the image's top edge and spans its full width, so the right side stays visible
-   when the hover nudges it left. A CSS gradient rather than an SVG file, which browsers
-   block (hiding the screenshot) when the page is opened from disk */
+/* The top padding hides the screenshot's top 1px (a stray border in the Telstra
+   capture): with the bottom edge held in place, that's the row cover crops away */
 .project-card-shot {
   position: absolute;
   max-width: none;
+  padding-top: 0.184cqw;
   object-fit: cover;
+  object-position: bottom;
   border-radius: var(--radius);
-  -webkit-mask-image: linear-gradient(to top, transparent, #000 25%);
-  mask-image: linear-gradient(to top, transparent, #000 25%);
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: 0 0.184cqw;
-  mask-position: 0 0.184cqw;
+  box-shadow: var(--shadow-mockup);
   transition: transform 0.6s var(--ease-out);
 }
 
@@ -381,8 +376,6 @@ button:focus-visible {
   top: 6.434cqw;
   width: 118.342cqw;
   height: 66.567cqw;
-  -webkit-mask-size: 100% 58.824cqw;
-  mask-size: 100% 58.824cqw;
 }
 
 .project-card-shot--football {
@@ -390,8 +383,6 @@ button:focus-visible {
   top: 7.169cqw;
   width: 107.493cqw;
   height: 59.688cqw;
-  -webkit-mask-size: 100% 58.088cqw;
-  mask-size: 100% 58.088cqw;
 }
 
 .project-card-text {
