@@ -72,7 +72,7 @@
   align-items: stretch;
   padding: 8px;
   border-radius: 8px;
-  background-color: rgba(248, 248, 252, 0.8);
+  background-color: rgba(250, 251, 252, 0.8);
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
 }
@@ -233,6 +233,16 @@
   width: 100%;
   height: auto;
   border-radius: var(--radius);
+}
+
+/* Product screens get the homepage mockup shadow. Images use the filter version so it
+   follows rounded or faded edges; the videos are plain rectangles */
+img.cs-mockup {
+  filter: var(--shadow-mockup-filter);
+}
+
+video.cs-mockup {
+  box-shadow: var(--shadow-mockup);
 }
 
 .cs-image-caption,
@@ -464,7 +474,7 @@
     left: 12px;
     padding: 8px 16px 8px 12px;
     border-radius: 100px;
-    background: rgba(248, 248, 252, 0.8);
+    background: rgba(250, 251, 252, 0.8);
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
   }
