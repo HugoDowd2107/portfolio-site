@@ -2,24 +2,20 @@
    SCROLL REVEAL ANIMATIONS (case studies)
    ============================================ */
 
-/* Matches the homepage load-in: a soft fade out of a light blur, no movement.
-   Ends on filter: none so nothing lingers to create stacking contexts. */
+/* A soft fade, no movement. Opacity only: the homepage's blur, animated over large
+   screenshots as they scroll in, redrew them every frame and made scrolling stutter */
 .scroll-reveal {
   opacity: 0;
-  filter: blur(3px);
-  transition: opacity 0.7s cubic-bezier(0.33, 1, 0.68, 1) var(--reveal-delay, 0ms),
-              filter 0.7s cubic-bezier(0.33, 1, 0.68, 1) var(--reveal-delay, 0ms);
+  transition: opacity 0.7s cubic-bezier(0.33, 1, 0.68, 1) var(--reveal-delay, 0ms);
 }
 
 .scroll-reveal.is-visible {
   opacity: 1;
-  filter: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .scroll-reveal {
     opacity: 1 !important;
-    filter: none !important;
     transition: none !important;
   }
 }

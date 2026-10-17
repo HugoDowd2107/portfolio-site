@@ -9,72 +9,87 @@
   <meta name="theme-color" content="#fafbfc">
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
   <link href="css/normalize.css" rel="stylesheet" type="text/css">
   <link href="css/site.css" rel="stylesheet" type="text/css">
   <link href="css/case-study.css" rel="stylesheet" type="text/css">
   <link href="css/scroll-animations.css" rel="stylesheet" type="text/css">
   <script src="js/bot-guard.js"></script>
 </head>
-<body>
+<body class="case-study">
 
   <!-- Back button -->
   <a href="index.html" class="return-home">
-    <div class="back-icon"><svg width="20" height="20" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M9.54922 12.0001L16.8992 19.3501C17.1492 19.6001 17.2702 19.8918 17.2622 20.2251C17.2542 20.5584 17.1249 20.8501 16.8742 21.1001C16.6236 21.3501 16.3319 21.4751 15.9992 21.4751C15.6666 21.4751 15.3749 21.3501 15.1242 21.1001L7.42422 13.4251C7.22422 13.2251 7.07422 13.0001 6.97422 12.7501C6.87422 12.5001 6.82422 12.2501 6.82422 12.0001C6.82422 11.7501 6.87422 11.5001 6.97422 11.2501C7.07422 11.0001 7.22422 10.7751 7.42422 10.5751L15.1242 2.87509C15.3742 2.62509 15.6702 2.50409 16.0122 2.51209C16.3542 2.52009 16.6499 2.64942 16.8992 2.90009C17.1486 3.15076 17.2736 3.44242 17.2742 3.77509C17.2749 4.10776 17.1499 4.39942 16.8992 4.65009L9.54922 12.0001Z" fill="currentColor"></path>
-      </svg></div>
-    <div class="button-text">Home</div>
+    <img src="images/icon-chevron-left.svg" alt="" class="back-icon">
+    <span class="roll"><span class="roll-text" data-text="Home">Home</span></span>
   </a>
+
+  <!-- Section navigation -->
+  <nav class="cs-nav" aria-label="Sections">
+    <a href="#Background" class="cs-nav-link">Background</a>
+    <a href="#Research" class="cs-nav-link">Research</a>
+    <a href="#Design" class="cs-nav-link">Design</a>
+    <a href="#Takeaways" class="cs-nav-link">Takeaways</a>
+  </nav>
 
   <main class="case-study-main container">
 
     <!-- Hero + Image + Metrics -->
-    <section class="cs-hero">
-      <div class="cs-container">
-        <span class="cs-label">Telstra Health</span>
-        <h1>How a redesign led to 90% + of practices increasing their usage of the messaging system</h1>
-        <div class="cs-image cs-hero-image">
-          <img class="cs-mockup" src="images/image15.png" loading="lazy" sizes="(max-width: 960px) 100vw, 960px" srcset="images/image15-p-500.png 500w, images/image15-p-800.png 800w, images/image15-p-1080.png 1080w, images/image15-p-1600.png 1600w, images/image15-p-2000.png 2000w, images/image15.png 3520w" alt="Dashboard for setting up automated messages">
-          <p class="cs-image-caption">dashboard for setting up automated messages</p>
+    <section class="cs-hero cs-flow">
+      <div class="cs-title">
+        <div>
+          <span class="cs-label">Telstra Health</span>
+          <h1>How a redesign led to 90% + of practices increasing their usage of the messaging system</h1>
         </div>
-        <div class="cs-metrics-grid">
-          <div class="cs-metric">
-            <span class="cs-metric-number">15-20</span>
-            <span class="cs-metric-desc">Hours of admin work saved per practice per week</span>
+      </div>
+      <figure class="cs-figure">
+        <div class="cs-media-card">
+          <div class="project-card-bg project-card-bg--water">
+            <canvas class="project-card-shader" data-shader="water"></canvas>
           </div>
-          <div class="cs-metric">
-            <span class="cs-metric-number">90%</span>
-            <span class="cs-metric-desc">Practices increasing usage of messaging system</span>
-          </div>
-          <div class="cs-metric">
-            <span class="cs-metric-number">150</span>
-            <span class="cs-metric-desc">Number of practices retained</span>
-          </div>
+          <img src="images/card-telstra-messaging-1300.webp" srcset="images/card-telstra-messaging-650.webp 650w, images/card-telstra-messaging-1300.webp 1300w, images/card-telstra-messaging-2080.webp 2080w" sizes="(min-width: 1400px) 1028px, (min-width: 1024px) calc(100vw - 372px), (min-width: 768px) calc(100vw - 104px), calc(100vw - 68px)" width="2080" height="1170" alt="Dashboard for setting up automated messages">
+        </div>
+        <figcaption class="cs-caption">dashboard for setting up automated messages</figcaption>
+      </figure>
+      <div class="cs-cards">
+        <div class="cs-card">
+          <span class="cs-card-figure">15-20</span>
+          <span class="cs-card-text">Hours of admin work saved per practice per week</span>
+        </div>
+        <div class="cs-card">
+          <span class="cs-card-figure">90%</span>
+          <span class="cs-card-text">Practices increasing usage of messaging system</span>
+        </div>
+        <div class="cs-card">
+          <span class="cs-card-figure">150</span>
+          <span class="cs-card-text">Number of practices retained</span>
         </div>
       </div>
     </section>
 
     <!-- Background Section -->
     <section id="Background" class="cs-section">
-      <div class="cs-container">
+      <div class="cs-block cs-flow">
         <span class="cs-section-label">background</span>
         <h2>Client with 150 + practices was at risk of churning due to our outdated patient communications system</h2>
         <p>The practices worked with high risk patients with high communication needs and our patient communications wasn't up to scratch for them.</p>
         <p>These practices and the rest of our users were finding other solutions and workarounds instead of using the built-in feature.</p>
+      </div>
 
+      <div class="cs-block cs-flow">
         <h2>Why is patient communications important for practices?</h2>
-        <div class="cs-icon-cards">
-          <div class="cs-icon-card">
-            <img src="images/material-symbols_heart-smile-outline-rounded.svg" loading="lazy" alt="Delivering effective care">
-            <h4>Delivering effective care</h4>
+        <div class="cs-cards">
+          <div class="cs-card">
+            <img src="images/material-symbols_heart-smile-outline-rounded.svg" loading="lazy" alt="" class="cs-card-icon">
+            <h3 class="cs-card-text">Delivering effective care</h3>
           </div>
-          <div class="cs-icon-card">
-            <img src="images/material-symbols_book-2-outline-rounded.svg" loading="lazy" alt="Burden of care">
-            <h4>Burden of care</h4>
+          <div class="cs-card">
+            <img src="images/material-symbols_book-2-outline-rounded.svg" loading="lazy" alt="" class="cs-card-icon">
+            <h3 class="cs-card-text">Burden of care</h3>
           </div>
-          <div class="cs-icon-card">
-            <img src="images/material-symbols_finance-mode-rounded.svg" loading="lazy" alt="Running a profitable practice">
-            <h4>Running a profitable practice</h4>
+          <div class="cs-card">
+            <img src="images/material-symbols_finance-mode-rounded.svg" loading="lazy" alt="" class="cs-card-icon">
+            <h3 class="cs-card-text">Running a profitable practice</h3>
           </div>
         </div>
         <p>Practices rely on it to schedule, confirm and update appointments with patients as well to receive information and results.</p>
@@ -85,102 +100,112 @@
 
     <!-- Research Section -->
     <section id="Research" class="cs-section">
-      <div class="cs-container">
+      <div class="cs-block cs-flow">
         <span class="cs-section-label">research</span>
         <h2>Exploratory research sessions</h2>
-        <div class="cs-stat-grid">
-          <div class="cs-stat">
-            <img src="images/material-symbols_assignment-outline-rounded.svg" loading="lazy" alt="" class="cs-stat-icon">
-            <span class="cs-stat-label">Semi-structured interviews</span>
+        <div class="cs-cards">
+          <div class="cs-card">
+            <img src="images/material-symbols_assignment-outline-rounded.svg" loading="lazy" alt="" class="cs-card-icon">
+            <span class="cs-card-text">Semi-structured interviews</span>
           </div>
-          <div class="cs-stat">
-            <span class="cs-stat-number">9</span>
-            <span class="cs-stat-label">Participants</span>
+          <div class="cs-card">
+            <span class="cs-card-figure">9</span>
+            <span class="cs-card-text">Participants</span>
           </div>
-          <div class="cs-stat">
-            <span class="cs-stat-number">60</span>
-            <span class="cs-stat-label">mins</span>
+          <div class="cs-card">
+            <span class="cs-card-figure">60</span>
+            <span class="cs-card-text">mins</span>
           </div>
-          <div class="cs-stat">
-            <img src="images/material-symbols_stethoscope-outline-rounded.svg" loading="lazy" alt="" class="cs-stat-icon">
-            <span class="cs-stat-label">Specialists</span>
+          <div class="cs-card">
+            <img src="images/material-symbols_stethoscope-outline-rounded.svg" loading="lazy" alt="" class="cs-card-icon">
+            <span class="cs-card-text">Specialists</span>
           </div>
-          <div class="cs-stat">
-            <img src="images/material-symbols_groups-outline-rounded.svg" loading="lazy" alt="" class="cs-stat-icon">
-            <span class="cs-stat-label">GPs</span>
+          <div class="cs-card">
+            <img src="images/material-symbols_groups-outline-rounded.svg" loading="lazy" alt="" class="cs-card-icon">
+            <span class="cs-card-text">GPs</span>
           </div>
-          <div class="cs-stat">
-            <img src="images/material-symbols_cognition-outline-rounded.svg" loading="lazy" alt="" class="cs-stat-icon">
-            <span class="cs-stat-label">Youth Mental health</span>
+          <div class="cs-card">
+            <img src="images/material-symbols_cognition-outline-rounded.svg" loading="lazy" alt="" class="cs-card-icon">
+            <span class="cs-card-text">Youth Mental health</span>
           </div>
         </div>
         <p>To get practices to use the feature, I first had to understand why they weren't using it.</p>
         <p>I talked to doctors, practice managers and reception staff across both GP and specialist practices to understand what, when and how practices wanted to message patients.</p>
         <p>Insights from this research were mapped in a workshop with business stakeholders to understand this process.</p>
-        <div class="cs-image">
-          <img src="images/affinity-map.png" loading="lazy" sizes="(max-width: 960px) 100vw, 960px" srcset="images/affinity-map-p-500.png 500w, images/affinity-map-p-800.png 800w, images/affinity-map-p-1080.png 1080w, images/affinity-map-p-1600.png 1600w, images/affinity-map-p-2000.png 2000w, images/affinity-map.png 5264w" alt="Affinity map from stakeholder workshop">
-          <p class="cs-image-caption">affinity map from stakeholder workshop</p>
-        </div>
+        <figure class="cs-figure">
+          <img src="images/affinity-map.png" loading="lazy" sizes="(min-width: 1400px) 1100px, (min-width: 1024px) calc(100vw - 300px), calc(100vw - 32px)" srcset="images/affinity-map-p-500.png 500w, images/affinity-map-p-800.png 800w, images/affinity-map-p-1080.png 1080w, images/affinity-map-p-1600.png 1600w, images/affinity-map-p-2000.png 2000w, images/affinity-map.png 5264w" width="5264" height="2364" alt="Affinity map from stakeholder workshop">
+          <figcaption class="cs-caption">affinity map from stakeholder workshop</figcaption>
+        </figure>
+      </div>
 
+      <div class="cs-block cs-flow">
         <h2>Research findings demonstrated the complexity of managing patient communications and the burden it puts on staff</h2>
         <p>The wide range of situations, patients and timings for patient communications from a practice make its management complex.</p>
         <p>Vulnerable patient groups such as those with chronic conditions or youth mental health patients require ongoing and detailed communications.</p>
         <p>Practice staff are overburdened keeping track of if and when patients have been contacted, leaving room for human error.</p>
-        <div class="cs-image">
-          <img src="images/custom-SMS-discovery-1.png" loading="lazy" sizes="(max-width: 960px) 100vw, 960px" srcset="images/custom-SMS-discovery-1-p-500.png 500w, images/custom-SMS-discovery-1-p-800.png 800w, images/custom-SMS-discovery-1-p-1080.png 1080w, images/custom-SMS-discovery-1-p-1600.png 1600w, images/custom-SMS-discovery-1-p-2000.png 2000w, images/custom-SMS-discovery-1.png 4800w" alt="Mapping patient communications">
-          <p class="cs-image-caption">mapping patient communications</p>
-        </div>
+        <figure class="cs-figure">
+          <img src="images/custom-SMS-discovery-1.png" loading="lazy" sizes="(min-width: 1400px) 1100px, (min-width: 1024px) calc(100vw - 300px), calc(100vw - 32px)" srcset="images/custom-SMS-discovery-1-p-500.png 500w, images/custom-SMS-discovery-1-p-800.png 800w, images/custom-SMS-discovery-1-p-1080.png 1080w, images/custom-SMS-discovery-1-p-1600.png 1600w, images/custom-SMS-discovery-1-p-2000.png 2000w, images/custom-SMS-discovery-1.png 4800w" width="4800" height="2074" alt="Mapping patient communications">
+          <figcaption class="cs-caption">mapping patient communications</figcaption>
+        </figure>
       </div>
     </section>
 
     <!-- Solution Section -->
     <section id="Design" class="cs-section">
-      <div class="cs-container">
+      <div class="cs-block cs-flow">
         <span class="cs-section-label">design</span>
         <h2>Building a feature that reduces admin work but is flexible enough to accommodate all communication needs for practices</h2>
+      </div>
 
+      <div class="cs-block cs-flow">
         <h2>This project required balancing speed and quality</h2>
-        <div class="cs-icon-cards">
-          <div class="cs-icon-card">
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21.176 42.826C20.392 42.042 20 41.1 20 40H28C28 41.1 27.6087 42.042 26.826 42.826C26.0433 43.61 25.1013 44.0013 24 44C22.8987 43.9987 21.9573 43.6073 21.176 42.826ZM18 38C17.4333 38 16.9587 37.808 16.576 37.424C16.1933 37.04 16.0013 36.5653 16 36C15.9987 35.4347 16.1907 34.96 16.576 34.576C16.9613 34.192 17.436 34 18 34H30C30.5667 34 31.042 34.192 31.426 34.576C31.81 34.96 32.0013 35.4347 32 36C31.9987 36.5653 31.8067 37.0407 31.424 37.426C31.0413 37.8113 30.5667 38.0027 30 38H18ZM16.5 32C14.2 30.6333 12.3747 28.8 11.024 26.5C9.67334 24.2 8.99867 21.7 9 19C9 14.8333 10.4587 11.292 13.376 8.376C16.2933 5.46 19.8347 4.00133 24 4C28.1653 3.99867 31.7073 5.45733 34.626 8.376C37.5447 11.2947 39.0027 14.836 39 19C39 21.7 38.3253 24.2 36.976 26.5C35.6267 28.8 33.8013 30.6333 31.5 32H16.5ZM17.7 28H30.3C31.8 26.9333 32.9587 25.6167 33.776 24.05C34.5933 22.4833 35.0013 20.8 35 19C35 15.9333 33.9333 13.3333 31.8 11.2C29.6667 9.06667 27.0667 8 24 8C20.9333 8 18.3333 9.06667 16.2 11.2C14.0667 13.3333 13 15.9333 13 19C13 20.8 13.4087 22.4833 14.226 24.05C15.0433 25.6167 16.2013 26.9333 17.7 28Z" fill="currentColor"/></svg>
-            <h4>Understand the problem</h4>
+        <div class="cs-cards">
+          <div class="cs-card">
+            <svg class="cs-card-icon" aria-hidden="true" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21.176 42.826C20.392 42.042 20 41.1 20 40H28C28 41.1 27.6087 42.042 26.826 42.826C26.0433 43.61 25.1013 44.0013 24 44C22.8987 43.9987 21.9573 43.6073 21.176 42.826ZM18 38C17.4333 38 16.9587 37.808 16.576 37.424C16.1933 37.04 16.0013 36.5653 16 36C15.9987 35.4347 16.1907 34.96 16.576 34.576C16.9613 34.192 17.436 34 18 34H30C30.5667 34 31.042 34.192 31.426 34.576C31.81 34.96 32.0013 35.4347 32 36C31.9987 36.5653 31.8067 37.0407 31.424 37.426C31.0413 37.8113 30.5667 38.0027 30 38H18ZM16.5 32C14.2 30.6333 12.3747 28.8 11.024 26.5C9.67334 24.2 8.99867 21.7 9 19C9 14.8333 10.4587 11.292 13.376 8.376C16.2933 5.46 19.8347 4.00133 24 4C28.1653 3.99867 31.7073 5.45733 34.626 8.376C37.5447 11.2947 39.0027 14.836 39 19C39 21.7 38.3253 24.2 36.976 26.5C35.6267 28.8 33.8013 30.6333 31.5 32H16.5ZM17.7 28H30.3C31.8 26.9333 32.9587 25.6167 33.776 24.05C34.5933 22.4833 35.0013 20.8 35 19C35 15.9333 33.9333 13.3333 31.8 11.2C29.6667 9.06667 27.0667 8 24 8C20.9333 8 18.3333 9.06667 16.2 11.2C14.0667 13.3333 13 15.9333 13 19C13 20.8 13.4087 22.4833 14.226 24.05C15.0433 25.6167 16.2013 26.9333 17.7 28Z" fill="currentColor"/></svg>
+            <h3 class="cs-card-text">Understand the problem</h3>
           </div>
-          <div class="cs-icon-card">
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.00001 36C7.43334 36 6.95867 35.808 6.57601 35.424C6.19334 35.04 6.00134 34.5653 6.00001 34C5.99867 33.4347 6.19067 32.96 6.57601 32.576C6.96134 32.192 7.43601 32 8.00001 32H16C16.5667 32 17.042 32.192 17.426 32.576C17.81 32.96 18.0013 33.4347 18 34C17.9987 34.5653 17.8067 35.0407 17.424 35.426C17.0413 35.8113 16.5667 36.0027 16 36H8.00001ZM8.00001 26C7.43334 26 6.95867 25.808 6.57601 25.424C6.19334 25.04 6.00134 24.5653 6.00001 24C5.99867 23.4347 6.19067 22.96 6.57601 22.576C6.96134 22.192 7.43601 22 8.00001 22H28C28.5667 22 29.042 22.192 29.426 22.576C29.81 22.96 30.0013 23.4347 30 24C29.9987 24.5653 29.8067 25.0407 29.424 25.426C29.0413 25.8113 28.5667 26.0027 28 26H8.00001ZM8.00001 16C7.43334 16 6.95867 15.808 6.57601 15.424C6.19334 15.04 6.00134 14.5653 6.00001 14C5.99867 13.4347 6.19067 12.96 6.57601 12.576C6.96134 12.192 7.43601 12 8.00001 12H40C40.5667 12 41.042 12.192 41.426 12.576C41.81 12.96 42.0013 13.4347 42 14C41.9987 14.5653 41.8067 15.0407 41.424 15.426C41.0413 15.8113 40.5667 16.0027 40 16H8.00001Z" fill="currentColor"/></svg>
-            <h4>Prioritise</h4>
+          <div class="cs-card">
+            <svg class="cs-card-icon" aria-hidden="true" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.00001 36C7.43334 36 6.95867 35.808 6.57601 35.424C6.19334 35.04 6.00134 34.5653 6.00001 34C5.99867 33.4347 6.19067 32.96 6.57601 32.576C6.96134 32.192 7.43601 32 8.00001 32H16C16.5667 32 17.042 32.192 17.426 32.576C17.81 32.96 18.0013 33.4347 18 34C17.9987 34.5653 17.8067 35.0407 17.424 35.426C17.0413 35.8113 16.5667 36.0027 16 36H8.00001ZM8.00001 26C7.43334 26 6.95867 25.808 6.57601 25.424C6.19334 25.04 6.00134 24.5653 6.00001 24C5.99867 23.4347 6.19067 22.96 6.57601 22.576C6.96134 22.192 7.43601 22 8.00001 22H28C28.5667 22 29.042 22.192 29.426 22.576C29.81 22.96 30.0013 23.4347 30 24C29.9987 24.5653 29.8067 25.0407 29.424 25.426C29.0413 25.8113 28.5667 26.0027 28 26H8.00001ZM8.00001 16C7.43334 16 6.95867 15.808 6.57601 15.424C6.19334 15.04 6.00134 14.5653 6.00001 14C5.99867 13.4347 6.19067 12.96 6.57601 12.576C6.96134 12.192 7.43601 12 8.00001 12H40C40.5667 12 41.042 12.192 41.426 12.576C41.81 12.96 42.0013 13.4347 42 14C41.9987 14.5653 41.8067 15.0407 41.424 15.426C41.0413 15.8113 40.5667 16.0027 40 16H8.00001Z" fill="currentColor"/></svg>
+            <h3 class="cs-card-text">Prioritise</h3>
           </div>
-          <div class="cs-icon-card">
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21.2 27.6L16.9 23.3C16.5333 22.9333 16.0667 22.75 15.5 22.75C14.9333 22.75 14.4667 22.9333 14.1 23.3C13.7333 23.6667 13.55 24.1333 13.55 24.7C13.55 25.2667 13.7333 25.7333 14.1 26.1L19.8 31.8C20.2 32.2 20.6667 32.4 21.2 32.4C21.7333 32.4 22.2 32.2 22.6 31.8L33.9 20.5C34.2667 20.1333 34.45 19.6667 34.45 19.1C34.45 18.5333 34.2667 18.0667 33.9 17.7C33.5333 17.3333 33.0667 17.15 32.5 17.15C31.9333 17.15 31.4667 17.3333 31.1 17.7L21.2 27.6ZM24 44C21.2333 44 18.6333 43.4747 16.2 42.424C13.7667 41.3733 11.65 39.9487 9.85 38.15C8.05 36.3513 6.62534 34.2347 5.576 31.8C4.52667 29.3653 4.00134 26.7653 4 24C3.99867 21.2347 4.524 18.6347 5.576 16.2C6.628 13.7653 8.05267 11.6487 9.85 9.85C11.6473 8.05133 13.764 6.62667 16.2 5.576C18.636 4.52533 21.236 4 24 4C26.764 4 29.364 4.52533 31.8 5.576C34.236 6.62667 36.3527 8.05133 38.15 9.85C39.9473 11.6487 41.3727 13.7653 42.426 16.2C43.4793 18.6347 44.004 21.2347 44 24C43.996 26.7653 43.4707 29.3653 42.424 31.8C41.3773 34.2347 39.9527 36.3513 38.15 38.15C36.3473 39.9487 34.2307 41.374 31.8 42.426C29.3693 43.478 26.7693 44.0027 24 44ZM24 40C28.4667 40 32.25 38.45 35.35 35.35C38.45 32.25 40 28.4667 40 24C40 19.5333 38.45 15.75 35.35 12.65C32.25 9.55 28.4667 8 24 8C19.5333 8 15.75 9.55 12.65 12.65C9.55 15.75 8 19.5333 8 24C8 28.4667 9.55 32.25 12.65 35.35C15.75 38.45 19.5333 40 24 40Z" fill="currentColor"/></svg>
-            <h4>Deliver</h4>
+          <div class="cs-card">
+            <svg class="cs-card-icon" aria-hidden="true" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21.2 27.6L16.9 23.3C16.5333 22.9333 16.0667 22.75 15.5 22.75C14.9333 22.75 14.4667 22.9333 14.1 23.3C13.7333 23.6667 13.55 24.1333 13.55 24.7C13.55 25.2667 13.7333 25.7333 14.1 26.1L19.8 31.8C20.2 32.2 20.6667 32.4 21.2 32.4C21.7333 32.4 22.2 32.2 22.6 31.8L33.9 20.5C34.2667 20.1333 34.45 19.6667 34.45 19.1C34.45 18.5333 34.2667 18.0667 33.9 17.7C33.5333 17.3333 33.0667 17.15 32.5 17.15C31.9333 17.15 31.4667 17.3333 31.1 17.7L21.2 27.6ZM24 44C21.2333 44 18.6333 43.4747 16.2 42.424C13.7667 41.3733 11.65 39.9487 9.85 38.15C8.05 36.3513 6.62534 34.2347 5.576 31.8C4.52667 29.3653 4.00134 26.7653 4 24C3.99867 21.2347 4.524 18.6347 5.576 16.2C6.628 13.7653 8.05267 11.6487 9.85 9.85C11.6473 8.05133 13.764 6.62667 16.2 5.576C18.636 4.52533 21.236 4 24 4C26.764 4 29.364 4.52533 31.8 5.576C34.236 6.62667 36.3527 8.05133 38.15 9.85C39.9473 11.6487 41.3727 13.7653 42.426 16.2C43.4793 18.6347 44.004 21.2347 44 24C43.996 26.7653 43.4707 29.3653 42.424 31.8C41.3773 34.2347 39.9527 36.3513 38.15 38.15C36.3473 39.9487 34.2307 41.374 31.8 42.426C29.3693 43.478 26.7693 44.0027 24 44ZM24 40C28.4667 40 32.25 38.45 35.35 35.35C38.45 32.25 40 28.4667 40 24C40 19.5333 38.45 15.75 35.35 12.65C32.25 9.55 28.4667 8 24 8C19.5333 8 15.75 9.55 12.65 12.65C9.55 15.75 8 19.5333 8 24C8 28.4667 9.55 32.25 12.65 35.35C15.75 38.45 19.5333 40 24 40Z" fill="currentColor"/></svg>
+            <h3 class="cs-card-text">Deliver</h3>
           </div>
         </div>
         <p>The competing priorities of delivering quickly for the corporate client and delivering a longer term fix resulted in overlapping research and design stages.</p>
         <p>Essential to this was negotiation with PM and tech on what could be delivered given the constraints.</p>
         <p>This case study focuses on the longer-term, higher value component rather than the short term solution that was delivered.</p>
+      </div>
 
+      <div class="cs-block cs-flow">
         <h2>Design explorations</h2>
-        <div class="cs-image">
-          <img class="cs-mockup" src="images/table-layout.jpg" loading="lazy" sizes="100vw" alt="Table layout — old design">
-          <p class="cs-image-caption">table layout provided filtering and sorting capabilities but this wasn't required by users</p>
-        </div>
-        <div class="cs-image">
-          <img class="cs-mockup" src="images/card-layout.jpg" loading="lazy" sizes="100vw" alt="Card layout — new design">
-          <p class="cs-image-caption">the card layout was optimal for scanning the 5-15 messages practices wanted to set</p>
-        </div>
-        <div class="cs-image">
-          <img class="cs-mockup" src="images/adding-in-appointment-reminder.jpg" loading="lazy" sizes="100vw" alt="Adding in an appointment reminder">
-          <p class="cs-image-caption">the initial modal contained more fields but how they related confused users</p>
-        </div>
+        <figure class="cs-figure">
+          <img class="cs-mockup" src="images/table-layout.jpg" loading="lazy" width="4392" height="2380" alt="Table layout — old design">
+          <figcaption class="cs-caption">table layout provided filtering and sorting capabilities but this wasn't required by users</figcaption>
+        </figure>
+        <figure class="cs-figure">
+          <img class="cs-mockup" src="images/card-layout.jpg" loading="lazy" width="4392" height="2471" alt="Card layout — new design">
+          <figcaption class="cs-caption">the card layout was optimal for scanning the 5-15 messages practices wanted to set</figcaption>
+        </figure>
+        <figure class="cs-figure">
+          <img class="cs-mockup" src="images/adding-in-appointment-reminder.jpg" loading="lazy" width="4392" height="2471" alt="Adding in an appointment reminder">
+          <figcaption class="cs-caption">the initial modal contained more fields but how they related confused users</figcaption>
+        </figure>
+      </div>
 
+      <div class="cs-block cs-flow">
         <h2>From the dashboard users had an overview of messages their practice had set</h2>
         <p>From user research I knew how much of what practices wanted to send was tied to appointments.</p>
         <p>This was leveraged to allow practices to send messages automatically based on the conditions they set.</p>
         <p>This dashboard design gives practices an overview of what's been set.</p>
-        <div class="cs-image">
-          <img src="images/dashboard-wrapper.png" loading="lazy" sizes="100vw" alt="Main page for setting automated patient communications">
-          <p class="cs-image-caption">main page for setting automated patient communications</p>
-        </div>
+        <figure class="cs-figure">
+          <img src="images/dashboard-wrapper.png" loading="lazy" width="4392" height="1959" alt="Main page for setting automated patient communications">
+          <figcaption class="cs-caption">main page for setting automated patient communications</figcaption>
+        </figure>
+      </div>
 
+      <div class="cs-block cs-flow">
         <div class="cs-detail-row">
           <div class="cs-detail-text">
             <h2>Setting the automated messages required enough fields without overwhelming users</h2>
@@ -189,62 +214,66 @@
             <p>Initial design included more fields but this was simplified after users found their relationship confusing during testing.</p>
             <p>I also added the enabled checkbox after user feedback indicating they'd like the ability to turn on/off the message without recreating it.</p>
           </div>
-          <div class="cs-image">
-            <img class="cs-mockup" src="images/new-appointment-reminder2.png" loading="lazy" sizes="(max-width: 768px) 100vw, 50vw" srcset="images/new-appointment-reminder2-p-500.png 500w, images/new-appointment-reminder2-p-800.png 800w, images/new-appointment-reminder2-p-1080.png 1080w, images/new-appointment-reminder2.png 1716w" alt="Modal for creating automated messages">
-            <p class="cs-image-caption">modal for creating automated messages</p>
-          </div>
+          <figure class="cs-figure">
+            <img class="cs-mockup cs-mockup--modal" src="images/new-appointment-reminder2.png" loading="lazy" sizes="(min-width: 768px) 406px, calc(100vw - 32px)" srcset="images/new-appointment-reminder2-p-500.png 500w, images/new-appointment-reminder2-p-800.png 800w, images/new-appointment-reminder2-p-1080.png 1080w, images/new-appointment-reminder2.png 1716w" width="1716" height="2897" alt="Modal for creating automated messages">
+            <figcaption class="cs-caption">modal for creating automated messages</figcaption>
+          </figure>
         </div>
+      </div>
 
+      <div class="cs-block cs-flow">
         <div class="cs-detail-row">
           <div class="cs-detail-text">
             <h2>There were special scenarios uncovered from user testing that needed to be included</h2>
             <p>I received feedback from user testing that there were special scenarios practices wanted to send messages that weren't initially included.</p>
             <p>For 'No Patient Reply' practices wanted the ability to trigger a follow up message to a patient if they hadn't replied to the initial message.</p>
           </div>
-          <div class="cs-image">
-            <img class="cs-mockup" src="images/no-patient-reply.png" loading="lazy" sizes="(max-width: 768px) 100vw, 50vw" srcset="images/no-patient-reply-p-500.png 500w, images/no-patient-reply-p-1080.png 1080w, images/no-patient-reply.png 1716w" alt="Modal for no patient reply">
-            <p class="cs-image-caption">modal for 'no patient reply'</p>
-          </div>
+          <figure class="cs-figure">
+            <img class="cs-mockup cs-mockup--modal" src="images/no-patient-reply.png" loading="lazy" sizes="(min-width: 768px) 406px, calc(100vw - 32px)" srcset="images/no-patient-reply-p-500.png 500w, images/no-patient-reply-p-1080.png 1080w, images/no-patient-reply.png 1716w" width="1716" height="2897" alt="Modal for no patient reply">
+            <figcaption class="cs-caption">modal for 'no patient reply'</figcaption>
+          </figure>
         </div>
       </div>
     </section>
 
     <!-- Outcomes Section -->
     <section id="Takeaways" class="cs-section">
-      <div class="cs-container">
+      <div class="cs-block cs-flow">
         <span class="cs-section-label">takeaways</span>
         <h2>The design achieved key outcomes</h2>
-        <div class="cs-metrics-grid">
-          <div class="cs-metric">
-            <span class="cs-metric-number">15-20</span>
-            <span class="cs-metric-desc">Hours of admin work saved per practice per week</span>
+        <div class="cs-cards">
+          <div class="cs-card">
+            <span class="cs-card-figure">15-20</span>
+            <span class="cs-card-text">Hours of admin work saved per practice per week</span>
           </div>
-          <div class="cs-metric">
-            <span class="cs-metric-number">90%</span>
-            <span class="cs-metric-desc">Practices increasing usage of messaging system</span>
+          <div class="cs-card">
+            <span class="cs-card-figure">90%</span>
+            <span class="cs-card-text">Practices increasing usage of messaging system</span>
           </div>
-          <div class="cs-metric">
-            <span class="cs-metric-number">150</span>
-            <span class="cs-metric-desc">Number of practices retained</span>
+          <div class="cs-card">
+            <span class="cs-card-figure">150</span>
+            <span class="cs-card-text">Number of practices retained</span>
           </div>
         </div>
         <p>During beta over 90% of practices reported using the messaging system more than before.</p>
         <p>Practices also reported a significant reduction in time spent contacting patients using the automated system.</p>
         <p>And importantly, the corporate client renewed their contract following successful delivery of the feature.</p>
+      </div>
 
+      <div class="cs-block cs-flow">
         <h2>Learnings - adapting to a high priority and short notice project</h2>
-        <div class="cs-learning-cards">
-          <div class="cs-learning-card">
-            <img src="images/material-symbols_handshake-outline-rounded.svg" loading="lazy" alt="Importance of co-design">
-            <h4>Importance of co-design</h4>
+        <div class="cs-cards">
+          <div class="cs-card">
+            <img src="images/material-symbols_handshake-outline-rounded.svg" loading="lazy" alt="" class="cs-card-icon">
+            <h3 class="cs-card-text">Importance of co-design</h3>
           </div>
-          <div class="cs-learning-card">
-            <img src="images/material-symbols_dashboard-2-outline-rounded.svg" loading="lazy" alt="Pushing to address design debt">
-            <h4>Pushing to address design debt</h4>
+          <div class="cs-card">
+            <img src="images/material-symbols_dashboard-2-outline-rounded.svg" loading="lazy" alt="" class="cs-card-icon">
+            <h3 class="cs-card-text">Pushing to address design debt</h3>
           </div>
-          <div class="cs-learning-card">
-            <img src="images/material-symbols_stacked-bar-chart-rounded.svg" loading="lazy" alt="Staggering design into stages">
-            <h4>Staggering design into stages</h4>
+          <div class="cs-card">
+            <img src="images/material-symbols_stacked-bar-chart-rounded.svg" loading="lazy" alt="" class="cs-card-icon">
+            <h3 class="cs-card-text">Staggering design into stages</h3>
           </div>
         </div>
         <p>Working closely with our users and getting input through discovery and testing phases delivering the most value possible given the short time frame.</p>
@@ -255,42 +284,11 @@
 
   </main>
 
-  <!-- Section Navigation -->
-  <div class="navigation-block">
-    <a href="#Background" class="navigation-link">Background</a>
-    <a href="#Research" class="navigation-link">Research</a>
-    <a href="#Design" class="navigation-link">Design</a>
-    <a href="#Takeaways" class="navigation-link">Takeaways</a>
-  </div>
-
   <!-- Honeypot -->
   <a id="bot-trap" href="/bot-trap" aria-hidden="true" tabindex="-1" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none;">Contact us</a>
 
-  <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var sections = document.querySelectorAll('section[id]');
-    var navLinks = document.querySelectorAll('.navigation-link');
-
-    function updateActiveLink() {
-      var scrollPos = window.scrollY + 100;
-      var current = 'Background';
-      sections.forEach(function(section) {
-        if (section.offsetTop <= scrollPos) {
-          current = section.getAttribute('id');
-        }
-      });
-      navLinks.forEach(function(link) {
-        link.classList.remove('current');
-        if (link.getAttribute('href') === '#' + current) {
-          link.classList.add('current');
-        }
-      });
-    }
-
-    window.addEventListener('scroll', updateActiveLink, { passive: true });
-    updateActiveLink();
-  });
-  </script>
+  <script src="js/case-study-nav.js"></script>
+  <script type="module" src="js/project-card-shaders.js"></script>
   <script src="js/scroll-animations.js"></script>
 </body>
 </html>

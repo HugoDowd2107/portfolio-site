@@ -9,174 +9,195 @@
   <meta name="theme-color" content="#fafbfc">
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
   <link href="css/normalize.css" rel="stylesheet" type="text/css">
   <link href="css/site.css" rel="stylesheet" type="text/css">
   <link href="css/case-study.css" rel="stylesheet" type="text/css">
   <link href="css/scroll-animations.css" rel="stylesheet" type="text/css">
   <script src="js/bot-guard.js"></script>
 </head>
-<body>
+<body class="case-study">
 
   <!-- Back button -->
   <a href="index.html" class="return-home">
-    <div class="back-icon"><svg width="20" height="20" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M9.54922 12.0001L16.8992 19.3501C17.1492 19.6001 17.2702 19.8918 17.2622 20.2251C17.2542 20.5584 17.1249 20.8501 16.8742 21.1001C16.6236 21.3501 16.3319 21.4751 15.9992 21.4751C15.6666 21.4751 15.3749 21.3501 15.1242 21.1001L7.42422 13.4251C7.22422 13.2251 7.07422 13.0001 6.97422 12.7501C6.87422 12.5001 6.82422 12.2501 6.82422 12.0001C6.82422 11.7501 6.87422 11.5001 6.97422 11.2501C7.07422 11.0001 7.22422 10.7751 7.42422 10.5751L15.1242 2.87509C15.3742 2.62509 15.6702 2.50409 16.0122 2.51209C16.3542 2.52009 16.6499 2.64942 16.8992 2.90009C17.1486 3.15076 17.2736 3.44242 17.2742 3.77509C17.2749 4.10776 17.1499 4.39942 16.8992 4.65009L9.54922 12.0001Z" fill="currentColor"></path>
-      </svg></div>
-    <div class="button-text">Home</div>
+    <img src="images/icon-chevron-left.svg" alt="" class="back-icon">
+    <span class="roll"><span class="roll-text" data-text="Home">Home</span></span>
   </a>
+
+  <!-- Section navigation -->
+  <nav class="cs-nav" aria-label="Sections">
+    <a href="#Background" class="cs-nav-link">Background</a>
+    <a href="#Design" class="cs-nav-link">Design</a>
+    <a href="#Takeaways" class="cs-nav-link">Takeaways</a>
+  </nav>
 
   <main class="case-study-main container">
 
     <!-- Hero -->
-    <section class="cs-hero">
-      <div class="cs-container">
-        <div class="cs-hero-header">
-          <div>
-            <span class="cs-label">Personal Project</span>
-            <h1>Prototyping with AI tools to help football fans find upcoming games</h1>
-          </div>
-          <a href="https://football-fixtures-123.vercel.app/" target="_blank" rel="noopener" class="cs-live-btn">
-            Live site
-            <img src="images/icon-arrow-outward.svg" width="16" height="16" alt="" class="icon-arrow">
-          </a>
+    <section class="cs-hero cs-flow">
+      <div class="cs-title">
+        <div>
+          <span class="cs-label">Personal Project</span>
+          <h1>Prototyping with AI tools to help football fans find upcoming games</h1>
         </div>
-        <div class="cs-image cs-hero-image">
-          <img class="cs-mockup" src="images/football-fixtures.png" loading="eager" sizes="100vw" alt="Main page for Football Fixtures">
-          <p class="cs-image-caption">main view for football fixtures</p>
-        </div>
-        <div class="cs-tech-stack">
-          <div class="cs-tech-stack-item">
-            <span class="cs-tech-stack-label">Coding</span>
-            <div class="cs-tech-stack-icon">
-              <img src="images/claude-code.svg" alt="Claude Code">
-            </div>
-            <span class="cs-tech-stack-name">Claude code</span>
-          </div>
-          <div class="cs-tech-stack-item">
-            <span class="cs-tech-stack-label">Design</span>
-            <div class="cs-tech-stack-icon">
-              <img src="images/figma.svg" alt="Figma">
-            </div>
-            <span class="cs-tech-stack-name">Figma</span>
-          </div>
-          <div class="cs-tech-stack-item">
-            <span class="cs-tech-stack-label">Version Control</span>
-            <div class="cs-tech-stack-icon">
-              <img src="images/github.svg" alt="GitHub">
-            </div>
-            <span class="cs-tech-stack-name">GitHub</span>
-          </div>
-          <div class="cs-tech-stack-item">
-            <span class="cs-tech-stack-label">Deployment</span>
-            <div class="cs-tech-stack-icon">
-              <img src="images/vercel.svg" alt="Vercel">
-            </div>
-            <span class="cs-tech-stack-name">Vercel</span>
-          </div>
-          <div class="cs-tech-stack-item">
-            <span class="cs-tech-stack-label">Database</span>
-            <div class="cs-tech-stack-icon">
-              <img src="images/supabase.svg" alt="Supabase">
-            </div>
-            <span class="cs-tech-stack-name">Supabase</span>
-          </div>
-        </div>
-        <p class="cs-image-caption">project stack</p>
+        <a href="https://football-fixtures-123.vercel.app/" target="_blank" rel="noopener" class="nav-pill nav-pill--outlined">
+          Live site
+          <img src="images/icon-arrow-outward.svg" width="16" height="16" alt="" class="icon-arrow">
+        </a>
       </div>
+      <figure class="cs-figure">
+        <div class="cs-media-card">
+          <div class="project-card-bg project-card-bg--mesh">
+            <canvas class="project-card-shader" data-shader="mesh"></canvas>
+          </div>
+          <img src="images/football-fixtures-1300.webp" srcset="images/football-fixtures-650.webp 650w, images/football-fixtures-1300.webp 1300w, images/football-fixtures-2080.webp 2080w" sizes="(min-width: 1400px) 1028px, (min-width: 1024px) calc(100vw - 372px), (min-width: 768px) calc(100vw - 104px), calc(100vw - 68px)" width="2080" height="1155" alt="Main page for Football Fixtures">
+        </div>
+        <figcaption class="cs-caption">main view for football fixtures</figcaption>
+      </figure>
+      <div class="cs-cards cs-cards--5">
+        <div class="cs-card">
+          <span class="cs-label">Coding</span>
+          <div class="cs-tech-icon">
+            <img src="images/claude-code.svg" alt="Claude Code">
+          </div>
+          <span class="cs-card-text">Claude code</span>
+        </div>
+        <div class="cs-card">
+          <span class="cs-label">Design</span>
+          <div class="cs-tech-icon">
+            <img src="images/figma.svg" alt="Figma">
+          </div>
+          <span class="cs-card-text">Figma</span>
+        </div>
+        <div class="cs-card">
+          <span class="cs-label">Version Control</span>
+          <div class="cs-tech-icon">
+            <img src="images/github.svg" alt="GitHub">
+          </div>
+          <span class="cs-card-text">GitHub</span>
+        </div>
+        <div class="cs-card">
+          <span class="cs-label">Deployment</span>
+          <div class="cs-tech-icon">
+            <img src="images/vercel.svg" alt="Vercel">
+          </div>
+          <span class="cs-card-text">Vercel</span>
+        </div>
+        <div class="cs-card">
+          <span class="cs-label">Database</span>
+          <div class="cs-tech-icon">
+            <img src="images/supabase.svg" alt="Supabase">
+          </div>
+          <span class="cs-card-text">Supabase</span>
+        </div>
+      </div>
+      <p class="cs-caption">project stack</p>
     </section>
 
     <!-- Background Section -->
     <section id="Background" class="cs-section">
-      <div class="cs-container">
+      <div class="cs-block cs-flow">
         <span class="cs-section-label">background</span>
         <h2>Finding the most important upcoming games is difficult</h2>
         <p>As a football fan there are so many games across Europe that it can be difficult to find the best ones to watch.</p>
         <p>I wanted to build a website that surfaces important games so fans can plan ahead.</p>
+      </div>
+
+      <div class="cs-block cs-flow">
         <h2>Why current football calendars fail: the day format</h2>
         <p>Football calendars display games played per day, requiring navigating through the days to find games you want to watch over a longer timeframe.</p>
         <p>This makes it easy to miss important upcoming games when they aren't surfaced.</p>
         <div class="cs-image-grid">
-          <div class="cs-image">
-            <img class="cs-mockup" src="images/football-fixtures-bbc.png" loading="lazy" alt="BBC Football fixtures">
-            <p class="cs-image-caption">BBC football fixtures</p>
-          </div>
-          <div class="cs-image">
-            <img class="cs-mockup" src="images/football-fixtures-sky.png" loading="lazy" alt="Sky Sports fixtures">
-            <p class="cs-image-caption">sky sports</p>
-          </div>
-          <div class="cs-image">
-            <img class="cs-mockup" src="images/football-fixtures-sportinglife.png" loading="lazy" alt="Sporting Life fixtures">
-            <p class="cs-image-caption">sporting life</p>
-          </div>
-          <div class="cs-image">
-            <img class="cs-mockup" src="images/football-fixtures-goal.png" loading="lazy" alt="Goal fixtures">
-            <p class="cs-image-caption">goal</p>
-          </div>
+          <figure class="cs-figure">
+            <img class="cs-mockup" src="images/football-fixtures-bbc.png" loading="lazy" width="2164" height="1228" alt="BBC Football fixtures">
+            <figcaption class="cs-caption">BBC football fixtures</figcaption>
+          </figure>
+          <figure class="cs-figure">
+            <img class="cs-mockup" src="images/football-fixtures-sky.png" loading="lazy" width="2164" height="1228" alt="Sky Sports fixtures">
+            <figcaption class="cs-caption">sky sports</figcaption>
+          </figure>
+          <figure class="cs-figure">
+            <img class="cs-mockup" src="images/football-fixtures-sportinglife.png" loading="lazy" width="2164" height="1220" alt="Sporting Life fixtures">
+            <figcaption class="cs-caption">sporting life</figcaption>
+          </figure>
+          <figure class="cs-figure">
+            <img class="cs-mockup" src="images/football-fixtures-goal.png" loading="lazy" width="2164" height="1224" alt="Goal fixtures">
+            <figcaption class="cs-caption">goal</figcaption>
+          </figure>
         </div>
       </div>
     </section>
 
     <!-- Design Section -->
     <section id="Design" class="cs-section">
-      <div class="cs-container">
+      <div class="cs-block cs-flow">
         <span class="cs-section-label">design</span>
         <h2>Showing games in the week view allows fans to better plan in advance</h2>
-        <div class="cs-image">
-          <img class="cs-mockup" src="images/football-fixtures-week.png" loading="lazy" sizes="100vw" alt="Week view for Football Fixtures">
-          <p class="cs-image-caption">week view</p>
-        </div>
+        <figure class="cs-figure">
+          <img class="cs-mockup" src="images/football-fixtures-week.png" loading="lazy" width="4392" height="2440" alt="Week view for Football Fixtures">
+          <figcaption class="cs-caption">week view</figcaption>
+        </figure>
+      </div>
 
+      <div class="cs-block cs-flow">
         <h2>With limited space, the games shown needed to be as relevant as possible</h2>
         <p>With limited space, it was essential to maximise the relevancy of the teams that were shown.</p>
         <p>Teams that had been favourited by the user would appear at the top and users could favourite individual games so they'd also appear at the top.</p>
         <div class="cs-image-grid">
-          <div class="cs-image">
+          <figure class="cs-figure">
             <div class="cs-video-card">
+              <div class="project-card-bg project-card-bg--mesh">
+                <canvas class="project-card-shader" data-shader="mesh"></canvas>
+              </div>
               <video class="cs-mockup" autoplay loop muted playsinline>
                 <source src="images/selecting-favourite-teams.mp4" type="video/mp4">
               </video>
             </div>
-            <p class="cs-image-caption">selecting teams to follow</p>
-          </div>
-          <div class="cs-image">
+            <figcaption class="cs-caption">selecting teams to follow</figcaption>
+          </figure>
+          <figure class="cs-figure">
             <div class="cs-video-card">
+              <div class="project-card-bg project-card-bg--mesh">
+                <canvas class="project-card-shader" data-shader="mesh"></canvas>
+              </div>
               <video class="cs-mockup" autoplay loop muted playsinline>
                 <source src="images/favouriting-a-game.mp4" type="video/mp4">
               </video>
             </div>
-            <p class="cs-image-caption">selecting games to favourite</p>
-          </div>
+            <figcaption class="cs-caption">selecting games to favourite</figcaption>
+          </figure>
         </div>
+      </div>
 
+      <div class="cs-block cs-flow">
         <h2>To surface the most interesting and important games, I created a simple algorithm</h2>
         <p>With so many games on each day, I needed to be selective in which games were shown at the top.</p>
         <p>I scored the games on if they were a rivalry, a knockout, top teams or if the odds were close.</p>
         <p>The top ranking game from each day would be shown at the top as a 'featured game.'</p>
-        <div class="cs-image">
-          <img class="cs-mockup" src="images/football-fixtures-featured.png" loading="lazy" sizes="100vw" alt="Featured games view">
-          <p class="cs-image-caption">featured games</p>
-        </div>
+        <figure class="cs-figure">
+          <img class="cs-mockup" src="images/football-fixtures-featured.png" loading="lazy" width="4392" height="2545" alt="Featured games view">
+          <figcaption class="cs-caption">featured games</figcaption>
+        </figure>
       </div>
     </section>
 
     <!-- Takeaways Section -->
     <section id="Takeaways" class="cs-section">
-      <div class="cs-container">
+      <div class="cs-block cs-flow">
         <span class="cs-section-label">takeaways</span>
         <h2>What I learnt from this project</h2>
-        <div class="cs-learning-cards">
-          <div class="cs-learning-card">
-            <img src="images/material-symbols_high-density-outline-rounded.svg" loading="lazy" alt="Dealing with UI density">
-            <h4>Dealing with UI density</h4>
+        <div class="cs-cards">
+          <div class="cs-card">
+            <img src="images/material-symbols_high-density-outline-rounded.svg" loading="lazy" alt="" class="cs-card-icon">
+            <h3 class="cs-card-text">Dealing with UI density</h3>
           </div>
-          <div class="cs-learning-card">
-            <img src="images/ph_sparkle-bold.svg" loading="lazy" alt="Building with AI">
-            <h4>Building with AI</h4>
+          <div class="cs-card">
+            <img src="images/ph_sparkle-bold.svg" loading="lazy" alt="" class="cs-card-icon">
+            <h3 class="cs-card-text">Building with AI</h3>
           </div>
-          <div class="cs-learning-card">
-            <img src="images/material-symbols_personal-projects.svg" loading="lazy" alt="Working on personal projects">
-            <h4>Working on personal projects</h4>
+          <div class="cs-card">
+            <img src="images/material-symbols_personal-projects.svg" loading="lazy" alt="" class="cs-card-icon">
+            <h3 class="cs-card-text">Working on personal projects</h3>
           </div>
         </div>
         <p>A lot of this project revolved around decisions and tradeoffs around space. It was important to have as much information density without sacrificing legibility and scannability. This required making tough decisions around what information was and wasn't included.</p>
@@ -187,41 +208,11 @@
 
   </main>
 
-  <!-- Section Navigation -->
-  <div class="navigation-block">
-    <a href="#Background" class="navigation-link">Background</a>
-    <a href="#Design" class="navigation-link">Design</a>
-    <a href="#Takeaways" class="navigation-link">Takeaways</a>
-  </div>
-
   <!-- Honeypot: invisible to real users, bots will follow this link -->
   <a id="bot-trap" href="/bot-trap" aria-hidden="true" tabindex="-1" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none;">Contact us</a>
 
-  <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var sections = document.querySelectorAll('section[id]');
-    var navLinks = document.querySelectorAll('.navigation-link');
-
-    function updateActiveLink() {
-      var scrollPos = window.scrollY + 100;
-      var current = 'Background';
-      sections.forEach(function(section) {
-        if (section.offsetTop <= scrollPos) {
-          current = section.getAttribute('id');
-        }
-      });
-      navLinks.forEach(function(link) {
-        link.classList.remove('current');
-        if (link.getAttribute('href') === '#' + current) {
-          link.classList.add('current');
-        }
-      });
-    }
-
-    window.addEventListener('scroll', updateActiveLink, { passive: true });
-    updateActiveLink();
-  });
-  </script>
+  <script src="js/case-study-nav.js"></script>
+  <script type="module" src="js/project-card-shaders.js"></script>
   <script src="js/scroll-animations.js"></script>
 </body>
 </html>

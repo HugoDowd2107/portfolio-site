@@ -1,49 +1,312 @@
 /* ============================================
    CASE STUDY PAGES
-   Builds on site.css tokens so case studies share the homepage's
-   type scale, colours and navigation.
+   Builds on site.css tokens. Everything hangs off the left edge of the
+   homepage's 1100px column: media and cards run the full width, headings
+   stop at 763px and running text at a 541px reading measure.
    ============================================ */
 
+:root {
+  --cs-heading-width: 763px;
+  --cs-text-width: 541px;
+  --cs-card-bg: rgba(0, 0, 0, 0.05);
+  /* Left edge of the section nav: 110px out from the content column, never
+     closer than 24px to the window */
+  --cs-rail: max(24px, calc(50% - 660px));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ---- Page column: the homepage container, inset further on wide screens so the
+   section nav has room in the left margin ---- */
 .case-study-main {
   padding-bottom: 120px;
 }
 
-/* ---- Container: left-aligned to the same 1100px column as the homepage ---- */
-.cs-container {
+@media (min-width: 1024px) {
+  .case-study-main {
+    max-width: calc(var(--content-width) + 300px);
+    padding-inline: 150px;
+  }
+}
+
+/* ---- Flow: a heading group (label, heading, text) packed at 12px, with more room
+   around media and cards ---- */
+.cs-flow > * + * {
+  margin-top: 24px;
+}
+
+.cs-flow > .cs-section-label + h2,
+.cs-flow > h2 + p,
+.cs-detail-text > h2 + p {
+  margin-top: 12px;
+}
+
+/* Paragraphs run on as one block of text */
+.cs-flow > p + p,
+.cs-detail-text > p + p {
+  margin-top: 0;
+}
+
+/* Default margins cleared at element strength so the flow spacing above wins */
+:where(.case-study-main) :is(h1, h2, h3, p, figure) {
+  margin: 0;
+}
+
+/* ---- Type ---- */
+.cs-label,
+.cs-section-label {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.cs-hero h1 {
+  max-width: 872px;
+  color: var(--text-primary);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 36px;
+  letter-spacing: -0.64px;
+  text-wrap: pretty;
+}
+
+.case-study-main h2 {
+  max-width: var(--cs-heading-width);
+  color: var(--text-primary);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: -0.48px;
+  text-wrap: pretty;
+}
+
+.case-study-main p {
+  max-width: var(--cs-text-width);
+  color: var(--text-secondary);
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0;
+  text-wrap: pretty;
+}
+
+.cs-caption,
+.case-study-main p.cs-caption {
+  max-width: none;
+  margin-top: 8px;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+/* ---- Hero ---- */
+.cs-hero {
+  padding-top: 60px;
+}
+
+/* The hero's title, image and cards get more room than the flow default */
+.cs-hero > * + * {
+  margin-top: 48px;
+}
+
+.cs-title {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  justify-content: space-between;
+  align-items: flex-end;
   gap: 24px;
 }
 
-.cs-container > * {
+.cs-title > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cs-title .nav-pill {
+  flex-shrink: 0;
+}
+
+/* The homepage card, opened up: shader colour and grain behind the full screenshot */
+.cs-media-card {
+  position: relative;
+  padding: 32px 36px;
+  overflow: hidden;
+  border-radius: var(--radius);
+  isolation: isolate;
+}
+
+.cs-media-card > img {
+  position: relative;
   width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-mockup);
 }
 
-/* Long-form text keeps a readable measure */
-.cs-container > .cs-label,
-.cs-container > .cs-section-label,
-.cs-container > h1,
-.cs-container > h2,
-.cs-container > p,
-.cs-container > ul {
-  max-width: 680px;
+/* ---- Sections: each heading starts a block, 80px from the one before ---- */
+.cs-section,
+.cs-block + .cs-block {
+  margin-top: 80px;
 }
 
-/* ---- Return Home (fixed, top-left) ---- */
+.cs-section {
+  scroll-margin-top: 60px;
+}
+
+/* ---- Cards: metrics, stats, icon cards and the tech stack ---- */
+.cs-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.cs-cards--5 {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.cs-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 20px;
+  border-radius: var(--radius);
+  background: var(--cs-card-bg);
+}
+
+.cs-card-figure {
+  color: var(--text-primary);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.64px;
+  text-transform: uppercase;
+}
+
+.cs-card-text {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0;
+}
+
+.cs-card-text::first-letter {
+  text-transform: uppercase;
+}
+
+/* Icons take the figure's place, padded to the same line height so text lines up
+   across a row */
+.cs-card-icon {
+  width: 32px;
+  height: 32px;
+  margin: 2px 0 1px;
+  color: var(--text-primary);
+}
+
+/* The icon files are white, from the old dark theme */
+img.cs-card-icon {
+  filter: brightness(0);
+  opacity: 0.9;
+}
+
+.cs-tech-icon {
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 9px;
+}
+
+.cs-tech-icon img {
+  width: 100%;
+  height: 100%;
+}
+
+/* ---- Images ---- */
+.cs-figure img,
+.cs-figure video {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+
+/* Product screens get the homepage mockup shadow. A box-shadow rather than the
+   drop-shadow filter: a filter on images this large has to be redrawn whenever
+   anything around them changes, which made scrolling stutter */
+.cs-mockup {
+  box-shadow: var(--shadow-mockup);
+}
+
+/* The modal screenshots have rounded corners baked in (65px on a 1716 × 2897 image);
+   matching them in percentages keeps the shadow on the curve at any size */
+.cs-figure img.cs-mockup--modal {
+  border-radius: 3.79% / 2.24%;
+}
+
+.cs-image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px 16px;
+}
+
+.cs-video-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 500px;
+  padding: 40px;
+  overflow: hidden;
+  border-radius: var(--radius);
+  isolation: isolate;
+}
+
+.cs-figure .cs-video-card video {
+  position: relative;
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* ---- Detail rows: text on the left, a tall screen on the right ---- */
+.cs-detail-row {
+  display: grid;
+  grid-template-columns: 648fr 406fr;
+  column-gap: 46px;
+  align-items: start;
+}
+
+.cs-detail-text > * + * {
+  margin-top: 24px;
+}
+
+/* ---- Return home (fixed, top left, level with the page title's label). Padding
+   widens the hit area without moving the text ---- */
 .return-home {
   position: fixed;
-  top: 20px;
-  left: 24px;
+  top: 52px;
+  left: var(--cs-rail);
   z-index: 101;
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 16px 24px;
+  padding: 8px 12px 8px 0;
   color: var(--text-secondary);
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: 400;
   line-height: 16px;
+  letter-spacing: -0.12px;
   text-decoration: none;
   transition: color 0.2s ease;
 }
@@ -52,501 +315,211 @@
   color: var(--text-primary);
 }
 
-.back-icon {
-  width: 20px;
-  height: 20px;
-}
-
-.back-icon svg {
-  display: block;
-}
-
-/* ---- Section navigation (fixed, top-right) ---- */
-.navigation-block {
+/* ---- Section nav (fixed, in the left margin, its first link 176px down) ---- */
+.cs-nav {
   position: fixed;
-  top: 28px;
-  right: 24px;
+  top: 170px;
+  left: var(--cs-rail);
   z-index: 100;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  padding: 8px;
-  border-radius: 8px;
-  background-color: rgba(250, 251, 252, 0.8);
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
 }
 
-.navigation-link {
-  display: block;
-  padding: 8px 0 8px 12px;
-  border-left: 2px solid var(--border);
-  color: var(--text-secondary);
-  font-size: 16px;
+/* Links butt together (padding instead of a gap) so the pointer never falls between
+   them and flickers the current link back */
+.cs-nav-link {
+  position: relative;
+  padding: 6px 0;
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 12px;
   font-weight: 400;
-  line-height: 20px;
-  letter-spacing: -0.16px;
-  text-align: right;
+  line-height: 16px;
+  letter-spacing: 0;
   text-decoration: none;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition: color 0.2s ease;
 }
 
-.navigation-link:hover,
-.navigation-link.current {
+/* Dot beside the current section */
+.cs-nav-link::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: -8px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--text-primary);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.cs-nav-link.is-current {
   color: var(--text-primary);
-  border-left-color: var(--text-primary);
-}
-
-/* ---- Hero ---- */
-.cs-hero {
-  padding-top: 112px;
-}
-
-.cs-hero-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 24px;
-}
-
-.cs-hero-header > div {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  max-width: 680px;
-}
-
-.cs-label,
-.cs-section-label {
-  display: block;
-  color: var(--text-secondary);
-  font-size: 14px;
   font-weight: 500;
-  line-height: 16px;
-  letter-spacing: -0.14px;
 }
 
-.cs-section-label::first-letter {
-  text-transform: uppercase;
+.cs-nav-link.is-current::before {
+  opacity: 1;
 }
 
-.cs-hero h1 {
-  margin: 0;
+/* Pointing at (or tabbing to) a link gives it a dot too, while the current link and
+   its dot fade back to the inactive grey until the pointer leaves. 0.45 of the dot's
+   90% black matches the links' 40% */
+.cs-nav-link:focus-visible {
   color: var(--text-primary);
-  font-size: 28px;
-  font-weight: 500;
-  line-height: 36px;
-  letter-spacing: -0.56px;
-  text-wrap: balance;
 }
 
-.cs-container > .cs-label + h1 {
-  margin-top: -12px;
+.cs-nav-link:focus-visible::before {
+  opacity: 1;
 }
 
-.cs-hero .cs-hero-image {
-  margin-top: 24px;
+.cs-nav:has(.cs-nav-link:focus-visible) .cs-nav-link.is-current:not(:focus-visible) {
+  color: rgba(0, 0, 0, 0.4);
 }
 
-.cs-live-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  flex-shrink: 0;
-  padding: 8px 12px 8px 16px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  color: var(--text-secondary);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 16px;
-  letter-spacing: -0.14px;
-  text-decoration: none;
-  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+.cs-nav:has(.cs-nav-link:focus-visible) .cs-nav-link.is-current:not(:focus-visible)::before {
+  opacity: 0.45;
 }
 
-.cs-live-btn:hover {
-  color: var(--text-primary);
-  background-color: var(--hover);
-  border-color: rgba(0, 0, 0, 0.3);
-}
+@media (hover: hover) {
+  .cs-nav-link:hover {
+    color: var(--text-primary);
+  }
 
-/* ---- Sections ---- */
-.cs-section {
-  margin-top: 64px;
-  padding-top: 64px;
-  border-top: 1px solid var(--border-subtle);
-  scroll-margin-top: 48px;
-}
+  .cs-nav-link:hover::before {
+    opacity: 1;
+  }
 
-.cs-section h2 {
-  margin: 0;
-  color: var(--text-primary);
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 28px;
-  letter-spacing: -0.4px;
-  text-wrap: balance;
-}
+  .cs-nav:has(.cs-nav-link:hover) .cs-nav-link.is-current:not(:hover) {
+    color: rgba(0, 0, 0, 0.4);
+  }
 
-.cs-section-label + h2 {
-  margin-top: -12px;
-}
-
-/* Follow-on headings within a section start a new beat */
-.cs-section h2 ~ h2,
-.cs-section h2 ~ .cs-detail-row {
-  margin-top: 40px;
-}
-
-.cs-section p,
-.cs-detail-text p {
-  margin: 0;
-  color: var(--text-body);
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: -0.16px;
-}
-
-.cs-section p + p {
-  margin-top: -12px;
-}
-
-.cs-section ul {
-  margin: 0;
-  padding-left: 20px;
-  color: var(--text-body);
-  line-height: 24px;
-}
-
-.cs-section li {
-  margin-bottom: 8px;
-}
-
-/* ---- Images ---- */
-.cs-image {
-  margin: 0;
-}
-
-.cs-image img,
-.cs-image video {
-  width: 100%;
-  height: auto;
-  border-radius: var(--radius);
-}
-
-/* Product screens get the homepage mockup shadow. Images use the filter version so it
-   follows rounded or faded edges; the videos are plain rectangles */
-img.cs-mockup {
-  filter: var(--shadow-mockup-filter);
-}
-
-video.cs-mockup {
-  box-shadow: var(--shadow-mockup);
-}
-
-.cs-image-caption,
-.cs-section p.cs-image-caption {
-  margin: 12px 0 0;
-  color: var(--text-secondary);
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: -0.14px;
-}
-
-.cs-image-caption::first-letter {
-  text-transform: uppercase;
-}
-
-.cs-image-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px 12px;
-}
-
-.cs-image-grid-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.cs-video-card {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 500px;
-  padding: 40px;
-  overflow: hidden;
-  border-radius: var(--radius);
-  background: linear-gradient(160deg, rgba(165, 100, 240, 0.25), rgba(56, 150, 240, 0.25));
-}
-
-.cs-video-card video {
-  width: auto;
-  max-width: 100%;
-  max-height: 100%;
-}
-
-/* ---- Cards (metrics, stats, icon cards, learnings) ---- */
-.cs-metrics-grid,
-.cs-stat-grid,
-.cs-icon-cards,
-.cs-learning-cards {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.cs-metric,
-.cs-stat,
-.cs-icon-card,
-.cs-learning-card {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 24px;
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius);
-  background: var(--surface);
-}
-
-.cs-metric-number,
-.cs-stat-number {
-  color: var(--text-primary);
-  font-size: 32px;
-  font-weight: 500;
-  line-height: 36px;
-  letter-spacing: -0.64px;
-}
-
-.cs-metric-desc {
-  color: var(--text-secondary);
-  font-size: 16px;
-  line-height: 20px;
-  letter-spacing: -0.16px;
-}
-
-.cs-stat-label,
-.cs-icon-card h4,
-.cs-learning-card h4 {
-  margin: 0;
-  color: var(--text-primary);
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 24px;
-  letter-spacing: -0.36px;
-}
-
-.cs-stat-label::first-letter {
-  text-transform: uppercase;
-}
-
-/* Icons are white SVGs from the old dark theme; render them as soft black */
-.cs-stat-icon,
-.cs-icon-card img,
-.cs-learning-card img {
-  width: 32px;
-  height: 32px;
-  filter: brightness(0);
-  opacity: 0.55;
-}
-
-.cs-icon-card svg {
-  width: 32px;
-  height: 32px;
-  color: var(--text-secondary);
-}
-
-/* ---- Detail rows (text beside an image) ---- */
-.cs-detail-row {
-  display: grid;
-  grid-template-columns: 6fr 4fr;
-  gap: 40px;
-  align-items: start;
-}
-
-.cs-detail-text {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.cs-detail-text > h2 {
-  margin-bottom: 4px;
-}
-
-.cs-detail-text p + p {
-  margin-top: 0;
-}
-
-/* ---- Tech stack ---- */
-.cs-tech-stack {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 40px;
-  padding: 32px 24px;
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius);
-  background: var(--surface);
-}
-
-.cs-tech-stack + .cs-image-caption {
-  margin-top: -12px;
-}
-
-.cs-tech-stack-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-
-.cs-tech-stack-label {
-  color: var(--text-primary);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 16px;
-  text-align: center;
-}
-
-.cs-tech-stack-icon {
-  width: 64px;
-  height: 64px;
-  overflow: hidden;
-  border-radius: 14px;
-}
-
-.cs-tech-stack-icon img,
-.cs-tech-stack-icon svg {
-  width: 100%;
-  height: 100%;
-}
-
-.cs-tech-stack-name {
-  color: var(--text-secondary);
-  font-size: 14px;
-  line-height: 16px;
-  text-align: center;
+  .cs-nav:has(.cs-nav-link:hover) .cs-nav-link.is-current:not(:hover)::before {
+    opacity: 0.45;
+  }
 }
 
 /* ---- Load-in: same soft unblur as the homepage (keyframes in site.css) ---- */
 @media (prefers-reduced-motion: no-preference) {
   .return-home,
-  .navigation-block,
-  .cs-hero .cs-container > * {
+  .cs-nav,
+  .cs-hero > * {
     animation: load-unblur 0.7s cubic-bezier(0.33, 1, 0.68, 1) both;
   }
 
-  .cs-hero .cs-container > :nth-child(1) {
+  .cs-hero > :nth-child(1) {
     animation-delay: 50ms;
   }
 
-  .cs-hero .cs-container > :nth-child(2) {
+  .cs-hero > :nth-child(2) {
     animation-delay: 100ms;
   }
 
-  .cs-hero .cs-container > :nth-child(n + 3) {
+  .cs-hero > :nth-child(n + 3) {
     animation-delay: 150ms;
   }
 }
 
 /* ---- Responsive ---- */
-@media (max-width: 991px) {
-  .navigation-block {
-    top: 60px;
-    right: 20px;
-  }
 
-  .navigation-link {
-    font-size: 14px;
+/* Five across leaves too little room for labels like "Version control" */
+@media (max-width: 1199px) {
+  .cs-cards--5 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
+/* Without room in the margin, the section nav goes and Home becomes a blurred pill
+   that can sit over the content */
 @media (max-width: 1023px) {
-  .cs-stat-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .cs-nav {
+    display: none;
   }
-}
 
-@media (max-width: 767px) {
   .return-home {
     top: 12px;
     left: 12px;
+    gap: 4px;
     padding: 8px 16px 8px 12px;
     border-radius: 100px;
+    font-size: 14px;
     background: rgba(250, 251, 252, 0.8);
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
   }
 
-  .navigation-block {
-    display: none;
-  }
-
   .cs-hero {
-    padding-top: 80px;
+    padding-top: 88px;
+  }
+}
+
+@media (max-width: 767px) {
+  .cs-hero {
+    padding-top: 72px;
   }
 
-  .cs-hero-header {
+  .cs-title {
     flex-direction: column;
     align-items: flex-start;
+    gap: 16px;
   }
 
   .cs-hero h1 {
     font-size: 24px;
-    line-height: 32px;
+    line-height: 30px;
     letter-spacing: -0.48px;
   }
 
-  .cs-section {
-    margin-top: 48px;
-    padding-top: 48px;
+  .case-study-main h2 {
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.4px;
   }
 
-  .cs-section h2 ~ h2,
-  .cs-section h2 ~ .cs-detail-row {
-    margin-top: 24px;
+  .cs-hero > * + * {
+    margin-top: 32px;
   }
 
-  .cs-metrics-grid,
-  .cs-icon-cards,
-  .cs-learning-cards,
-  .cs-image-grid,
-  .cs-image-grid-3 {
+  .cs-media-card {
+    padding: 16px 18px;
+  }
+
+  .cs-section,
+  .cs-block + .cs-block {
+    margin-top: 64px;
+  }
+
+  .cs-cards,
+  .cs-image-grid {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
 
-  .cs-metric,
-  .cs-stat,
-  .cs-icon-card,
-  .cs-learning-card {
-    padding: 20px;
+  .cs-image-grid {
+    gap: 24px;
   }
 
-  .cs-metric-number,
-  .cs-stat-number {
+  .cs-cards--5 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cs-card-figure {
     font-size: 28px;
-    line-height: 32px;
+    letter-spacing: -0.56px;
   }
 
   .cs-detail-row {
     grid-template-columns: 1fr;
-    gap: 24px;
+    row-gap: 24px;
+  }
+
+  .cs-detail-row .cs-figure {
+    max-width: 406px;
   }
 
   .cs-video-card {
     height: 420px;
     padding: 24px;
-  }
-
-  .cs-tech-stack {
-    gap: 24px;
-  }
-
-  .cs-tech-stack-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 11px;
   }
 
   .case-study-main {

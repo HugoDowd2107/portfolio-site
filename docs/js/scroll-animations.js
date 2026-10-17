@@ -6,17 +6,14 @@
   var MAX_DELAY_MS = 150;
 
   var selectors = [
-    // Case study — sections (the hero and navigation animate on load in CSS)
+    // Case study — sections (the hero and navigation animate on load in CSS). Text and
+    // cards only: fading a large screenshot in makes the browser draw it twice, once while
+    // it fades and again when the effect is removed, which stuttered scrolling
     '.cs-section-label',
     '.cs-section h2',
-    '.cs-section .cs-image',
-    '.cs-section .cs-image-grid',
-    '.cs-section .cs-metrics-grid',
-    '.cs-section .cs-stat-grid',
-    '.cs-section .cs-icon-cards',
-    '.cs-section .cs-learning-cards',
-    '.cs-section .cs-detail-row',
-    '.cs-section .cs-container > p',
+    '.cs-section .cs-cards',
+    '.cs-section .cs-flow > p',
+    '.cs-section .cs-detail-text > p',
   ];
 
   // Elements entering together are revealed in reading order with a short
