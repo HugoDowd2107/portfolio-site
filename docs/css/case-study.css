@@ -174,12 +174,6 @@
   border-radius: var(--radius);
 }
 
-/* Stronger colour than the homepage cards, so it reads behind a screen with no shadow */
-:is(.cs-media-card, .cs-video-card) .project-card-shader,
-:is(.cs-media-card, .cs-video-card) .project-card-bg::before {
-  opacity: 0.35;
-}
-
 /* ---- Sections: each heading starts a block, 80px from the one before ---- */
 .cs-section,
 .cs-block + .cs-block {

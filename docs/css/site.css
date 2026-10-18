@@ -315,33 +315,22 @@ button:focus-visible {
   pointer-events: none;
 }
 
-/* CSS stand-in shown when WebGPU is unavailable; the shader canvas covers it otherwise */
-.project-card-bg::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  opacity: 0.15;
-}
-
-.project-card-bg--water::before {
-  background:
-    radial-gradient(60% 50% at 35% 27%, rgba(92, 224, 214, 0.55), transparent 70%),
-    radial-gradient(40% 40% at 80% 70%, rgba(92, 224, 214, 0.35), transparent 70%),
-    #4775de;
-}
-
-.project-card-bg--mesh::before {
-  background: linear-gradient(160deg, #a564f0 0%, #8b70f0 30%, #5e89f0 65%, #3896f0 100%);
-}
-
+/* The Figma shaders, pre-rendered (tools/card-backgrounds). The mesh gradient is drawn in
+   0–1 space, so its one image stretches to fit any card exactly */
 .project-card-shader {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  opacity: 0.15;
+  opacity: 0.35;
   border-radius: var(--radius);
   pointer-events: none;
+}
+
+/* The caustic's pattern depends on the card's shape, so each shape has its own image.
+   Cropped rather than stretched where a card's shape shifts a little with the layout */
+.project-card-bg--water .project-card-shader {
+  object-fit: cover;
 }
 
 /* Fades the screenshot and its shadow out over the bottom 80px of the card (at design
