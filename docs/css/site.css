@@ -358,10 +358,14 @@ button:focus-visible {
   pointer-events: none;
 }
 
-/* The top padding hides the screenshot's top 1px (a stray border in the Telstra
-   capture): with the bottom edge held in place, that's the row cover crops away */
+/* Every card's screenshot starts from the same top-left inset so they line up across
+   the grid; only the size varies per screenshot. The top padding hides the screenshot's
+   top 1px (a stray border in the Telstra capture): with the bottom edge held in place,
+   that's the row cover crops away */
 .project-card-shot {
   position: absolute;
+  left: 6.618cqw;
+  top: 6.434cqw;
   max-width: none;
   padding-top: 0.184cqw;
   object-fit: cover;
@@ -372,15 +376,11 @@ button:focus-visible {
 }
 
 .project-card-shot--telstra {
-  left: 6.618cqw;
-  top: 6.434cqw;
   width: 118.342cqw;
   height: 66.567cqw;
 }
 
 .project-card-shot--football {
-  left: 7.169cqw;
-  top: 7.169cqw;
   width: 107.493cqw;
   height: 59.688cqw;
 }
