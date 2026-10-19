@@ -47,12 +47,6 @@
   margin-top: 12px;
 }
 
-/* Paragraphs run on as one block of text */
-.cs-flow > p + p,
-.cs-detail-text > p + p {
-  margin-top: 0;
-}
-
 /* Default margins cleared at element strength so the flow spacing above wins */
 :where(.case-study-main) :is(h1, h2, h3, p, figure) {
   margin: 0;
