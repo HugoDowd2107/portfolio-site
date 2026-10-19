@@ -233,7 +233,8 @@ button:focus-visible {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  max-width: 542px;
+  /* Room for the headline's longer second line (614px) on one line */
+  max-width: 640px;
   /* 133px from the top of the page, below the Resume pill's row */
   margin-top: 67px;
   scroll-margin-top: 80px;
