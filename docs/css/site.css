@@ -38,9 +38,15 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* A column at least the window's height, so a footer (margin-top: auto) sits at the
+   bottom when the content is shorter. dvh tracks mobile browser toolbars; vh is the
+   fallback */
 body {
+  display: flex;
+  flex-direction: column;
   margin: 0;
   min-height: 100vh;
+  min-height: 100dvh;
   background: var(--bg);
   color: var(--text-primary);
   font-family: var(--font);
@@ -364,14 +370,16 @@ button:focus-visible {
   transition: transform 0.6s var(--ease-out);
 }
 
+/* Sized to whole pixels at the 544px card (644 and 585 wide), matching the image files
+   so they're drawn 1:1. Resampling a screenshot by even 1% blurs all of its text */
 .project-card-shot--telstra {
-  width: 118.342cqw;
-  height: 66.567cqw;
+  width: 118.3824cqw;
+  height: 66.5901cqw;
 }
 
 .project-card-shot--football {
-  width: 107.493cqw;
-  height: 59.688cqw;
+  width: 107.5368cqw;
+  height: 59.7426cqw;
 }
 
 .project-card-text {
@@ -430,12 +438,17 @@ button:focus-visible {
 }
 
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  /* 8px at the 544px card: a fractional shift would soften the screenshot while hovered */
   .project-card:hover .project-card-shot {
-    transform: translate3d(-1.5cqw, -1.5cqw, 0);
+    transform: translate3d(-1.4706cqw, -1.4706cqw, 0);
   }
 }
 
 /* ---- Footer ---- */
+.site-footer {
+  margin-top: auto;
+}
+
 .site-footer-inner {
   display: flex;
   justify-content: space-between;
