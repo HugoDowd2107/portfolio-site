@@ -234,19 +234,18 @@ button:focus-visible {
   flex-direction: column;
   gap: 16px;
   max-width: 542px;
-  /* Pulled up into the header row, 53px from the top of the page; the Resume pill
-     sits clear of it on the right */
-  margin-top: -13px;
+  /* 133px from the top of the page, below the Resume pill's row */
+  margin-top: 67px;
   scroll-margin-top: 80px;
 }
 
 .home-intro-lead {
   margin: 0;
   color: var(--text-primary);
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 500;
-  line-height: 24px;
-  letter-spacing: -0.36px;
+  line-height: 32px;
+  letter-spacing: -0.72px;
 }
 
 .home-intro-details {
@@ -579,7 +578,7 @@ button:focus-visible {
 /* ---- Responsive ---- */
 @media (max-width: 767px) {
   .home-intro {
-    margin-top: 48px;
+    margin-top: 128px;
   }
 
   .home-work {
