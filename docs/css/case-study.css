@@ -15,12 +15,6 @@
   --cs-rail: max(40px, calc(50% - 658px));
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
-  }
-}
-
 /* ---- Page column: the homepage container narrowed to 876px, inset further on
    wide screens so the section nav has room in the left margin ---- */
 .case-study-main {
