@@ -226,23 +226,47 @@ img.cs-card-icon {
   opacity: 0.9;
 }
 
-/* The project stack: just the tools' logos, in one row */
+/* The project stack: each tool's role above its logo and its name below, in one
+   centred row */
 .cs-stack {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 24px 40px;
   margin-bottom: 0;
   padding: 0;
   list-style: none;
 }
 
+.cs-stack-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.cs-stack-label {
+  color: var(--text-primary);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+}
+
 /* The ring keeps GitHub's white tile visible against the page */
 .cs-stack img {
   display: block;
-  width: 40px;
-  height: 40px;
-  border-radius: 18%;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06);
+  width: 80px;
+  height: 80px;
+  border-radius: 18px;
+  box-shadow: 0 0 0 1px var(--border-subtle);
+}
+
+.cs-stack-name {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 20px;
 }
 
 /* ---- Images ---- */
@@ -512,6 +536,35 @@ img.cs-card-icon {
 
   .cs-image-grid {
     gap: 24px;
+  }
+
+  /* Three across, so the five tools take two rows rather than three */
+  .cs-stack {
+    gap: 20px 8px;
+  }
+
+  .cs-stack-item {
+    flex: 0 0 calc((100% - 16px) / 3);
+    min-width: 0;
+  }
+
+  /* One line, so the logos stay level; "Version Control" runs a few pixels into
+     the gap, past its neighbours' short labels */
+  .cs-stack-label {
+    font-size: 14px;
+    line-height: 20px;
+    white-space: nowrap;
+  }
+
+  .cs-stack img {
+    width: 64px;
+    height: 64px;
+    border-radius: 14px;
+  }
+
+  .cs-stack-name {
+    font-size: 13px;
+    line-height: 18px;
   }
 
   .cs-card-figure {
