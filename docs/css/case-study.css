@@ -281,6 +281,12 @@ img.cs-card-icon {
   isolation: isolate;
 }
 
+/* Undo .cs-figure img's height: auto so the gradient fills the whole card, not just
+   its own aspect ratio */
+.cs-figure .cs-video-card .project-card-shader {
+  height: 100%;
+}
+
 .cs-figure .cs-video-card video {
   position: relative;
   width: auto;
